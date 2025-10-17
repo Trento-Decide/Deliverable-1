@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[a4paper, margin=2.5cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+
+  {\Huge\bfseries Trento Decide \par}
+  \vspace{1cm}
+
+  {\Large Documento di analisi dei requisiti funzionali, non funzionali, user story e front-end \par}
+  \vspace{1.5cm}
+
+  {\large Versione 1.0 \par}
+  \vspace{0.5cm}
+
+  {\large Data: \today \par}
+  \vspace{3.5cm}
+
+  \includegraphics[width=0.25\textwidth]{img/unitn.png}
+
+  \vfill
+
+  \begin{flushright}
+    \textbf{Autori:}\\[0.3em]
+    Youssef Bouadoud\\
+    Alessandro Duranti\\
+    Tommaso Tricker
+  \end{flushright}
+
+  \vspace{1cm}
+  \rule{\textwidth}{0.4pt}\\[0.3em]
+  {\small Dipartimento di Ingegneria e Scienza dell'Informazione — Università di Trento}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\include{ch1}
+\include{ch2}
+\include{ch3}
+\include{ch4}
+
+\end{document}
