@@ -1,39 +1,51 @@
-\chapter{Requisiti Non Funzionali}
-\section{RNF1 - Affidabilità}
-Il sistema deve garantire un'affidabilità elevata, con una disponibilità minima del 99.73{\%}, corrispondente ad un downtime massimo di 23 ore, 40 minuti e 4 secondi all'anno. Il software deve essere progettato per minimizzare i tempi di inattività pianificati e non pianificati, garantendo un accesso continuo ai servizi, in osservanza del RNF X.
+\setcounter{secnumdepth}{3}
 
-\section{RNF2 - Backup}
+\chapter{Requisiti Non Funzionali}
+
+\renewcommand{\thesubsection}{RNF\arabic{subsection}}
+\renewcommand{\thesubsubsection}{RNF\arabic{subsection}.\arabic{subsubsection}}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\section{Introduzione}
+In questa sezione vengono descritti i requisiti non funzionali del sistema \textit{Trento Decide}.
+Essi definiscono le proprietà generali e le condizioni operative che la piattaforma deve rispettare per assicurare un funzionamento efficace e coerente con gli obiettivi progettuali.
+I requisiti sono identificati con il prefisso \textbf{RNF}, seguito da un numero progressivo e, ove necessario, organizzati in sottosezioni tematiche.
+
+\subsection{Affidabilità}
+Il sistema deve garantire un'affidabilità elevata, con una disponibilità minima del 99.73{\%}, corrispondente ad un downtime massimo di 23 ore, 40 minuti e 4 secondi all'anno. Il software deve essere progettato per minimizzare i tempi di inattività pianificati e non pianificati, garantendo un accesso continuo ai servizi, in osservanza del RNF 7.
+
+\subsection{Backup}
 Il sistema deve prevedere un’adeguata strategia di backup per garantire la continuità del servizio e la protezione dei dati anche in caso di guasti o malfunzionamenti.
 I backup devono includere tutte le componenti del sistema (dati, configurazioni e file necessari al funzionamento) e devono essere eseguiti con regolarità ogni 12 ore, su tutti i sistemi che supportano il software. Si prevede un periodo di retention dei dati di giorni 40, con almeno una copia archiviata off-site in un' data center UE/cloud qualificato conforme ai requisiti del GDPR.
 
-\section{RNF3 - Compatibilità}
+\subsection{Compatibilità}
 Il sistema deve essere pienamente utilizzabile con i principali browser utilizzati nei contesti della Pubblica Amministrazione e dagli utenti finali: Mozilla Firefox versione 52 ESR o superiore, Chromium/Chrome versione 49 o superiore, Opera versione 40 o superiore, Safari versione 10 o superiore e Microsoft Edge versione 79 i superiore. Il software deve garantire la totale fruibilità delle interfacce e delle funzionalità indipendentemente dal browser utilizzato.
 
-\section{RNF4 - Etica}
+\subsection{Etica}
 Il software è progettato per garantire la massima neutralità intellettuale della parti coinvolte, dunque l'assenza di bias politici, ideologici o sociali. Ogni azione eseguita da cittadini o tecnici del Comune si deve concepire come miglioramento alla vita pubblica in modo imparziale. Si prevede che il software fornisca strumenti tecnici e criteri oggettivi per la valutazione dei casi proposti, con l'obiettivo di sopprimere sbilanciamenti di carattere politico o socialmente divisivi. 
 
-\section{RNF5 - Lingua}
+\subsection{Lingua}
 Il sistema deve offrire agli utenti la possibilità di cambiare la lingua dell’interfaccia tra una delle seguenti opzioni: Italiano (92{\%}), Inglese (5{\%}), Rumeno (2{\%}), Arabo (1{\%}). La selezione della lingua deve essere facilmente accessibile e applicabile in qualsiasi momento; garantendo inoltre coerenza e precisione nelle funzionalità indipendentemente dalla lingua.
 
-\section{RNF6 - Moderazione e correttezza d'uso}
+\subsection{Moderazione e correttezza d'uso}
 Il sistema deve prevedere meccanismi di moderazione dei contenuti e interazioni tra utenti, al fine di prevenire utilizzi scorretti della piattaforma e garantendo così un ambiente rispettoso. Per garantire quanto citato si prevede l'assunzione della figura del moderatore, ovvero un tecnico formato in grado di riconoscere e rimuovere minacce in osservanza delle linee guida fornitegli. Tale moderatore si pone anche come risolutore diretto di problematiche trattate nel RNF4.
 
-\section{RNF7 - Performance}
+\subsection{Performance}
 Il sistema deve garantire tempi di risposta brevi, in tal modo che qualsiasi operazione, come il login, la visualizzazione delle iniziative o il voto, vengano completate entro un massimo di 1 secondo per il 90{\%} delle richieste. Tale requisito deve essere mantenuto anche in presenza di notevoli flussi di connessioni, con un carico simultaneo sostenibile di 1500 utenti ai 65.000 connessi al sistema.
 
-\section{RNF8 - Portabilità}
+\subsection{Portabilità}
 Il lato server dell'applicazione deve poter essere installato ed eseguito sia su infrastrutture preesistenti dell’amministrazione comunale sia su cloud qualificati UE. Riguardo alla pagina web fornita dal server all'utente finale, deve essere pienamente fruibile da tutti i tipi di dispositivi inclusi: desktop, tablet e smartphone, garantendo così l’accesso anche da postazioni eterogenee.
 
-\section{RNF9 - Scalabilità}
+\subsection{Scalabilità}
 Il sistema deve essere scalabile, architetturalmente dunque il sistema deve garantire una agevole espansione futura, permettendo l’incremento delle risorse in utilizzo in base alla richiesta.
 
-\section{RNF10 - Sicurezza}
+\subsection{Sicurezza}
 Il sistema deve essere progettato per garantire un elevato livello di sicurezza delle informazioni e della piattaforma, proteggendo dati e funzionalità da accessi non autorizzati, utilizzi impropri e possibili minacce informatiche. La piattaforma in tutte le sue componenti deve essere sviluppata seguendo i principi di sicurezza by design e deve essere mantenuta aggiornata nel tempo, in osservanza delle normative vigenti e con il GDPR UE.
 
-\newpage
-
-\section{RNF11 - Usabilità}
-\paragraph{RNF11.1 – Formazione}
+\subsection{Usabilità}
+\subsubsection{Formazione}
 Il sistema deve garantire un livello di usabilità elevato, consentendo ad utenti esterni di utilizzarla senza l’ausilio di istruzioni esterne; e mantenendo la soglia massima di formazione degli operatori a 45 minuti. L’interfaccia deve essere intuitiva, chiara e semplice; con funzionalità e struttura che permetta agli utenti di familiarizzare rapidamente con il software.
-\paragraph{RNF11.2 – Standard}
+\subsubsection{Standard}
  L’interfaccia deve essere conforme agli standard WCAG 2.1 livello AA, garantendo l’uso anche a persone con disabilità.
