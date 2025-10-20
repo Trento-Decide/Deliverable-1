@@ -45,8 +45,8 @@ Il sistema deve consentire la modifica delle proposte in modo collaborativo, man
 Deve essere possibile confrontare due versioni successive per visualizzare le differenze e ripristinare versioni precedenti, se necessario.
 
 \subsection{Stato e tracciabilità delle proposte}
-Ogni proposta deve possedere uno stato identificabile come “Bozza”, “Pubblicata”, “In valutazione”, “Accettata”, “Respinta”, “Implementata”, ecc.  
-Il sistema deve aggiornare e mostrare la cronologia degli stati, consentendo la tracciabilità completa del processo decisionale.
+Il sistema deve gestire lo stato di ogni proposta, aggiornandolo automaticamente in base alle azioni dell’utente o dell’amministrazione (es. creazione, pubblicazione, valutazione, approvazione, implementazione).
+Deve inoltre mostrare all’utente lo stato corrente e lo storico dei cambiamenti, garantendo la tracciabilità completa del ciclo di vita della proposta.
 
 \subsection{Endorsement e raccolta firme}
 Il sistema deve consentire il sostegno delle proposte tramite firme digitali o endorsement da parte di singoli cittadini o associazioni.  
@@ -76,7 +76,8 @@ I risultati delle votazioni devono essere pubblici e accompagnati da indicatori 
 \section{Moderazione e qualità dei contenuti}
 
 \subsection{Moderazione automatica}
-Il sistema deve analizzare automaticamente i contenuti per rilevare linguaggio inappropriato, spam o duplicati.
+Il sistema deve analizzare automaticamente i contenuti caricati dagli utenti (proposte, descrizioni, titoli) per rilevare linguaggio inappropriato, spam o contenuti duplicati.
+In caso di rilevamento, il sistema deve segnalare automaticamente l’elemento ai moderatori per revisione o sospenderne temporaneamente la pubblicazione.
 
 \subsection{Intervento dei moderatori}
 Il sistema deve includere un modulo di moderazione che permetta di individuare e gestire contenuti offensivi, spam o duplicati.  
@@ -119,9 +120,5 @@ Deve essere possibile esportare i dati in formato CSV o PDF per analisi esterne.
 Il sistema deve fornire un’interfaccia API pubblica che consenta la consultazione anonima dei dati aggregati (proposte, voti, stati, ecc.).  
 L’amministrazione deve poter esportare i dataset per la pubblicazione sul portale open data comunale.
 
-\subsection{Audit e tracciabilità}
-Tutte le azioni critiche (creazione, modifica, voto, moderazione) devono essere registrate con timestamp e utente responsabile.  
-I log devono essere accessibili agli amministratori per controlli e per garantire trasparenza e accountability del processo.
-
 \subsection{Trasparenza e accountability}
-Per ogni proposta conclusa, il sistema deve permettere all’amministrazione di pubblicare un riscontro ufficiale con la motivazione di rifiuto o accettazione. Tale feedback deve essere visibile nella pagina della proposta e incluso nel registro di tracciabilità.
+Per ogni proposta conclusa, il sistema deve permettere all’amministrazione di pubblicare un riscontro ufficiale con la motivazione di rifiuto o accettazione. Tale feedback deve essere visibile nella pagina della proposta e incluso nel registro di tracciabilità
