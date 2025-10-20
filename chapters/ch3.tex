@@ -14,7 +14,7 @@ Essi definiscono le proprietà generali e le condizioni operative che la piattaf
 I requisiti sono identificati con il prefisso \textbf{RNF}, seguito da un numero progressivo e, ove necessario, organizzati in sottosezioni tematiche.
 
 \subsection{Affidabilità}
-Il sistema deve garantire un'affidabilità elevata, con una disponibilità minima del 99.73{\%}, corrispondente ad un downtime massimo di 23 ore, 40 minuti e 4 secondi all'anno. Il software deve essere progettato per minimizzare i tempi di inattività pianificati e non pianificati, garantendo un accesso continuo ai servizi, in osservanza del RNF 7.
+Il sistema deve garantire un'affidabilità elevata, con una disponibilità minima del 99.72603{\%}, corrispondente ad un downtime massimo di 24 ore all'anno. Il software deve essere progettato per minimizzare i tempi di inattività pianificati e non pianificati, garantendo un accesso continuo ai servizi, in osservanza del RNF 7.
 
 \subsection{Backup}
 Il sistema deve prevedere un’adeguata strategia di backup per garantire la continuità del servizio e la protezione dei dati anche in caso di guasti o malfunzionamenti.
@@ -33,16 +33,26 @@ Il sistema deve offrire agli utenti la possibilità di cambiare la lingua dell�
 Il sistema deve prevedere meccanismi di moderazione dei contenuti e interazioni tra utenti, al fine di prevenire utilizzi scorretti della piattaforma e garantendo così un ambiente rispettoso. Per garantire quanto citato si prevede l'assunzione della figura del moderatore, ovvero un tecnico formato in grado di riconoscere e rimuovere minacce in osservanza delle linee guida fornitegli. Tale moderatore si pone anche come risolutore diretto di problematiche trattate nel RNF4.
 
 \subsection{Performance}
-Il sistema deve garantire tempi di risposta brevi, in tal modo che qualsiasi operazione, come il login, la visualizzazione delle iniziative o il voto, vengano completate entro un massimo di 1 secondo per il 90{\%} delle richieste. Tale requisito deve essere mantenuto anche in presenza di notevoli flussi di connessioni, con un carico simultaneo sostenibile di 1500 utenti ai 65.000 connessi al sistema.
+Il sistema deve garantire tempi di risposta brevi, in tal modo che qualsiasi operazione, come il login, la visualizzazione delle iniziative o il voto, vengano completate entro un massimo di 1 secondo per il 90{\%} delle richieste. Tale requisito deve essere mantenuto anche in presenza di notevoli flussi di connessioni, con un carico simultaneo sostenibile di 1500 utenti ai 20.000 connessi al sistema.
 
 \subsection{Portabilità}
 Il lato server dell'applicazione deve poter essere installato ed eseguito sia su infrastrutture preesistenti dell’amministrazione comunale sia su cloud qualificati UE. Riguardo alla pagina web fornita dal server all'utente finale, deve essere pienamente fruibile da tutti i tipi di dispositivi inclusi: desktop, tablet e smartphone, garantendo così l’accesso anche da postazioni eterogenee.
 
 \subsection{Scalabilità}
-Il sistema deve essere scalabile, architetturalmente dunque il sistema deve garantire una agevole espansione futura, permettendo l’incremento delle risorse in utilizzo in base alla richiesta.
+Il sistema deve essere scalabile, e deve garantire un’agevolata aggiunta di componenti che possano apportare miglioramenti sia software che hardware.
+
+\subsubsection{Software}
+Dal punto di vista del software, oltre ad assicurare elevata riutilizzabilità e pulizia del codice in tutte le parti che lo compongono, si garantisce scalabilità assoluta nell'ambito delle \textit{Policy Simulator}, data la loro natura di moduli totalmente indipendenti dal resto del programma.
+
+\subsubsection{Hardware}
+Dal punto di vista hardware, l’architettura del sistema deve consentire l’integrazione progressiva di nuove risorse fisiche senza richiedere modifiche strutturali profonde.  
+In particolare, deve essere possibile potenziare le prestazioni complessive aggiungendo server, unità di calcolo o sistemi di storage, garantendo al contempo la continuità del servizio e la compatibilità con l’infrastruttura esistente.  
 
 \subsection{Sicurezza}
-Il sistema deve essere progettato per garantire un elevato livello di sicurezza delle informazioni e della piattaforma, proteggendo dati e funzionalità da accessi non autorizzati, utilizzi impropri e possibili minacce informatiche. La piattaforma in tutte le sue componenti deve essere sviluppata seguendo i principi di sicurezza by design e deve essere mantenuta aggiornata nel tempo, in osservanza delle normative vigenti e con il GDPR UE.
+Il sistema deve essere progettato per garantire un elevato livello di sicurezza delle informazioni e della piattaforma, proteggendo dati e funzionalità da accessi non autorizzati, utilizzi impropri e potenziali minacce informatiche.  
+La piattaforma deve adottare un approccio \textit{security by design}, integrando meccanismi di protezione fin dalle fasi iniziali di sviluppo e assicurando l’utilizzo esclusivo del protocollo HTTPS per tutte le comunicazioni tra client e server.
+Tutte le componenti del sistema devono inoltre essere costantemente mantenute aggiornate, applicando tempestivamente patch di sicurezza e adeguamenti tecnologici necessari.  
+Il progetto deve infine conformarsi alle normative vigenti in materia di protezione dei dati personali e sicurezza informatica, inclusi i requisiti stabiliti dal \textbf{Regolamento UE} (\textit{GDPR}), assicurando il trattamento corretto e sicuro delle informazioni degli utenti in ogni fase del loro ciclo di vita.
 
 \subsection{Usabilità}
 \subsubsection{Formazione}
