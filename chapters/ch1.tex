@@ -4,18 +4,18 @@
 
 Il progetto si fonda sull’assunto che il Comune di Trento, pur disponendo di competenze e strumenti amministrativi avanzati, non sia in grado di individuare e affrontare con assoluta precisione e completezza l’insieme delle problematiche presenti sul territorio comunale. Tale limite non deriva da inefficienze specifiche, ma è una conseguenza fisiologica della complessità urbana e della distanza che spesso si crea tra amministrazione e cittadinanza.
 Trento Decide nasce proprio con l’obiettivo di ridurre il divario tra l’efficienza amministrativa attuale e un’ideale efficienza assoluta, fungendo da ponte diretto tra cittadini e istituzioni. La piattaforma si propone di rendere il processo decisionale più inclusivo, trasparente e reattivo, offrendo ai cittadini uno spazio digitale in cui proporre, discutere e votare iniziative di pubblico interesse.
-Gli utenti, una volta autenticati, possono pubblicare nuove iniziative, corredandole di titolo e descrizione, e modificarle o proporre revisioni nel caso in cui non ne condividano pienamente i contenuti. Inoltre, hanno la possibilità di esprimere il proprio voto sulle proposte esistenti, contribuendo così a determinarne la priorità e la rilevanza all’interno del processo decisionale.
-Quando una proposta supera la soglia minima di voti prevista (def. 1.2), essa viene automaticamente segnalata ai tecnici comunali competenti, che hanno il compito di avviare una valutazione di fattibilità tecnico-scientifica. Nel caso di iniziative appartenenti a particolari categorie di rilievo (def. 1.1), il sistema fornisce già in fase preliminare delle analisi tecniche automatiche, così da agevolare e velocizzare il processo di esame.
-Il personale tecnico, una volta ricevuta la notifica di una nuova proposta, provvede a inoltrarla all’ufficio competente e a garantire la massima trasparenza del processo di valutazione, rendendo disponibili alla cittadinanza tutte le informazioni relative alle fasi di analisi. Al termine di tale processo, l’amministrazione comunica pubblicamente l’esito, che può consistere nell’accettazione e conseguente attuazione dell’iniziativa oppure nel suo rifiuto motivato.
-L’intero sistema è implementato come applicazione web accessibile direttamente tramite browser, senza la necessità di installare software aggiuntivo da parte degli utenti. La piattaforma è progettata per garantire trasparenza, chiarezza e sicurezza, ponendosi come uno strumento al servizio sia della cittadinanza, che può contribuire attivamente al miglioramento del territorio, sia dell’amministrazione, che beneficia di un canale di comunicazione diretta, strutturata e partecipata.
+I cittadini possono pubblicare nuove iniziative, modificarle o proporre revisioni nel caso in cui non ne condividano pienamente i contenuti. Inoltre, hanno la possibilità di esprimere il proprio voto sulle proposte esistenti, contribuendo così a determinarne la priorità e la rilevanza all’interno del processo decisionale.
+Quando una proposta supera la soglia minima di voti prevista (def. 1.2), essa viene automaticamente segnalata agli amministratori comunali competenti che hanno il compito di avviare una valutazione di fattibilità tecnico-scientifica. Nel caso di iniziative appartenenti a particolari categorie di rilievo (def. 1.1), il sistema fornisce già in fase preliminare delle analisi tecniche automatiche, così da agevolare e velocizzare sia il processo di esame, che la comprensione di quanto trattato.
+Il personale comunale amministrativo, una volta ricevuta la notifica di una nuova proposta, provvede a inoltrarla all’ufficio competente e a garantire la massima trasparenza del processo di valutazione, rendendo disponibili alla cittadinanza tutte le informazioni relative alle fasi di analisi. Al termine di tale processo, l’amministrazione comunica pubblicamente l’esito, che può consistere nell’accettazione e conseguente attuazione dell’iniziativa oppure nel suo rifiuto motivato.
+L’intero sistema è implementato come applicazione web accessibile direttamente tramite browser, senza la necessità di installare software aggiuntivo da parte degli utilizzatori. La piattaforma è progettata per garantire trasparenza, chiarezza e sicurezza, ponendosi come uno strumento al servizio sia della cittadinanza, che può contribuire attivamente al miglioramento del territorio, sia dell’amministrazione, che beneficia di un canale di comunicazione diretta, strutturata e partecipata.
 
-\section{Definizioni}
+\section{Glossario}
 
 \begin{description}
-  \item[Definizione 1.1 – Categoria notevole:] 
-  Per \textit{categoria notevole} si intende un ambito tematico di particolare rilevanza pubblica, la cui trattazione comporta un impatto significativo sul territorio comunale o sulla qualità della vita collettiva.  
+  \item[Definizione 1.1 – Categoria di rilievo:] 
+  Per \textit{categoria di rilievo} si intende un ambito tematico di particolare rilevanza pubblica, la cui trattazione comporta un impatto significativo sul territorio comunale o sulla qualità della vita collettiva.  
   Le iniziative pubblicate all’interno di tali categorie vengono sottoposte dal sistema a una prima analisi tecnico-scientifica automatica, utile a supportare l’attività decisionale dell’amministrazione comunale.  
-  Le principali categorie notevoli previste nella piattaforma sono:
+  Le principali categorie di rilievo previste nella piattaforma sono:
   \begin{itemize}
     \item \textbf{Urbanistica} – Interventi su spazi pubblici, pianificazione urbana, mobilità e viabilità, arredo urbano e infrastrutture cittadine.
     \item \textbf{Ambiente} – Tutela del verde pubblico, riduzione dell’inquinamento, gestione dei rifiuti, risparmio energetico e promozione di pratiche sostenibili.
@@ -29,6 +29,7 @@ L’intero sistema è implementato come applicazione web accessibile direttament
   
   \vspace{1em}
   \item[Definizione 1.2 - Soglia di voto:] Numero minimo di voti necessario affinché una proposta venga inoltrata all’amministrazione per la valutazione di fattibilità.
+  \item[Definizione 1.3 - Utente:] Insieme di tutti i ruoli predefiniti previsti dalla piattaforma, specificati nel Requisito Funzionale \ref{sec:ruoli}
 \end{description}
 
 \section{Vantaggi}
@@ -45,7 +46,7 @@ L’intero sistema è implementato come applicazione web accessibile direttament
   all'inoltro all'ufficio competente fino all'esito, con linea temporale pubblica e 
   regole chiare; meno email disperse e più ordine procedurale.
 
-  \item Migliore allocazione delle risorse tecniche: per le "categorie notevoli" 
+  \item Migliore allocazione delle risorse tecniche: per le categorie di rilievo 
   il sistema propone valutazioni tecnico-scientifiche preventive, riducendo 
   analisi ridondanti e concentrando i tecnici sulle pratiche più impattanti.
 
@@ -65,7 +66,7 @@ L’intero sistema è implementato come applicazione web accessibile direttament
   la cittadinanza protagonista nella definizione delle priorità pubbliche.
 
   \item Chiarezza sul percorso: Ogni iniziativa ha uno stato visibile e aggiornato 
-  (in valutazione, accettata, rifiutata), riducendo l'asimmetria informativa.
+  (proposta, in valutazione, accettata, rifiutata), riducendo l'asimmetria informativa.
 
   \item Accesso semplice via web: Nessuna installazione richiesta; la piattaforma 
   è usabile da browser e orientata a trasparenza, chiarezza e sicurezza.
@@ -77,7 +78,7 @@ L’intero sistema è implementato come applicazione web accessibile direttament
 \section{Limiti}
 
 \begin{itemize}
-  \item Definizione della soglia (def 1.2): Un limite troppo alto scoraggia; 
+  \item Definizione della soglia di voto (def 1.2): Un limite troppo alto scoraggia; 
   troppo basso satura gli uffici. La taratura richiede monitoraggio e possibili 
   revisioni.
 
