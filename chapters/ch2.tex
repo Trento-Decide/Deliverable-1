@@ -17,26 +17,23 @@ Ogni requisito è identificato con il prefisso \textbf{RF}, seguito da un numero
 
 \subsection{Registrazione e login}
 Il sistema deve consentire ai cittadini, ai moderatori e agli amministratori comunali di registrarsi e accedere tramite autenticazione tradizionale (email e password) o tramite SPID/CIE.  
-Durante il login, l’utente deve poter scegliere la modalità di accesso preferita.
 
 \subsection{Gestione profilo utente}
-Il sistema deve permettere a ciascun utente di visualizzare e modificare i propri dati personali.  
-L’utente deve poter aggiornare la password.  
-Ogni modifica deve essere tracciata nel registro delle azioni.
+Il sistema deve permettere a ciascun utente di visualizzare e modificare i propri dati personali (username, password), attraverso la sezione apposita di gestione del profilo
 
 \subsection{Gestione ruoli e permessi}
+\label{sec:ruoli}
 Il sistema deve gestire i seguenti ruoli predefiniti:
 \begin{itemize}
-    \item \textbf{Cittadino}: crea proposte, partecipa a consultazioni e votazioni;
-    \item \textbf{Moderatore}: supervisiona e convalida i contenuti;
-    \item \textbf{Amministratore comunale}: gestisce processi e fornisce risposte ufficiali;
+    \item \textbf{Cittadino}: crea proposte, suggerisce modifiche e partecipa a votazioni;
+    \item \textbf{Moderatore}: supervisiona e convalida il comportamento dei cittadini e i contenuti;
+    \item \textbf{Amministratore comunale}: gestisce il processo di valutazione di una proposta, notificandone infine l'esito;
     \item \textbf{Associazione o comitato}: presenta proposte collettive e fornisce endorsement.
 \end{itemize}
 Ogni ruolo deve avere un insieme di permessi configurabile dall’amministrazione comunale.
 
 \subsection{Gestione account e sicurezza}
 Il sistema deve consentire il recupero della password, la disattivazione dell’account e la visualizzazione della cronologia di accessi.  
-Deve inoltre permettere la configurazione delle preferenze di notifica per canale (email, push, App IO).
 
 % ====================================================
 % RF2
