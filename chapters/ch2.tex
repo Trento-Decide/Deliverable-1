@@ -35,32 +35,50 @@ Ogni ruolo deve avere un insieme di permessi configurabile dall’amministrazion
 \subsection{Gestione account e sicurezza}
 Il sistema deve consentire il recupero della password, la disattivazione dell’account e la visualizzazione della cronologia di accessi.  
 
+
+% ====================================================
+% RF1.5
+% ====================================================
+
+\section{Personalizzazione e preferenze}
+
+\subsection{Preferiti}
+I cittadini devono poter inserire tra i propri preferiti delle proposte o sondaggi per i quali si intende ricevere informazioni in caso di cambiamenti di stato.
+
+\subsection{Cambio di lingua}
+Il sistema deve permettere ad ogni utente di cambiare lingua (Italiano, Inglese, Tedesco, Arabo, Rumeno) attraverso menu dedicato.
+
 % ====================================================
 % RF2
 % ====================================================
 \section{Gestione proposte cittadine}
 
 \subsection{Creazione proposta}
-Il sistema deve consentire ai cittadini autenticati di creare una proposta compilando un modulo composto da campi specifici per la categoria selezionata.  
+Il sistema deve consentire ai cittadini di creare una proposta compilando un modulo composto da campi specifici per la categoria selezionata.  
 I campi obbligatori e facoltativi per ciascuna categoria devono essere configurabili dall’amministrazione comunale.  
-Il sistema deve salvare automaticamente una prima versione con stato “Bozza” e rendere pubblica la proposta solo dopo la pubblicazione da parte dell’utente.
+
+\subsection{Pubblicazione proposta}
+Ogni proposta appena creata viene salvata in stato "Bozza", una volta che il cittadino ha compilato il modulo per la categoria selezionata, potrà procedere a rendere la proposta pubblica.
 
 \subsection{Modifica collaborativa}
-Il sistema deve consentire la modifica collaborativa delle proposte, mantenendo uno storico delle versioni contenente autore, data e descrizione del cambiamento.  
-Deve essere possibile confrontare due versioni successive e ripristinare una versione precedente.
+Il sistema deve consentire la modifica collaborativa delle proposte, permettendo ad un cittadino di revisionare una proposta qualsiasi, con i seguenti vincoli:
+\begin{itemize}
+    \item \textbf{Mantenimento dello storico}: Sarà consultabile un elenco delle versioni precedenti della proposta, contenente: autore, data e descrizione del cambiamento ;
+    \item \textbf{Ripristino}: Deve essere possibile ripristinare una versione precedente come versione principale;
+\end{itemize}
 
 \subsection{Stato e tracciabilità delle proposte}
-Il sistema deve gestire lo stato di ogni proposta aggiornandolo automaticamente in base alle azioni dell’utente o dell’amministrazione comunale (creazione, pubblicazione, valutazione, approvazione, implementazione).  
+Il sistema deve gestire lo stato di ogni proposta aggiornandolo automaticamente in base alle azioni del cittadino o dell’amministrazione comunale (creazione, pubblicazione, valutazione, approvazione, implementazione).  
 Deve inoltre mostrare lo stato corrente e la cronologia completa dei cambiamenti associati a ciascuna proposta.
 
 \subsection{Endorsement e raccolta firme}
-Il sistema deve consentire l’espressione di endorsement digitali a favore delle proposte da parte di cittadini o associazioni registrate.  
+Il sistema deve consentire l’espressione di endorsement digitali a favore delle proposte da parte di cittadini o associazioni.  
 Deve inoltre permettere di registrare le firme fisiche raccolte offline e comunicate all’amministrazione comunale.
 
 \subsection{Proposte collettive}
-Le associazioni registrate devono poter presentare proposte collettive tramite un canale dedicato.  
+Le associazioni devono poter presentare proposte collettive tramite un canale dedicato.  
 Tali proposte devono essere etichettate come collettive e soggette alle stesse regole di validazione delle proposte individuali.  
-Le proposte collettive devono avere un peso maggiore nel calcolo del ranking o nei processi di valutazione, con coefficiente configurabile dall’amministrazione comunale.
+Le proposte collettive devono avere un peso maggiore nei processi di valutazione, con coefficiente configurabile dall’amministrazione comunale.
 
 % ====================================================
 % RF3
@@ -68,16 +86,14 @@ Le proposte collettive devono avere un peso maggiore nel calcolo del ranking o n
 \section{Votazioni e consultazioni}
 
 \subsection{Votazione delle proposte}
-Il sistema deve consentire agli utenti di esprimere un voto positivo o negativo su una proposta attiva.  
-Il conteggio dei voti deve essere aggiornato in tempo reale.
+Il sistema deve consentire ai cittadini di esprimere un voto positivo o negativo su una proposta attiva.  
 
 \subsection{Consultazioni pubbliche e sondaggi}
 Il sistema deve consentire all’amministrazione comunale di creare consultazioni e sondaggi tematici, raccogliendo risposte dai cittadini.  
-I risultati devono essere esportabili in formato CSV e visualizzabili pubblicamente tramite grafici o tabelle aggregate.
 
 \subsection{Algoritmo di ranking}
 Il sistema deve calcolare automaticamente un punteggio di rilevanza per ciascuna proposta in base a parametri configurabili dall'amministrazione comunale.  
-Le proposte devono poter essere ordinate per punteggio, data o categoria.
+Le proposte devono poter essere ordinate per punteggio, numero di voti, data o categoria.
 
 \subsection{Report votazioni}
 Il sistema deve generare report delle votazioni contenenti almeno i seguenti indicatori: numero totale di votanti, distribuzione territoriale e fasce d’età.  
@@ -89,13 +105,13 @@ Ulteriori indicatori devono poter essere aggiunti tramite configurazione amminis
 \section{Moderazione e qualità dei contenuti}
 
 \subsection{Moderazione automatica}
-Il sistema deve analizzare automaticamente i contenuti generati dagli utenti (testi e materiali multimediali) per rilevare linguaggio inappropriato, spam o duplicati.  
+Il sistema deve analizzare automaticamente i contenuti generati dai cittadini (testi e materiali multimediali) per rilevare linguaggio inappropriato, spam o duplicati.  
 In caso di rilevamento, il sistema deve
 segnalare l’elemento ai moderatori o sospenderne la pubblicazione.
 
 \subsection{Intervento dei moderatori}
 Il sistema deve includere un modulo di moderazione che consenta di gestire i contenuti segnalati o non conformi.  
-Gli utenti devono poter segnalare un contenuto.  
+I cittadini devono poter segnalare un contenuto.  
 I moderatori devono poter sospendere o eliminare i contenuti segnalati.  
 Ogni azione di moderazione deve essere registrata con identificativo utente, data e motivazione.
 
@@ -111,23 +127,16 @@ Il sistema deve includere un modulo di simulazione che permetta di calcolare ind
 Il sistema deve consentire la generazione di previsioni sull’effetto delle proposte tramite modelli statistici configurabili.  
 Gli indicatori prodotti devono essere quantitativi e misurabili, come variazioni stimate di traffico, emissioni o costi.
 
-\subsection{Visualizzazione interattiva}
-Il sistema deve visualizzare i risultati delle simulazioni tramite mappe tematiche, grafici comparativi e dashboard interattive accessibili via interfaccia web.
+\subsection{Visualizzazione delle simulazioni}
+Il sistema deve visualizzare i risultati delle simulazioni tramite mappe tematiche e grafici comparativi.
 
 % ====================================================
 % RF6
 % ====================================================
-\section{Comunicazione, eventi e integrazione con strumenti esistenti}
+\section{Comunicazione, e aggiornamenti}
 
 \subsection{Notifiche e avvisi}
-Il sistema deve inviare notifiche automatiche agli utenti in caso di nuovi processi, cambi di stato, aggiornamenti o inviti a eventi.  
-Le notifiche devono essere configurabili per canale (email, push, App IO).
-
-\subsection{Integrazione con strumenti comunali}
-Il sistema deve integrarsi con strumenti già in uso presso l’amministrazione comunale, come il portale Open Data, l’App IO e i servizi di segnalazione, tramite API dedicate.
-
-\subsection{Supporto a eventi dal vivo}
-Il sistema deve consentire l’inserimento manuale o automatico, tramite API, dei contributi raccolti durante eventi fisici (assemblee, workshop, laboratori) nei processi digitali associati.
+Il sistema deve inviare notifiche ai cittadini quando avviene un cambio di stato per un oggetto presente nei preferiti. Queste notifiche devono essere configurabili per canale (email, push, App IO).
 
 \subsection{Feed informativo}
 Il sistema deve fornire un feed aggiornato che mostri aggiornamenti riguardo le attività in corso, le consultazioni attive e i risultati delle iniziative concluse.
@@ -138,7 +147,7 @@ Il sistema deve fornire un feed aggiornato che mostri aggiornamenti riguardo le 
 \section{Analisi, trasparenza e reportistica}
 
 \subsection{Dashboard amministrativa}
-Il sistema deve fornire all’amministrazione comunale una dashboard che mostri in tempo reale il numero di utenti attivi, le proposte per categoria, la distribuzione territoriale dei voti e i tassi di approvazione.  
+Il sistema deve fornire all’amministrazione comunale una dashboard che mostri il numero di utenti attivi, le proposte per categoria, la distribuzione territoriale dei voti e i tassi di approvazione.  
 I dati devono poter essere esportati in formato CSV o PDF.
 
 \subsection{Esportazione e open data}
