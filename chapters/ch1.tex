@@ -6,7 +6,6 @@ Il progetto si fonda sull’assunto che il Comune di Trento, pur disponendo di c
 Tale limite non deriva da inefficienze, ma è una conseguenza fisiologica della complessità urbana e della distanza che spesso si crea tra amministrazione e cittadinanza.
 
 \textit{Trento Decide} nasce con l’obiettivo di ridurre tale divario, fungendo da ponte diretto tra cittadini e istituzioni.  
-La piattaforma rende il processo decisionale più inclusivo, trasparente e reattivo, offrendo uno spazio digitale in cui proporre, discutere e votare iniziative di interesse pubblico.
 
 La piattaforma rende il processo decisionale più inclusivo, trasparente e reattivo, offrendo uno spazio digitale in cui proporre, discutere e votare iniziative di interesse pubblico. In questo senso, \textit{Trento Decide} si qualifica come un'iniziativa di e-democracy, applicando i principi della civic technology per modernizzare i processi partecipativi e promuovere una governance più aperta e collaborativa.
 
@@ -36,36 +35,35 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
   Le principali categorie notevoli comprendono: Urbanistica, Ambiente, Sicurezza, Cultura e Istruzione, Innovazione e Digitale, Sociale e Inclusione, Mobilità Sostenibile.
 
   \vspace{1em}
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:utente} – Utente:]
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:utente} – Utente:] 
   Soggetto registrato e autenticato alla piattaforma \textit{Trento Decide} tramite SPID, CIE o credenziali locali.  
   Comprende tutti i ruoli predefiniti previsti dal sistema — cittadino, moderatore, amministratore comunale e rappresentante di associazione o comitato — come specificato nel Requisito Funzionale~\ref{sec:ruoli}.
 
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:cittadino} – Cittadino:] 
-  Persona fisica di età pari o superiore a 16 anni \footnote{Questa soglia è stata scelta per promuovere la partecipazione giovanile, in linea con l'età minima prevista per il diritto di voto in alcune consultazioni locali e in analogia con il limite di età per il trattamento dei dati personali senza consenso dei genitori secondo il GDPR (art. 8).}, residente nel Comune di Trento o ivi domiciliata per motivi di studio o lavoro.  
+  Persona fisica di età pari o superiore a 16 anni \footnote{Soglia 16 anni: scelta di policy per garantire partecipazione giovanile matura; distinta dal limite di 14 anni per il consenso ai servizi digitali (D.lgs. 101/2018 su art. 8 GDPR). Base giuridica del trattamento: art. 6(1)(e) GDPR.}, residente nel Comune di Trento o ivi domiciliata per motivi di studio o lavoro.  
   La dichiarazione del legame territoriale per i non residenti avviene tramite autocertificazione ai sensi del DPR 445/2000, soggetta a verifica a campione da parte dell’amministrazione comunale.
   L’identificazione avviene tramite SPID o CIE e i dati raccolti sono trattati esclusivamente per la verifica dell’eleggibilità al voto. 
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:residente} – Residente:]
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:residente} – Residente:] 
   Soggetto iscritto all’ANPR con indirizzo nel Comune di Trento.  
   La verifica della residenza avviene in tempo reale tramite integrazione con ANPR o, in caso di indisponibilità del servizio, tramite procedura documentale differita (batch).
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:associazione-comitato} – Associazione / Comitato:]  
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:associazione-comitato} – Associazione/Comitato:]  
   Entità giuridica registrata che presenta proposte collettive.  
   La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.  
   Le deleghe devono essere rinnovate annualmente o alla loro scadenza naturale, con notifica automatica di rinnovo.
 
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:proposta-collettiva} – Proposta collettiva:] 
-  Iniziativa promossa da un gruppo di cittadini o da un’associazione riconosciuta.  
+  Proposta promossa da un gruppo di cittadini o da un’associazione riconosciuta.  
   Le regole di ponderazione del loro peso nel ranking sono pubbliche e documentate; il sistema rileva automaticamente eventuali pattern anomali (concentrazioni temporali, account recenti) e li segnala ai moderatori.
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:endorsement} – Endorsement:]  
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:endorsement} – Endorsement:] 
   Azione di sostegno digitale espressa da cittadini o enti collettivi a favore di una proposta.  
   Il numero e il peso degli endorsement concorrono al ranking secondo coefficienti configurabili e trasparenti.
 
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:voto} – Voto:] 
-  Espressione anonima di consenso o dissenso da parte di un cittadino autenticato tramite SPID o CIE.  
-  L’anonimato è garantito mediante l’uso di token di voto temporanei disaccoppiati dall’identità dell’utente, che consentono la revoca entro la finestra temporale di voto senza comprometterne la segretezza.
-
+  Espressione anonima \footnote{Il sistema garantisce l’anonimato del voto mediante separazione procedurale tra (a) verifica dell’eleggibilità dell’elettore e (b) registrazione del voto. Entro la finestra temporale definita l’utente può modificare il proprio voto senza che ciò consenta di ricollegarlo alla sua identità. Non sono adottate decisioni automatizzate aventi effetti giuridici o similmente significativi ai sensi dell’art. 22 GDPR.} di consenso o dissenso da parte di un cittadino autenticato tramite SPID o CIE.
+ 
 \end{description}
 
 \section{Vantaggi}
@@ -89,7 +87,7 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
 \begin{itemize}
   \item \textbf{Partecipazione effettiva}: pubblicare, votare e proporre modifiche rende la cittadinanza protagonista nella definizione delle priorità pubbliche.
 
-  \item \textbf{Chiarezza sul percorso}: ogni iniziativa riporta in modo trasparente il proprio stato
+  \item \textbf{Chiarezza sul percorso}: ogni proposta riporta in modo trasparente il proprio stato
   (\textit{bozza}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}),
   in conformità al Requisito Funzionale \ref{sec:stato-tracciabilita}, garantendo tracciabilità e riducendo l’asimmetria informativa.
 
@@ -105,6 +103,7 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
 
   \item \textbf{Rischio di manipolazione o brigading}: per prevenire comportamenti coordinati, il sistema applica limiti di frequenza configurabili, CAPTCHA accessibili e rilevamento di anomalie basato su impronte dispositivo pseudonimizzate.
   È inoltre previsto il monitoraggio dei pattern di traffico e di comportamento in collaborazione con i presidi di sicurezza comunali, per individuare eventuali campagne coordinate o attività di disinformazione.
+  Le misure adottate sono proporzionate e trasparenti. L’eventuale uso di impronte di dispositivo pseudonimizzate è subordinato a DPIA e adeguata informativa, ed avviene solo se strettamente necessario a fronte di evidenze di attacchi coordinati.
 
   \item \textbf{Neutralità e bias cognitivi}: 
   non è possibile garantire la completa assenza di bias politici o sociali, poiché la definizione dei criteri di valutazione e ranking implica scelte di policy.  

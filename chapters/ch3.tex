@@ -45,7 +45,7 @@ Il sistema deve garantire un ambiente rispettoso mediante un insieme integrato d
 
 \subsection{Performance} \label{ref:performance}
 Il sistema deve garantire tempi di risposta brevi, tali che qualsiasi operazione — come login, visualizzazione delle proposte o voto — venga completata entro un massimo di 1 secondo per il 95\% delle richieste.  
-Tale requisito deve essere mantenuto anche con un carico simultaneo fino a 20.000 utenti connessi (o carico target equivalente espresso in RPS).  .  
+Tale requisito deve essere mantenuto anche con un carico simultaneo fino a 20.000 utenti connessi (o carico target equivalente espresso in RPS)\footnote{Per “20.000 utenti simultanei” si intende il picco di concorrenza durante consultazioni di grande rilevanza; i target p95 si applicano alle operazioni chiave (login, consultazione lista proposte, espressione del voto).}.
 Il valore di riferimento corrisponde al picco stimato durante consultazioni cittadine di grande rilevanza, in linea con dati osservati su piattaforme analoghe (es. Decidim Barcellona e ParteciPa).
 Per l’interfaccia utente, devono essere rispettati i target Core Web Vitals (LCP $\le$ 2,5 s p75, INP $\le$ 200 ms p75, CLS $\le$ 0,1 p75) su dispositivi e network rappresentativi.
 
@@ -112,7 +112,7 @@ Essi garantiscono interoperabilità, sicurezza, trasparenza e conformità alle n
 
 \subsection*{Interoperabilità e open data}
 \begin{itemize}
-  \item \textbf{DCAT-AP_IT} - Profilo italiano di interoperabilità per cataloghi Open Data.
+  \item \textbf{DCAT-AP\_IT} - Profilo italiano di interoperabilità per cataloghi Open Data.
   \item \textbf{Linee Guida AgID Open Data (2022)} - Pubblicazione, licenze e metadati per i dataset pubblici.
   \item \textbf{Licenze CC-BY 4.0 e Italian Open Data License (IODL 2.0)} - Riusabilità dei dati aperti.
   \item \textbf{OpenAPI Specification 3.1} - Standard per la descrizione e documentazione di API REST pubbliche.
