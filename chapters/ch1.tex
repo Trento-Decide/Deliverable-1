@@ -40,14 +40,12 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
   Comprende tutti i ruoli predefiniti previsti dal sistema — cittadino, moderatore, amministratore comunale e rappresentante di associazione o comitato — come specificato nel Requisito Funzionale~\ref{sec:ruoli}.
 
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:cittadino} – Cittadino:] 
-  Persona fisica di età pari o superiore a 16 anni \footnote{Soglia 16 anni: scelta di policy per garantire partecipazione giovanile matura; distinta dal limite di 14 anni per il consenso ai servizi digitali (D.lgs. 101/2018 su art. 8 GDPR). Base giuridica del trattamento: art. 6(1)(e) GDPR.}, residente nel Comune di Trento o ivi domiciliata per motivi di studio o lavoro.  
-  La dichiarazione del legame territoriale per i non residenti avviene tramite autocertificazione ai sensi del DPR 445/2000, soggetta a verifica a campione da parte dell’amministrazione comunale.
-  L’identificazione avviene tramite SPID o CIE e i dati raccolti sono trattati esclusivamente per la verifica dell’eleggibilità al voto. 
-
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:residente} – Residente:] 
-  Soggetto iscritto all’ANPR con indirizzo nel Comune di Trento.  
-  La verifica della residenza avviene in tempo reale tramite integrazione con ANPR o, in caso di indisponibilità del servizio, tramite procedura documentale differita (batch).
-
+  Persona fisica di età pari o superiore a 16 anni, residente nel Comune di Trento o ivi domiciliata per motivi di studio o lavoro.  
+  La verifica dell’identità e dell’eleggibilità al voto avviene tramite SPID o CIE.  
+  La residenza è verificata tramite integrazione con ANPR, con procedure alternative in caso di indisponibilità del servizio.
+  Per i non residenti, il legame territoriale è dichiarato tramite autocertificazione soggetta a verifiche a campione da parte dell’amministrazione comunale.  
+  Le modalità di trattamento dei dati personali sono conformi alla normativa vigente sulla protezione dei dati (vedi Requisito Non Funzionale \ref{ref:privacy}).
+  
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:associazione-comitato} – Associazione/Comitato:]  
   Entità giuridica registrata che presenta proposte collettive.  
   La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.  
@@ -98,25 +96,36 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
 
 \section{Limiti e mitigazioni}
 
+Il progetto \textit{Trento Decide}, pur garantendo un elevato grado di trasparenza e partecipazione, presenta alcuni limiti intrinseci di natura tecnica, organizzativa e sociale.  
+La seguente sezione identifica i principali rischi e descrive le strategie di mitigazione previste.
+
 \begin{itemize}
-  \item \textbf{Definizione dei criteri di priorità}: è complesso stabilire parametri oggettivi per determinare l’ordine di rilevanza delle proposte; la taratura del ranking richiede monitoraggio costante e revisione periodica da parte dell’amministrazione.
 
-  \item \textbf{Rischio di manipolazione o brigading}: per prevenire comportamenti coordinati, il sistema applica limiti di frequenza configurabili, CAPTCHA accessibili e rilevamento di anomalie basato su impronte dispositivo pseudonimizzate.
-  È inoltre previsto il monitoraggio dei pattern di traffico e di comportamento in collaborazione con i presidi di sicurezza comunali, per individuare eventuali campagne coordinate o attività di disinformazione.
-  Le misure adottate sono proporzionate e trasparenti. L’eventuale uso di impronte di dispositivo pseudonimizzate è subordinato a DPIA e adeguata informativa, ed avviene solo se strettamente necessario a fronte di evidenze di attacchi coordinati.
+  \item \textbf{Definizione dei criteri di priorità}:  
+  Stabilire parametri oggettivi per la valutazione delle proposte è complesso.  
+  La formula di ranking richiede un monitoraggio continuo e revisioni periodiche, come previsto dal requisito non funzionale sulla neutralità algoritmica (\ref{ref:neutralita}).
 
-  \item \textbf{Neutralità e bias cognitivi}: 
-  non è possibile garantire la completa assenza di bias politici o sociali, poiché la definizione dei criteri di valutazione e ranking implica scelte di policy.  
-  Il rischio viene mitigato attraverso la trasparenza algoritmica (\ref{ref:neutralita}) e l’applicazione delle linee guida etiche definite nel requisito~\ref{ref:etica}.
+  \item \textbf{Neutralità e bias cognitivi}:  
+  Le decisioni automatizzate e i comportamenti collettivi possono introdurre distorsioni involontarie.  
+  Si prevede la revisione annuale degli algoritmi e l’audit di neutralità per garantire imparzialità e trasparenza dei processi.
 
-  \item \textbf{Digital divide}: per garantire inclusività sono previsti punti di facilitazione digitale presso biblioteche e sportelli comunali, canali telefonici di supporto e la possibilità di inserimento assistito delle proposte tramite delega.
+  \item \textbf{Rischio di manipolazione o brigading}:  
+  Coordinamenti di gruppo o attività fraudolente possono alterare voti e ranking.  
+  Il sistema applica limiti di frequenza, verifica d’identità tramite SPID/CIE e rilevamento automatico di anomalie, integrato con la moderazione (\ref{ref:moderazione}).
 
-  \item \textbf{Competenza multi-ente}: alcune proposte possono ricadere su enti diversi dal Comune di Trento (ad esempio la Provincia Autonoma di Trento, lo Stato o gestori di servizi pubblici).
-  Il sistema deve quindi prevedere un flusso chiaro e tracciabile di re-indirizzamento verso l’ente competente.
+  \item \textbf{Digital divide}:  
+  Una parte della popolazione può trovarsi in difficoltà nell’uso di strumenti digitali.  
+  Sono previsti punti di facilitazione presso biblioteche e sportelli comunali, supporto telefonico e assistenza tramite delega per l’inserimento delle proposte.
 
-  \item \textbf{Aspettative giuridiche ambigue}: l’ottenimento di alta priorità o approvazione può essere erroneamente interpretato come diritto all’attuazione; l’amministrazione pubblica pertanto motivazioni chiare e comprensibili per ogni decisione.
+  \item \textbf{Competenza multi-ente}:  
+  Alcune proposte ricadono su enti diversi dal Comune di Trento (Provincia, Stato, gestori di servizi pubblici).  
+  Il sistema deve prevedere un flusso chiaro e tracciabile di reindirizzamento e presa verso l’ente competente.
 
-  \item \textbf{Costi ricorrenti e sostenibilità}: moderazione, comunicazione, supporto utenti, osservabilità e sicurezza devono essere mantenuti e finanziati in modo continuativo.
+  \item \textbf{Aspettative giuridiche ambigue}:  
+  L’approvazione o la priorità elevata di una proposta non implicano un diritto automatico alla sua attuazione.  
+  L’amministrazione pubblica deve fornire motivazioni chiare e documentate per ogni decisione finale.
 
-  \item \textbf{Rischio di saturazione partecipativa}: l'entusiasmo iniziale dei cittadini potrebbe diminuire nel tempo, portando a un calo della partecipazione attiva e riducendo la vitalità della piattaforma. Per mitigare questo rischio, sono previste strategie di coinvolgimento proattivo, come campagne di comunicazione periodiche, la gamification di alcune attività (es. badge per i "super-partecipanti") e la promozione di consultazioni su temi di forte impatto mediatico.
+  \item \textbf{Costi ricorrenti e sostenibilità}:  
+  Il mantenimento della piattaforma richiede risorse continuative per moderazione, assistenza, comunicazione, sicurezza e aggiornamenti software.  
+  È raccomandata la previsione di un piano di sostenibilità tecnica ed economica pluriennale.
 \end{itemize}

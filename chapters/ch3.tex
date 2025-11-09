@@ -12,116 +12,57 @@ Ogni requisito è formulato in modo chiaro, verificabile e, ove possibile, rifer
 
 \subsection{Affidabilità}
 Il sistema deve garantire una disponibilità minima del 99.72\% (downtime massimo 24 ore/anno).  
-Devono essere specificati RTO $\le$ 2 ore e RPO $\le$ 12 ore.  
-È richiesto un piano di \textit{incident response}, una status page pubblica e test di resilienza semestrali.
+Devono essere definiti obiettivi RTO $\le$ 2 ore e RPO $\le$ 12 ore.  
+Deve essere previsto un piano di \textit{incident response} e test di resilienza semestrali.
 
 \subsection{Backup e ripristino}
-Il sistema deve eseguire backup automatici ogni 12 ore di dati, configurazioni e log applicativi. I backup devono essere cifrati con AES-256 e le chiavi gestite tramite KMS con rotazione periodica. I backup devono essere conservati per almeno 90 giorni, replicati off-site in un data center UE qualificato AgID.
+Il sistema deve eseguire backup automatici ogni 12 ore di dati, configurazioni e log applicativi.  
+I backup devono essere conservati per almeno 90 giorni e replicati in un data center situato nell’Unione Europea qualificato AgID. 
+Devono essere previsti controlli di integrità e procedure di ripristino periodicamente testate.
 
 \subsection{Compatibilità}
 Il sistema deve essere conforme agli standard HTML5, CSS3 ed ECMAScript 6, garantendo la piena compatibilità con i principali browser utilizzati nei contesti della Pubblica Amministrazione e dagli utenti finali.  
-Il supporto deve coprire almeno le ultime due versioni stabili dei seguenti browser: Mozilla Firefox (inclusa ESR), Google Chrome/Chromium, Microsoft Edge, Apple Safari e Opera.  
-Il sistema deve assicurare la fruibilità completa e uniforme delle interfacce e delle funzionalità indipendentemente dal browser o dal dispositivo impiegato, risultando completamente responsive e accessibile da desktop, tablet e smartphone.
+Il supporto deve coprire almeno le ultime due versioni stabili dei browser Mozilla Firefox (inclusa ESR), Google Chrome/Chromium, Microsoft Edge, Apple Safari e Opera.    
+L’interfaccia deve risultare completamente responsive e accessibile da desktop, tablet e smartphone.
 
 \subsection{Etica e imparzialità del sistema} \label{ref:etica}
-Il sistema deve essere progettato per garantire neutralità e imparzialità nelle interazioni tra cittadini e amministrazione, promuovendo trasparenza, equità e rispetto del pluralismo civico. 
-Tale principio si applica tanto ai comportamenti umani quanto ai processi automatizzati, promuovendo trasparenza, equità e rispetto del pluralismo civico.  
+Il sistema deve promuovere trasparenza, equità e neutralità nei processi di partecipazione, evitando ogni forma di bias politico, ideologico o sociale.  
+Tale principio si applica sia ai comportamenti umani sia ai processi automatizzati.
 
 \subsubsection{Neutralità e trasparenza algoritmica} \label{ref:neutralita}
-Come parte integrante del principio etico di imparzialità, gli algoritmi di ranking e simulazione devono essere progettati per evitare distorsioni sistematiche o favoritismi impliciti.  
-Le formule, i parametri e le metriche di equità devono essere documentati, versionati e sottoposti a revisione annuale.  
-Ogni modifica deve essere tracciata in un registro pubblico e accessibile ai cittadini.
+Gli algoritmi di ranking e simulazione devono essere progettati per evitare distorsioni sistematiche o favoritismi impliciti.  
+Le formule e i parametri utilizzati devono essere documentati, versionati e sottoposti a revisione almeno annuale.  
+Ogni modifica deve essere tracciata in un registro pubblico consultabile dai cittadini.
 
 \subsection{Internazionalizzazione e lingua} \label{ref:i18n}
-Il sistema deve supportare almeno cinque lingue: Italiano, Inglese, Tedesco, Arabo (RTL) e Rumeno \footnote{La selezione linguistica riflette le principali comunità residenti nel Comune di Trento e le lingue ufficiali della Provincia Autonoma (Italiano e Tedesco), garantendo inclusività per le comunità araba e rumena, tra le più numerose.
-}.
-La selezione linguistica riflette le principali comunità residenti nel Comune di Trento e le lingue ufficiali della Provincia Autonoma.  
-La scelta della lingua deve essere modificabile in qualsiasi momento e persistente a livello di profilo utente.  
-I contenuti generati dagli utenti (proposte, commenti, titoli) rimangono nella lingua di origine.  
-È tuttavia prevista la possibilità di fornire traduzioni automatiche a scopo informativo, chiaramente marcate come tali, per evitare la creazione di silos linguistici.
+Il sistema deve supportare almeno cinque lingue: Italiano, Inglese, Tedesco, Arabo (RTL) e Rumeno.  
+La lingua dell’interfaccia deve essere selezionabile e persistente a livello di profilo utente.  
+I contenuti generati dagli utenti rimangono nella lingua di origine, con possibilità di traduzione automatica informativa chiaramente segnalata.
 
 \subsection{Moderazione e correttezza d’uso} \label{ref:moderazione}
-Il sistema deve garantire un ambiente rispettoso mediante un insieme integrato di meccanismi di moderazione dei contenuti e delle interazioni tra utenti. Le segnalazioni devono essere prese in carico entro 24 ore dalla loro ricezione. I moderatori agiscono anche come risolutori diretti delle problematiche trattate nel \ref{ref:etica}, assicurando coerenza etica e applicazione uniforme delle policy.
+Il sistema deve garantire un ambiente rispettoso mediante meccanismi di moderazione dei contenuti e delle interazioni tra utenti.  
+Le segnalazioni devono essere prese in carico entro 24 ore dalla ricezione.  
+Tutte le azioni di moderazione devono essere registrate (utente, data/ora, motivazione) con log non alterabile; deve esistere un canale di appello per l’utente.
 
 \subsection{Performance} \label{ref:performance}
-Il sistema deve garantire tempi di risposta brevi, tali che qualsiasi operazione — come login, visualizzazione delle proposte o voto — venga completata entro un massimo di 1 secondo per il 95\% delle richieste.  
-Tale requisito deve essere mantenuto anche con un carico simultaneo fino a 20.000 utenti connessi (o carico target equivalente espresso in RPS)\footnote{Per “20.000 utenti simultanei” si intende il picco di concorrenza durante consultazioni di grande rilevanza; i target p95 si applicano alle operazioni chiave (login, consultazione lista proposte, espressione del voto).}.
-Il valore di riferimento corrisponde al picco stimato durante consultazioni cittadine di grande rilevanza, in linea con dati osservati su piattaforme analoghe (es. Decidim Barcellona e ParteciPa).
-Per l’interfaccia utente, devono essere rispettati i target Core Web Vitals (LCP $\le$ 2,5 s p75, INP $\le$ 200 ms p75, CLS $\le$ 0,1 p75) su dispositivi e network rappresentativi.
+Il sistema deve garantire che il 95\% delle operazioni principali (login, consultazione, voto) sia completato entro 1 secondo.  
+Tale requisito deve essere mantenuto con un carico simultaneo fino a 20.000 utenti.  
+L’interfaccia deve rispettare i target \textit{Core Web Vitals}: LCP $\le$ 2,5 s (p75), INP $\le$ 200 ms (p75), CLS $\le$ 0,1 (p75).
 
 \subsection{Portabilità}
-Il sistema deve poter essere distribuito su infrastrutture on-premise o cloud UE qualificati.  
-La distribuzione deve essere containerizzata (Docker/Kubernetes) e replicabile tramite \textit{Infrastructure as Code}.  
-Compatibilità garantita con database PostgreSQL e storage a oggetti.
+Il sistema deve poter essere distribuito su infrastrutture on-premise o cloud qualificati nell’Unione Europea.  
+La distribuzione deve essere containerizzata e replicabile tramite strumenti di \textit{Infrastructure as Code}.  
+Compatibilità garantita con database relazionali standard (es. PostgreSQL) e storage a oggetti.
 
 \subsection{Scalabilità}
-Il sistema deve supportare scalabilità orizzontale e verticale senza downtime.
-Il database deve prevedere read replicas; l’elaborazione asincrona deve essere gestita tramite code/queue con meccanismi di retry con backoff e operazioni idempotenti. I componenti stateless devono essere preferiti per facilitare l’orchestrazione e l’aumento di capacità.
+Il sistema deve supportare la scalabilità orizzontale e verticale senza downtime.  
+L’architettura deve permettere l’aggiunta di nuove istanze di servizio e la gestione di carichi concorrenti elevati.
 
 \subsection{Sicurezza}
-Il sistema deve rispettare OWASP ASVS livello 2 come baseline e adottare il principio di \textit{security by design}.  
-Comunicazioni cifrate tramite TLS 1.3; dati sensibili cifrati con AES-256; password conservate con Argon2 o bcrypt.  
-Devono essere implementate protezioni contro CSRF, XSS, SQLi e brute force; auditing completo e pentest annuale.  
-È richiesto un piano DPIA e l’approvazione del DPO.
+Il sistema deve rispettare il livello 2 dello standard OWASP ASVS e adottare il principio di \textit{security by design}.  
+Le comunicazioni devono essere cifrate, i dati sensibili protetti e devono essere attuate misure contro attacchi comuni (CSRF, XSS, SQLi, brute force).  
+È richiesto un audit di sicurezza annuale e la disponibilità di un piano DPIA approvato dal DPO.
 
 \subsection{Usabilità e accessibilità}
 Il sistema deve essere utilizzabile senza formazione per gli utenti esterni; la formazione per operatori non deve superare 45 minuti.  
-L’interfaccia deve rispettare gli standard WCAG 2.1 livello AA e ottenere un punteggio SUS $\ge$ 80.  
-  
-\section{Standard e linee guida di riferimento}
-Questa appendice elenca gli standard tecnici, normativi e metodologici cui il sistema \textit{Trento Decide} si conforma o che ne ispirano la progettazione.  
-Essi garantiscono interoperabilità, sicurezza, trasparenza e conformità alle normative nazionali ed europee.
-
-\subsection*{Normativa europea e nazionale}
-\begin{itemize}
-  \item \textbf{Regolamento (UE) 2016/679 – GDPR}  
-  Protezione dei dati personali e sicurezza del trattamento (artt. 5, 24, 32, 35).
-
-  \item \textbf{Decreto Legislativo 82/2005 – Codice dell’Amministrazione Digitale (CAD)}  
-  Principi e regole tecniche per la digitalizzazione della Pubblica Amministrazione italiana.
-
-  \item \textbf{Linee Guida AgID su sicurezza, accessibilità e interoperabilità (2022–2024)}  
-  Requisiti per infrastrutture cloud qualificate, gestione identità, conservazione, design e accessibilità.
-
-  \item \textbf{Regolamento (UE) 910/2014 – eIDAS}  
-  Riconoscimento transfrontaliero dei sistemi di identificazione elettronica e dei servizi fiduciari.
-
-  \item \textbf{Linee Guida SPID/CIE – OIDC e SAML 2.0}  
-  Specifiche tecniche per l’integrazione dei sistemi di autenticazione federata con la Pubblica Amministrazione italiana.
-\end{itemize}
-
-\subsection*{Sicurezza e gestione delle informazioni}
-\begin{itemize}
-  \item \textbf{ISO/IEC 27001:2022} – Sistemi di gestione della sicurezza delle informazioni (ISMS).
-  \item \textbf{ISO/IEC 27701:2019} – Estensione per la gestione della privacy (PIMS).
-  \item \textbf{OWASP ASVS – Application Security Verification Standard (Livello 2–3)}  
-  Requisiti di sicurezza per applicazioni web, autenticazione e gestione sessioni.
-  \item \textbf{TLS 1.3} – Protocollo crittografico per la protezione delle comunicazioni.
-  \item \textbf{AES-256} – Standard di cifratura simmetrica per dati a riposo.
-  \item \textbf{CSP, HSTS, CSRF/XSS Protection} – Header e pratiche di sicurezza applicativa.
-\end{itemize}
-
-\subsection*{Accessibilità, usabilità e design}
-\begin{itemize}
-  \item \textbf{WCAG 2.1 – Livello AA}  
-  Linee guida internazionali per l’accessibilità dei contenuti web (W3C).
-  \item \textbf{Linee Guida AgID per il design dei servizi digitali della PA (Design System Italia)}  
-  Standard grafici e di interazione per garantire coerenza e accessibilità.
-  \item \textbf{System Usability Scale (SUS)} – Metodo di valutazione dell’usabilità con soglia minima SUS $\ge$ 80.
-\end{itemize}
-
-\subsection*{Interoperabilità e open data}
-\begin{itemize}
-  \item \textbf{DCAT-AP\_IT} - Profilo italiano di interoperabilità per cataloghi Open Data.
-  \item \textbf{Linee Guida AgID Open Data (2022)} - Pubblicazione, licenze e metadati per i dataset pubblici.
-  \item \textbf{Licenze CC-BY 4.0 e Italian Open Data License (IODL 2.0)} - Riusabilità dei dati aperti.
-  \item \textbf{OpenAPI Specification 3.1} - Standard per la descrizione e documentazione di API REST pubbliche.
-\end{itemize}
-
-\subsection*{Tecnologie e compatibilità}
-\begin{itemize}
-  \item \textbf{HTML5 / CSS3 / ECMAScript 6} – Standard tecnici per la compatibilità tra browser.
-  \item \textbf{Docker / Kubernetes} – Containerizzazione e orchestrazione per la portabilità del sistema.
-  \item \textbf{PostgreSQL} – Database relazionale di riferimento per l’architettura applicativa.
-  \item \textbf{OpenTelemetry} – Standard per l’osservabilità e il monitoraggio distribuito.
-\end{itemize}
+L’interfaccia deve rispettare gli standard WCAG 2.1 livello AA e raggiungere un punteggio minimo SUS $\ge$ 80.

@@ -18,23 +18,18 @@ Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal
 \subsection{Registrazione e login}
 Il sistema deve consentire ai cittadini, ai moderatori e agli amministratori comunali di registrarsi e accedere tramite autenticazione tradizionale (email e password) o tramite SPID/CIE.  
 
-
 \subsection{Gestione profilo utente}
-Il sistema deve permettere a ciascun utente di visualizzare e modificare i propri dati personali nella sezione profilo, in conformità al GDPR.  
-L’utente deve poter esercitare il diritto di rettifica e cancellazione dei dati.  
-Il profilo mostra inoltre lo storico delle proposte create, dei voti espressi e delle attività recenti.
+L’utente deve poter: (a) visualizzare e aggiornare i propri dati nel profilo; (b) richiedere la rettifica dei dati; (c) avviare una richiesta di cancellazione dei dati personali; (d) consultare lo storico di proposte, revisioni, endorsement e voti.
 
 \subsection{Gestione ruoli e permessi} \label{sec:ruoli}
-Il sistema deve implementare un modello di \textbf{controllo accessi basato su ruoli (RBAC)}, con interfaccia di amministrazione dedicata.  
-Sono previsti i seguenti ruoli:
-\begin{itemize}
-   \item \textbf{Cittadino}: può creare e modificare proposte, suggerire revisioni, votare e partecipare a consultazioni pubbliche, secondo le condizioni di eleggibilità definite nelle \textit{Definizioni} \ref{def:cittadino}–\ref{def:residente}.
-   \item \textbf{Associazione / Comitato}: può presentare proposte collettive e fornire endorsement verificati;
-    \item \textbf{Moderatore}: supervisiona i contenuti generati dagli utenti, gestisce le segnalazioni, valida o rimuove contenuti non conformi in base alle policy di moderazione (\ref{ref:moderazione}).
-    \item \textbf{Amministratore comunale}: coordina il flusso di valutazione delle proposte, approva o rifiuta le iniziative e pubblica gli esiti ufficiali;
-\end{itemize}
+Il sistema deve fornire un modulo di amministrazione per:
 
-Ogni ruolo deve avere un insieme di permessi configurabile dall’amministrazione comunale.
+\begin{enumerate}
+    \item Creare o assegnare ruoli (Cittadino, Associazione/Comitato, Moderatore, Amministratore).
+    \item Assegnare a ciascun ruolo i permessi disponibili tra: \texttt{crea\_proposta}, \texttt{modifica\_propria\_proposta}, \texttt{propone\_revisione}, 
+    \texttt{modera\_contenuti}, \texttt{approva\_rifiuta\_proposta}, \texttt{configura\_parametri}.
+    \item Visualizzare l’elenco di tutte le modifiche ai ruoli e permessi (audit) con: utente che ha effettuato la modifica, ruolo coinvolto, permesso aggiunto/rimosso, data/ora.
+\end{enumerate}
 
 % ====================================================
 % RF2
@@ -48,9 +43,6 @@ Il sistema deve consentire ai cittadini di contrassegnare come “preferiti” p
 \subsection{Cambio di lingua}
 Il sistema deve consentire all’utente di modificare in qualsiasi momento la lingua dell’interfaccia, selezionandola da un menu dedicato.  
 La preferenza linguistica deve essere salvata nel profilo utente, in modo da persistere tra diverse sessioni di accesso e dispositivi.  
-Le lingue disponibili sono definite nel requisito non funzionale \ref{ref:i18n}.
-I contenuti generati dagli utenti (proposte, commenti, titoli) rimangono nella lingua di origine.  
-È prevista la possibilità di fornire traduzioni automatiche a scopo informativo, chiaramente marcate come tali, per evitare la creazione di silos linguistici.
 
 % ====================================================
 % RF3
@@ -66,24 +58,28 @@ I campi obbligatori e facoltativi per ciascuna categoria devono essere configura
 Il sistema deve permettere la pubblicazione di una proposta precedentemente salvata in stato di \textit{bozza}.
 
 \subsection{Modifica collaborativa}
-Il sistema deve consentire la modifica collaborativa delle proposte, implementando un meccanismo di controllo versioni che registri autore, data, descrizione e differenze tra le revisioni.  
-Ogni modifica proposta da terzi deve essere approvata dal creatore della proposta o da un moderatore.  
-Tutte le versioni precedenti devono rimanere consultabili con indicazione dell’autore e della motivazione della modifica, e deve essere possibile ripristinare una versione precedente come versione principale.
+Il sistema deve consentire la modifica collaborativa delle proposte, come segue:
+
+\subsubsection{Versionamento}
+Ogni modifica a una proposta deve registrare autore, data/ora, descrizione e differenze rispetto alla versione precedente; tutte le versioni restano consultabili.
+\subsubsection{Proposte di modifica da terzi}
+Un utente diverso dal creatore può proporre una modifica; la proposta entra in uno stato di revisione non pubblica fino a decisione.
+\subsubsection{Approvazione delle modifiche}
+Il creatore della proposta o un moderatore può accettare o rifiutare una proposta di modifica; l’esito è notificato al proponente e tracciato.
+\subsubsection{Ripristino}
+Deve essere possibile ripristinare una versione precedente come versione principale, con tracciamento dell’operazione.
 
 \subsection{Stato e tracciabilità delle proposte} \label{sec:stato-tracciabilita}
-Il sistema deve gestire automaticamente lo stato di ogni proposta in base alle azioni del cittadino o dell’amministrazione comunale, garantendone la piena tracciabilità.  
+Il sistema deve gestire automaticamente lo stato di ogni proposta in base alle azioni dell’utente o dell’amministrazione, garantendone la tracciabilità.   
 Ogni proposta deve mostrare lo stato corrente — \textit{bozza}, \textit{pubblicata}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}, \textit{in attuazione}, \textit{completata} — e la cronologia pubblica delle transizioni.
 
 \subsection{Endorsement e raccolta firme}
-Il sistema deve consentire ai cittadini e alle associazioni registrate di esprimere un \textbf{endorsement} digitale (def.~\ref{def:endorsement}) a favore delle proposte pubblicate.  
-Ogni endorsement contribuisce al punteggio di ranking in misura proporzionale a un coefficiente configurabile dall’amministrazione comunale.  
-Il sistema deve inoltre consentire la registrazione e la verifica di eventuali firme fisiche raccolte offline, per garantire l’inclusione dei cittadini privi di strumenti digitali.
+Il sistema deve consentire a cittadini e associazioni registrate di esprimere un \textbf{endorsement} digitale (def.~\ref{def:endorsement}) a favore delle proposte pubblicate.  
+Il sistema deve inoltre consentire la registrazione e la verifica di firme fisiche raccolte offline, affinché siano conteggiate nel sostegno alla proposta.
 
 \subsection{Proposte collettive}
 Il sistema deve consentire ad associazioni e comitati riconosciuti di presentare \textbf{proposte collettive} (def.~\ref{def:proposta-collettiva}) tramite un canale dedicato.  
-Tali proposte devono essere etichettate come “collettive” e sottoposte alle stesse regole di validazione e pubblicazione delle proposte individuali.  
-Il loro peso nel calcolo del ranking deve essere maggiore rispetto a quello delle proposte individuali, secondo un coefficiente configurabile e documentato.
-
+Tali proposte devono essere etichettate come “collettive” e sottostare alle stesse regole di validazione e pubblicazione delle proposte individuali. 
 
 % ====================================================
 % RF4
@@ -92,20 +88,24 @@ Il loro peso nel calcolo del ranking deve essere maggiore rispetto a quello dell
 \section{Votazioni e ranking}
 
 \subsection{Votazione delle proposte}
-Il sistema deve consentire ai cittadini di esprimere un voto positivo o negativo su ciascuna proposta attiva, purché soddisfino i criteri di eleggibilità al voto indicati nelle Definizioni~\ref{def:cittadino} e~\ref{def:residente}.  
-Il voto può essere modificato o revocato entro la finestra temporale stabilita per la consultazione.  
-L’identità dell’elettore deve restare separata dal contenuto del voto, garantendo l’anonimato secondo quanto descritto nella Definizione~\ref{def:voto}.
+Il sistema deve consentire agli utenti eleggibili al voto (cfr. Definizioni) di esprimere un voto positivo o negativo su ciascuna proposta attiva.  
+Ogni elettore può esprimere al massimo un voto per proposta e può modificare o revocare il proprio voto entro la finestra temporale della consultazione.  
 
 \subsection{Consultazioni e sondaggi}
-Il sistema deve consentire all’amministrazione comunale di creare consultazioni e sondaggi tematici, raccogliendo risposte dai cittadini. 
+Il sistema deve consentire all’amministrazione di creare consultazioni/sondaggi tematici, definirne il periodo di apertura e raccogliere le risposte dai cittadini.
 
-\subsection{Algoritmo di ranking}
-Il sistema deve assegnare a ciascuna proposta un punteggio di rilevanza calcolato su parametri configurabili dall’amministrazione comunale.  
-Le proposte devono poter essere ordinate per punteggio, numero di voti, data o categoria.  
-Le modalità di calcolo e i criteri di equità sono descritte nei Requisiti Non Funzionali relativi alla trasparenza algoritmica (\ref{ref:neutralita}).
+\subsection{Ordinamento delle proposte}
+Il sistema deve consentire all’utente di ordinare l’elenco delle proposte pubblicate attraverso almeno le seguenti chiavi:
+\begin{itemize}
+  \item punteggio di rilevanza (valore numerico esposto);
+  \item numero totale di voti;
+  \item data di pubblicazione (più recente / meno recente);
+  \item categoria.
+\end{itemize}
+L’utente deve poter invertire l’ordine (asc/desc) quando applicabile.
 
 \subsection{Report votazioni}
-Il sistema deve generare report contenenti almeno i seguenti indicatori:numero totale di votanti, distribuzione territoriale e fasce d’età.  
+Il sistema deve generare report contenenti almeno i seguenti indicatori: numero totale di votanti, distribuzione territoriale e fasce d’età.  
 Ulteriori indicatori devono poter essere aggiunti tramite configurazione amministrativa.
 
 % ====================================================
@@ -116,7 +116,7 @@ Ulteriori indicatori devono poter essere aggiunti tramite configurazione amminis
 
 \subsection{Moderazione automatica}
 Il sistema deve analizzare automaticamente i contenuti generati dagli utenti (testi e materiali multimediali) per rilevare linguaggio inappropriato, spam o duplicati.  
-In caso di rilevamento, il sistema deve segnalare l’elemento ai moderatori o sospenderne la pubblicazione.
+In caso di rilevamento, il sistema deve segnalare l’elemento ai moderatori o sospenderne la pubblicazione in attesa di verifica.
 
 \subsection{Intervento dei moderatori}
 Il sistema deve includere un modulo di moderazione che consenta di gestire i contenuti segnalati o non conformi.  
@@ -131,11 +131,10 @@ Ogni azione di moderazione deve essere registrata con identificativo utente, dat
 \section{Policy Simulator e modelli statistici}
 
 \subsection{Simulazione di scenari di policy}
-Il sistema deve includere un modulo di simulazione che permetta di calcolare indicatori di impatto economico, ambientale e sociale delle proposte utilizzando dataset comunali o dati di riferimento configurabili.\footnote{L'implementazione di questo modulo rappresenta la sfida tecnica più significativa del progetto, richiedendo non solo l'accesso a dataset comunali di alta qualità (spesso eterogenei e non standardizzati), ma anche competenze avanzate in data science e modellistica. Si prevede uno sviluppo incrementale, partendo da simulazioni semplici basate su pochi indicatori affidabili.}
+Il sistema deve includere un modulo che consenta di calcolare indicatori di impatto economico, ambientale e sociale delle proposte utilizzando dataset configurabili.
 
 \subsection{Analisi predittiva e statistica}
-Il sistema deve consentire la generazione di previsioni sull’effetto delle proposte tramite modelli statistici configurabili.  
-Gli indicatori prodotti devono essere quantitativi e misurabili, come variazioni stimate di traffico, emissioni o costi.
+Il sistema deve consentire la generazione di previsioni sull’effetto delle proposte tramite modelli configurabili; gli indicatori prodotti devono essere quantitativi e misurabili (es. variazioni stimate di traffico, emissioni o costi).
 
 \subsection{Visualizzazione interattiva delle simulazioni}
 Il sistema deve visualizzare i risultati delle simulazioni tramite mappe tematiche e grafici comparativi.
@@ -147,11 +146,11 @@ Il sistema deve visualizzare i risultati delle simulazioni tramite mappe tematic
 \section{Comunicazione e integrazione}
 
 \subsection{Notifiche e avvisi}
-Il sistema deve inviare notifiche automatiche agli utenti per variazioni di stato, voti, risposte o aggiornamenti relativi a proposte tra i propri preferiti.  
-Le notifiche devono essere configurabili per canale (email, push, App IO).
+Il sistema deve inviare notifiche automatiche per variazioni di stato, voti, risposte o aggiornamenti relativi a elementi tra i preferiti.  
+Le notifiche devono essere configurabili per evento e canale (es. email, push, App IO).
 
 \subsection{Feed informativo}
-Il sistema deve fornire un feed aggiornato che mostri le attività in corso, le consultazioni attive, le proposte popolari e i risultati delle iniziative concluse.
+Il sistema deve fornire un feed aggiornato che mostri attività in corso, consultazioni attive, proposte popolari e risultati di iniziative concluse.
 
 % ====================================================
 % RF8
@@ -160,11 +159,11 @@ Il sistema deve fornire un feed aggiornato che mostri le attività in corso, le 
 \section{Trasparenza e reportistica}
 
 \subsection{Dashboard amministrativa}
-Il sistema deve fornire all’amministrazione comunale una dashboard che mostri il numero di utenti attivi, le proposte per categoria, la distribuzione territoriale dei voti e i tassi di approvazione.  
-I dati devono poter essere esportati in formato CSV o PDF.
+Il sistema deve fornire all’amministrazione una dashboard che mostri il numero di utenti attivi, le proposte per categoria, la distribuzione territoriale dei voti e i tassi di approvazione.  
+I dati devono poter essere esportati almeno in formato CSV o PDF.
 
 \subsection{API e Open Data}
-Il sistema deve fornire un’interfaccia API pubblica per la consultazione anonima dei dati aggregati relativi a proposte, voti e stati.  
+Il sistema deve fornire un’interfaccia API pubblica per la consultazione dei dati aggregati relativi a proposte, voti e stati.  
 L’amministrazione comunale deve poter esportare i dataset per la pubblicazione sul portale Open Data.
 
 \subsection{Trasparenza e accountability}
