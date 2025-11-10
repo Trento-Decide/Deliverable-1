@@ -13,7 +13,7 @@ Gli utenti autenticati possono pubblicare nuove iniziative corredandole di titol
 Inoltre, possono esprimere il proprio voto sulle proposte esistenti, contribuendo così a determinarne la priorità e la rilevanza all’interno del processo decisionale civico.
 
 Le proposte vengono periodicamente analizzate dagli amministratori comunali competenti, che avviano una valutazione di fattibilità tecnico-scientifica.  
-Nel caso di iniziative appartenenti a particolari categorie notevoli (vedi Definizione~\ref{def:categoria-notevole}), il sistema fornisce in fase preliminare analisi tecniche automatiche utili a supportare e velocizzare l’esame.
+Nel caso di iniziative appartenenti a particolari categorie "notevoli" (vedi Definizione~\ref{def:categoria-notevole}), il sistema fornisce in fase preliminare analisi tecniche automatiche utili a supportare e velocizzare l’esame.
 
 Ogni proposta è automaticamente classificata in base alla propria categoria tematica e resa immediatamente accessibile agli assessorati e agli uffici competenti, che possono consultarla e valutarne la fattibilità.
 L’intero processo di valutazione è tracciato nel sistema e reso trasparente alla cittadinanza attraverso la pubblicazione delle principali fasi di analisi.
@@ -28,27 +28,37 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
 
 \begin{description}
 
-   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:categoria-notevole} – Categoria notevole:]
+   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:categoria-notevole} – Categoria:] \label{sec:cat}
   Ambito tematico di particolare rilevanza pubblica, la cui trattazione comporta un impatto significativo sul territorio comunale o sulla qualità della vita collettiva.  
   Le iniziative pubblicate in tali categorie sono sottoposte a una prima analisi tecnico-scientifica automatica a supporto dell’attività decisionale dell’amministrazione.  
   L’elenco e i criteri di eleggibilità sono definiti con deliberazione dell’amministrazione comunale.  
-  Le principali categorie notevoli comprendono: Urbanistica, Ambiente, Sicurezza, Cultura e Istruzione, Innovazione e Digitale, Sociale e Inclusione, Mobilità Sostenibile.
+  Le principali categorie comprendono: Urbanistica, Ambiente, Sicurezza, Cultura e Istruzione, Innovazione e Digitale, Sociale e Inclusione, Mobilità Sostenibile.
 
   \vspace{1em}
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:utente} – Utente:] 
   Soggetto registrato e autenticato alla piattaforma \textit{Trento Decide} tramite SPID, CIE o credenziali locali.  
   Comprende tutti i ruoli predefiniti previsti dal sistema — cittadino, moderatore, amministratore comunale e rappresentante di associazione o comitato — come specificato nel Requisito Funzionale~\ref{sec:ruoli}.
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:cittadino} – Cittadino:] 
-  Persona fisica di età pari o superiore a 16 anni, residente nel Comune di Trento o ivi domiciliata per motivi di studio o lavoro.  
-  La verifica dell’identità e dell’eleggibilità al voto avviene tramite SPID o CIE.  
-  La residenza è verificata tramite integrazione con ANPR, con procedure alternative in caso di indisponibilità del servizio.
-  Per i non residenti, il legame territoriale è dichiarato tramite autocertificazione soggetta a verifiche a campione da parte dell’amministrazione comunale.
-  
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:associazione-comitato} – Associazione/Comitato:]  
-  Entità giuridica registrata che presenta proposte collettive.  
-  La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.  
-  Le deleghe devono essere rinnovate annualmente o alla loro scadenza naturale, con notifica automatica di rinnovo.
+\item[Definizione \refstepcounter{definition}\thedefinition\label{def:ruoli} – Ruoli utente:] 
+La piattaforma \textit{Trento Decide} prevede quattro ruoli distinti, utilizzati per regolare l’accesso alle funzionalità del sistema.
+
+\textbf{Cittadino}: 
+Persona fisica di età pari o superiore a 18 anni, residente nel Comune di Trento o ivi domiciliata per studio o lavoro.  
+L’identità e l’eleggibilità al voto sono verificate tramite SPID o CIE.  
+La residenza è verificata tramite integrazione con ANPR.
+
+\textbf{Associazione/Comitato}:  
+Entità giuridica registrata che presenta proposte collettive.  
+La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.  
+Le deleghe devono essere rinnovate annualmente o alla loro scadenza naturale, con notifica automatica di rinnovo.
+
+\textbf{Moderatore}:  
+Utente incaricato dell’attività di verifica e controllo delle proposte e dei contenuti generati dagli utenti.  
+L’account è creato dall’amministratore e dispone di permessi di gestione limitati alle funzioni di moderazione.
+
+\textbf{Amministratore}:  
+Utente con privilegi completi di gestione della piattaforma.  
+È responsabile della creazione degli account speciali (moderatori, associazioni/comitati), della supervisione dei processi di verifica e della configurazione dei parametri operativi del sistema.
 
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:proposta-collettiva} – Proposta collettiva:] 
   Proposta promossa da un gruppo di cittadini o da un’associazione riconosciuta.  

@@ -13,49 +13,68 @@ Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal
 % RF1
 % ====================================================
 
-\section{Gestione utenti e autenticazione}
+\section{Autenticazione e gestione credenziali}
 
-\subsection{Registrazione e login}
-Il sistema deve consentire ai cittadini, ai moderatori e agli amministratori comunali di registrarsi e accedere tramite autenticazione tradizionale (email e password) o tramite SPID/CIE.  
+\subsection{Registrazione dei cittadini}
+L'utente che intende registrarsi come cittadino deve accedere inizialmente con SPID o CIE, il sistema richiede l'inserimento di email, password e nome utente; generando così le credenziali locali. Al termine, il sistema invia all'utente una email di conferma.
 
-\subsection{Gestione profilo utente}
-L’utente deve poter: (a) visualizzare e aggiornare i propri dati nel profilo; (b) richiedere la rettifica dei dati; (c) avviare una richiesta di cancellazione dei dati personali; (d) consultare lo storico di proposte, revisioni, endorsement e voti.
+\subsection{Registrazione di moderatori e associazioni}
+Gli account dei moderatori e delle associazioni/comitati vengono creati dall’amministratore tramite l’interfaccia di gestione.
+Il sistema invia ai destinatari le credenziali di accesso tramite email.
 
-\subsection{Gestione ruoli e permessi} \label{sec:ruoli}
-Il sistema deve fornire un modulo di amministrazione per:
+\subsection{Login}
+Il sistema deve consentire il login tramite credenziali locali (email e password) oppure tramite SPID o CIE.
 
-\begin{enumerate}
-    \item Creare o assegnare ruoli (Cittadino, Associazione/Comitato, Moderatore, Amministratore).
-    \item Assegnare a ciascun ruolo i permessi disponibili tra: \texttt{crea\_proposta}, \texttt{modifica\_propria\_proposta}, \texttt{propone\_revisione}, 
-    \texttt{modera\_contenuti}, \texttt{approva\_rifiuta\_proposta}, \texttt{configura\_parametri}.
-    \item Visualizzare l’elenco di tutte le modifiche ai ruoli e permessi (audit) con: utente che ha effettuato la modifica, ruolo coinvolto, permesso aggiunto/rimosso, data/ora.
-\end{enumerate}
+\subsection{Gestione credenziali utente}
+L'utente deve poter:
+\begin{itemize}
+  \item visualizzare e aggiornare email, username e password;
+   \item consultare lo storico di modifiche alle proprie credenziali;
+  \item richiedere la cancellazione del proprio profilo;
+\end{itemize}
 
 % ====================================================
 % RF2
 % ====================================================
 
-\section{Personalizzazione e preferenze}
-
-\subsection{Preferiti}
-Il sistema deve consentire ai cittadini di contrassegnare come “preferiti” proposte o consultazioni di interesse, ricevendo aggiornamenti automatici in caso di variazioni di stato o nuovi commenti.  
-
-\subsection{Cambio di lingua}
-Il sistema deve consentire all’utente di modificare in qualsiasi momento la lingua dell’interfaccia, selezionandola da un menu dedicato.  
-La preferenza linguistica deve essere salvata nel profilo utente, in modo da persistere tra diverse sessioni di accesso e dispositivi.  
-
-% ====================================================
-% RF3
-% ====================================================
-
 \section{Gestione proposte cittadine}
 
 \subsection{Creazione proposta}
-Il sistema deve consentire ai cittadini di redigere nuove proposte in stato di \textit{bozza}, compilando un modulo composto da campi specifici per la categoria selezionata.  
-I campi obbligatori e facoltativi per ciascuna categoria devono essere configurabili dall’amministrazione comunale.
+Il sistema deve consentire ai cittadini di creare nuove proposte in stato di \textit{bozza}, compilando un modulo composto dai seguenti campi obbligatori:
+\begin{itemize}
+    \item \textbf{Titolo} — testo breve che identifica la proposta;
+    \item \textbf{Descrizione} — testo esteso che illustra il contenuto della proposta;
+    \item \textbf{Luogo} — indicazione dell’area geografica interessata, selezionabile tramite indirizzo o mappa;
+    \item \textbf{Categoria} — definizione \ref{sec:cat};
+\end{itemize}
+
+Inoltre il sistema deve salvare automaticamente, per ogni proposta, le seguenti informazioni:
+\begin{itemize}
+    \item \textbf{Autore} — nome utente del cittadino che ha creato la proposta;
+    \item \textbf{Data} — timestamp di creazione generato dal sistema;
+\end{itemize}
+
+I valori e la presenza di ciascun campo possono variare in base alla categoria selezionata.  
+Il sistema deve utilizzare per ogni categoria l’elenco dei campi obbligatori e facoltativi configurato dall’amministrazione comunale.
 
 \subsection{Pubblicazione proposta}
-Il sistema deve permettere la pubblicazione di una proposta precedentemente salvata in stato di \textit{bozza}.
+Il sistema deve consentire al cittadino autore di pubblicare una proposta precedentemente salvata in stato di \textit{bozza}.  
+La pubblicazione è possibile solo se tutti i campi obbligatori previsti per la categoria selezionata risultano compilati.  
+Al momento della pubblicazione il sistema aggiorna lo stato della proposta a \textit{pubblicata}.
+
+\subsection{Proposte collettive}
+Il sistema deve consentire ad associazioni e comitati di presentare \textbf{proposte collettive} (def.~\ref{def:proposta-collettiva}).  
+Il sistema deve etichettare tali proposte come “collettive” e applicare ad esse gli stessi processi di validazione e pubblicazione previsti per le proposte individuali.
+
+\subsection{Visualizzazione proposte}
+Il sistema deve consentire al cittadino di:
+\begin{itemize}
+  \item visualizzare l’elenco delle proprie proposte, distinguendo tra quelle in stato di \textit{bozza} e quelle pubblicate;
+  \item visualizzare le proposte pubblicate da altri utenti, applicando i criteri definiti in \ref{sec:sorting}.
+\end{itemize}
+
+\subsection{Stato e tracciabilità delle proposte} \label{sec:stato-tracciabilita}
+Il sistema deve mostrare per ogni proposta lo stato corrente — \textit{bozza}, \textit{pubblicata}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}, \textit{in attuazione}, \textit{completata} — e la cronologia pubblica delle transizioni di stato.
 
 \subsection{Modifica collaborativa}
 Il sistema deve consentire la modifica collaborativa delle proposte, come segue:
@@ -65,21 +84,26 @@ Ogni modifica a una proposta deve registrare autore, data/ora, descrizione e dif
 \subsubsection{Proposte di modifica da terzi}
 Un utente diverso dal creatore può proporre una modifica; la proposta entra in uno stato di revisione non pubblica fino a decisione.
 \subsubsection{Approvazione delle modifiche}
-Il creatore della proposta o un moderatore può accettare o rifiutare una proposta di modifica; l’esito è notificato al proponente e tracciato.
+Il creatore della proposta può accettare o rifiutare una proposta di modifica; l’esito è tracciato.
 \subsubsection{Ripristino}
-Deve essere possibile ripristinare una versione precedente come versione principale, con tracciamento dell’operazione.
-
-\subsection{Stato e tracciabilità delle proposte} \label{sec:stato-tracciabilita}
-Il sistema deve gestire automaticamente lo stato di ogni proposta in base alle azioni dell’utente o dell’amministrazione, garantendone la tracciabilità.   
-Ogni proposta deve mostrare lo stato corrente — \textit{bozza}, \textit{pubblicata}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}, \textit{in attuazione}, \textit{completata} — e la cronologia pubblica delle transizioni.
+Deve essere possibile ripristinare una versione precedente come versione principale.
 
 \subsection{Endorsement e raccolta firme}
-Il sistema deve consentire a cittadini e associazioni registrate di esprimere un \textbf{endorsement} digitale (def.~\ref{def:endorsement}) a favore delle proposte pubblicate.  
-Il sistema deve inoltre consentire la registrazione e la verifica di firme fisiche raccolte offline, affinché siano conteggiate nel sostegno alla proposta.
+Il sistema deve consentire ai cittadini e alle associazioni registrate di esprimere un \textbf{endorsement} digitale (def.~\ref{def:endorsement}) sulle proposte pubblicate.  
+Il sistema deve inoltre registrare e verificare le firme fisiche raccolte offline, integrandole nel conteggio del sostegno alla proposta.
 
-\subsection{Proposte collettive}
-Il sistema deve consentire ad associazioni e comitati riconosciuti di presentare \textbf{proposte collettive} (def.~\ref{def:proposta-collettiva}) tramite un canale dedicato.  
-Tali proposte devono essere etichettate come “collettive” e sottostare alle stesse regole di validazione e pubblicazione delle proposte individuali. 
+% ====================================================
+% RF3
+% ====================================================
+
+\section{Personalizzazione e preferenze}
+
+\subsection{Preferiti}
+Il sistema deve consentire ai cittadini di contrassegnare come “preferiti” proposte o sondaggi, ricevendo aggiornamenti automatici in caso di variazioni di stato o nuovi commenti.  
+
+\subsection{Cambio di lingua}
+Il sistema deve consentire all’utente di modificare in qualsiasi momento la lingua dell’interfaccia, selezionandola da un menu dedicato.  
+La preferenza linguistica deve essere salvata nel profilo utente, in modo da persistere tra diverse sessioni di accesso e dispositivi.  
 
 % ====================================================
 % RF4
@@ -94,7 +118,7 @@ Ogni elettore può esprimere al massimo un voto per proposta e può modificare o
 \subsection{Consultazioni e sondaggi}
 Il sistema deve consentire all’amministrazione di creare consultazioni/sondaggi tematici, definirne il periodo di apertura e raccogliere le risposte dai cittadini.
 
-\subsection{Ordinamento delle proposte}
+\subsection{Ordinamento delle proposte}  \label{sec:sorting}
 Il sistema deve consentire all’utente di ordinare l’elenco delle proposte pubblicate attraverso almeno le seguenti chiavi:
 \begin{itemize}
   \item punteggio di rilevanza (valore numerico esposto);
