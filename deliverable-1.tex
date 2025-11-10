@@ -22,6 +22,11 @@
 
 \usepackage{graphicx}
 
+\newcounter{definition}
+\renewcommand{\thedefinition}{\arabic{definition}}
+
+\renewcommand{\bibname}{Bibliografia e Sitografia}
+
 \begin{document}
 
 \begin{titlepage}
@@ -32,7 +37,7 @@
   \Large {Corso di Ingegneria del Software \\
 Università di Trento}\\[1em]
 
-  {\large Versione 1.4 }
+  {\large Versione 1.5 }
   \vspace{0.5cm}
 
   {\large \today \par}
@@ -67,5 +72,4 @@ Università di Trento
 \include{chapters/ch2}
 \include{chapters/ch3}
 \include{chapters/ch4}
-
 \end{document}

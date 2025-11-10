@@ -3,59 +3,66 @@
 \chapter{Requisiti Non Funzionali}
 
 \renewcommand{\thesubsection}{RNF\arabic{subsection}}
-\renewcommand{\thesubsubsection}{RNF\arabic{subsection}.\arabic{subsubsection}}
-
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{0pt}
 
 \section{Introduzione}
-In questa sezione vengono descritti i requisiti non funzionali del sistema \textit{Trento Decide}.
-Essi definiscono le proprietà generali e le condizioni operative che la piattaforma deve rispettare per assicurare un funzionamento efficace e coerente con gli obiettivi progettuali.
-I requisiti sono identificati con il prefisso \textbf{RNF}, seguito da un numero progressivo e, ove necessario, organizzati in sottosezioni tematiche.
+I requisiti non funzionali definiscono le proprietà qualitative, operative e normative che il sistema \textit{Trento Decide} deve rispettare per garantire sicurezza, efficienza, accessibilità e affidabilità.  
+Ogni requisito è formulato in modo chiaro, verificabile e, ove possibile, riferito a metriche misurabili e standard riconosciuti.
 
 \subsection{Affidabilità}
-Il sistema deve garantire un'affidabilità elevata, con una disponibilità minima del 99.72{\%}, corrispondente ad un downtime massimo di 24 ore all'anno. Il software deve essere progettato per minimizzare i tempi di inattività pianificati e non pianificati, garantendo un accesso continuo ai servizi, in osservanza del \ref{ref:performance}.
+Il sistema deve garantire una disponibilità minima del 99.72\% (downtime massimo 24 ore/anno).  
+Devono essere definiti obiettivi RTO $\le$ 2 ore e RPO $\le$ 12 ore.  
+Deve essere previsto un piano di \textit{incident response} e test di resilienza semestrali.
 
-\subsection{Backup}
-Il sistema deve prevedere un’adeguata strategia di backup per garantire la continuità del servizio e la protezione dei dati anche in caso di guasti o malfunzionamenti.
-I backup devono includere tutte le componenti del sistema (dati, configurazioni e file necessari al funzionamento) e devono essere eseguiti con regolarità ogni 12 ore, su tutti i sistemi che supportano il software. Si prevede un periodo di retention dei dati di giorni 40, con almeno una copia archiviata off-site in un' data center UE/cloud qualificato, dunque conforme ai requisiti del GDPR.
+\subsection{Backup e ripristino}
+Il sistema deve eseguire backup automatici ogni 12 ore di dati, configurazioni e log applicativi.  
+I backup devono essere conservati per almeno 90 giorni e replicati in un data center situato nell’Unione Europea qualificato AgID. 
+Devono essere previsti controlli di integrità e procedure di ripristino periodicamente testate.
 
 \subsection{Compatibilità}
-Il sistema deve essere pienamente utilizzabile con i principali browser utilizzati nei contesti della Pubblica Amministrazione e dagli utenti finali: Mozilla Firefox versione 52 ESR o superiore, Chromium/Chrome versione 49 o superiore, Opera versione 40 o superiore, Safari versione 10 o superiore e Microsoft Edge versione 79 i superiore. Il software deve garantire la totale fruibilità delle interfacce e delle funzionalità indipendentemente dal browser utilizzato.
+Il sistema deve essere conforme agli standard HTML5, CSS3 ed ECMAScript 6, garantendo la piena compatibilità con i principali browser utilizzati nei contesti della Pubblica Amministrazione e dagli utenti finali.  
+Il supporto deve coprire almeno le ultime due versioni stabili dei browser Mozilla Firefox (inclusa ESR), Google Chrome/Chromium, Microsoft Edge, Apple Safari e Opera.    
+L’interfaccia deve risultare completamente responsive e accessibile da desktop, tablet e smartphone.
 
-\subsection{Etica} \label{ref:etica}
-Il software è progettato per garantire la massima neutralità intellettuale della parti coinvolte, dunque l'assenza di bias politici, ideologici o sociali. Ogni azione eseguita da cittadini o dagli amministratori comunali si deve concepire come miglioramento alla vita pubblica in modo imparziale. Si prevede che il software fornisca strumenti tecnici e criteri oggettivi per la valutazione dei casi proposti, con l'obiettivo di sopprimere sbilanciamenti di carattere politico o socialmente divisivi. 
+\subsection{Etica e imparzialità del sistema} \label{ref:etica}
+Il sistema deve promuovere trasparenza, equità e neutralità nei processi di partecipazione, evitando ogni forma di bias politico, ideologico o sociale.  
+Tale principio si applica sia ai comportamenti umani sia ai processi automatizzati.
 
-\subsection{Lingua}
-Il sistema deve offrire agli utenti la possibilità di cambiare la lingua dell’interfaccia tra una delle seguenti opzioni: Italiano, Inglese, Tedesco, Arabo e Rumeno. La selezione della lingua deve essere facilmente accessibile e applicabile in qualsiasi momento; garantendo inoltre coerenza e precisione nelle funzionalità indipendentemente dalla lingua.
+\subsubsection{Neutralità e trasparenza algoritmica} \label{ref:neutralita}
+Gli algoritmi di ranking e simulazione devono essere progettati per evitare distorsioni sistematiche o favoritismi impliciti.  
+Le formule e i parametri utilizzati devono essere documentati, versionati e sottoposti a revisione almeno annuale.  
+Ogni modifica deve essere tracciata in un registro pubblico consultabile dai cittadini.
 
-\subsection{Moderazione e correttezza d'uso}
-Il sistema deve prevedere meccanismi di moderazione dei contenuti e interazioni tra utenti, al fine di prevenire utilizzi scorretti della piattaforma e garantendo così un ambiente rispettoso. Per garantire quanto citato si prevede l'assunzione della figura del moderatore, ovvero un tecnico formato in grado di riconoscere e rimuovere minacce in osservanza delle linee guida fornitegli. Tale moderatore si pone anche come risolutore diretto di problematiche trattate nel \ref{ref:etica}.
+\subsection{Internazionalizzazione e lingua} \label{ref:i18n}
+Il sistema deve supportare almeno cinque lingue: Italiano, Inglese, Tedesco, Arabo (RTL) e Rumeno.  
+La lingua dell’interfaccia deve essere selezionabile e persistente a livello di profilo utente.  
+I contenuti generati dagli utenti rimangono nella lingua di origine, con possibilità di traduzione automatica informativa chiaramente segnalata.
+
+\subsection{Moderazione e correttezza d’uso} \label{ref:moderazione}
+Il sistema deve garantire un ambiente rispettoso mediante meccanismi di moderazione dei contenuti e delle interazioni tra utenti.  
+Le segnalazioni devono essere prese in carico entro 24 ore dalla ricezione.  
+Tutte le azioni di moderazione devono essere registrate (utente, data/ora, motivazione) con log non alterabile; deve esistere un canale di appello per l’utente.
 
 \subsection{Performance} \label{ref:performance}
-Il sistema deve garantire tempi di risposta brevi, in tal modo che qualsiasi operazione, come il login, la visualizzazione delle proposte o il voto, vengano completate entro un massimo di 1 secondo per il 95{\%} delle richieste. Tale requisito deve essere mantenuto anche in presenza di notevoli flussi di connessioni, con un carico simultaneo sostenibile fino ai 20.000 utenti connessi al sistema.
+Il sistema deve garantire che il 95\% delle operazioni principali (login, consultazione, voto) sia completato entro 1 secondo.  
+Tale requisito deve essere mantenuto con un carico simultaneo fino a 20.000 utenti.  
+L’interfaccia deve rispettare i target \textit{Core Web Vitals}: LCP $\le$ 2,5 s (p75), INP $\le$ 200 ms (p75), CLS $\le$ 0,1 (p75).
 
 \subsection{Portabilità}
-Il lato server dell'applicazione deve poter essere installato ed eseguito sia su infrastrutture preesistenti dell’amministrazione comunale sia su cloud qualificati UE. Riguardo alla pagina web fornita dal server all'utente finale, deve essere pienamente fruibile da tutti i tipi di dispositivi inclusi: desktop, tablet e smartphone, garantendo così l’accesso anche da postazioni eterogenee.
+Il sistema deve poter essere distribuito su infrastrutture on-premise o cloud qualificati nell’Unione Europea.  
+La distribuzione deve essere containerizzata e replicabile tramite strumenti di \textit{Infrastructure as Code}.  
+Compatibilità garantita con database relazionali standard (es. PostgreSQL) e storage a oggetti.
 
 \subsection{Scalabilità}
-Il sistema deve essere scalabile, e deve garantire un’agevolata aggiunta di componenti che possano apportare miglioramenti sia software che hardware.
-
-\subsubsection{Software}
-Dal punto di vista del software, si assicura elevata riutilizzabilità e chiarezza in tutte le parti che lo compongono; si garantisce dunque che in caso di revisione futura del sofware, la struttura di partenza agevoli il più possibile i tempi di risoluzione dei problemi posti.
-
-\subsubsection{Hardware}
-Dal punto di vista hardware, l’architettura del sistema deve consentire l’integrazione progressiva di nuove risorse fisiche senza richiedere modifiche strutturali profonde.  
-In particolare, deve essere possibile potenziare le prestazioni complessive aggiungendo server, unità di calcolo o sistemi di storage, garantendo al contempo la continuità del servizio e la compatibilità con l’infrastruttura esistente.  
+Il sistema deve supportare la scalabilità orizzontale e verticale senza downtime.  
+L’architettura deve permettere l’aggiunta di nuove istanze di servizio e la gestione di carichi concorrenti elevati.
 
 \subsection{Sicurezza}
-Il sistema deve essere progettato per garantire un elevato livello di sicurezza delle informazioni e della piattaforma, proteggendo dati e funzionalità da accessi non autorizzati, utilizzi impropri e potenziali minacce informatiche.  
-La piattaforma deve adottare un approccio \textit{security by design}, integrando meccanismi di protezione fin dalle fasi iniziali di sviluppo e assicurando l’utilizzo esclusivo del protocollo HTTPS per tutte le comunicazioni tra client e server.
-Tutte le componenti del sistema devono inoltre essere costantemente mantenute aggiornate, applicando tempestivamente patch di sicurezza e adeguamenti tecnologici necessari.  
-Il progetto deve infine conformarsi alle normative vigenti in materia di protezione dei dati personali e sicurezza informatica, inclusi i requisiti stabiliti dal \textbf{Regolamento UE} (\textit{GDPR}), assicurando il trattamento corretto e sicuro delle informazioni degli utenti in ogni fase del loro ciclo di vita.
+Il sistema deve rispettare il livello 2 dello standard OWASP ASVS e adottare il principio di \textit{security by design}.  
+Le comunicazioni devono essere cifrate, i dati sensibili protetti e devono essere attuate misure contro attacchi comuni (CSRF, XSS, SQLi, brute force).  
+È richiesto un audit di sicurezza annuale e la disponibilità di un piano DPIA approvato dal DPO.
 
-\subsection{Usabilità}
-\subsubsection{Formazione}
-Il sistema deve garantire un livello di usabilità elevato, consentendo ad utenti esterni di utilizzarla senza l’ausilio di istruzioni esterne; e mantenendo la soglia massima di formazione degli operatori a 45 minuti. L’interfaccia deve essere intuitiva, chiara e semplice; con funzionalità e struttura che permetta agli utenti di familiarizzare rapidamente con il software.
-\subsubsection{Standard}
- L’interfaccia deve essere conforme agli standard WCAG 2.1 livello AA, garantendo l’uso anche a persone con disabilità.
+\subsection{Usabilità e accessibilità}
+Il sistema deve essere utilizzabile senza formazione per gli utenti esterni; la formazione per operatori non deve superare 45 minuti.  
+L’interfaccia deve rispettare gli standard WCAG 2.1 livello AA e raggiungere un punteggio minimo SUS $\ge$ 80.
