@@ -1,5 +1,9 @@
 \chapter{Use Case Diagram}
 
+\renewcommand{\thesubsection}{UC\arabic{subsection}}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
 \section{Introduzione}
 In questa sezione vengono presentati gli Use Case Diagram del sistema Trento Decide.
 Essi rappresentano, in forma grafica, le interazioni tra gli attori e la piattaforma, illustrando le principali funzionalità e relazioni di inclusione o estensione tra i casi d’uso.
@@ -9,19 +13,19 @@ Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti f
 % UC1
 % ====================================================
 
-\subsection{Utente Anonimo}
+\section{Utente Anonimo}
 \begin{itemize}
     \item Fare login sulla piattaforma (\ref{sec:login})
     \item Registrare un nuovo cittadino nella piattaforma (\ref{sec:registrazione})
 \end{itemize}
 
-% \includegraphics[width=0.33 \textwidth]{img/usecase/1.png}
+\begin{center}
+	\includegraphics[scale=1.1]{img/usecase/1.png}
+\end{center}
 
 % ====================================================
 
-\subsubsection*{Use Case \ref{sec:login}: Login}
-
-\textbf{Attore primario:} Utente anonimo
+\subsection{Login \ref{sec:login}}
 
 \textbf{Riassunto:}  
 Questo use case descrive come un utente anonimo accede alla piattaforma tramite credenziali locali oppure tramite SPID o CIE.
@@ -51,9 +55,7 @@ L’utente risulta autenticato e accede alla piattaforma.
 
 % ====================================================
 
-\subsubsection*{Use Case \ref{sec:registrazione}: Registrare un cittadino}
-
-\textbf{Attore primario:} Utente anonimo
+\subsection{Registrare un cittadino \ref{sec:registrazione}}
 
 \textbf{Riassunto:}  
 Questo use case descrive come un utente anonimo registra un nuovo account cittadino tramite SPID o CIE e definisce le proprie credenziali locali.
@@ -92,7 +94,3 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \begin{itemize}
     \item[(1)] \textit{Estensione del passo 3:} l’utente può selezionare l’opzione per ricevere notifiche via email; il sistema registra la preferenza.
 \end{itemize}
-
-
-
-
