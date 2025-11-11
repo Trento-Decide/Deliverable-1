@@ -2,24 +2,24 @@
 
 \section{Introduzione}
 
-Il progetto si fonda sull’assunto che il Comune di Trento, pur disponendo di competenze e strumenti amministrativi avanzati, non possa individuare e affrontare con assoluta completezza l’insieme delle problematiche presenti sul territorio comunale.  
+Il progetto si fonda sull’assunto che il Comune di Trento, pur disponendo di competenze e strumenti amministrativi avanzati, non possa individuare e affrontare con assoluta completezza l’insieme delle problematiche presenti sul territorio comunale.
 Tale limite non deriva da inefficienze, ma è una conseguenza fisiologica della complessità urbana e della distanza che spesso si crea tra amministrazione e cittadinanza.
 
-\textit{Trento Decide} nasce con l’obiettivo di ridurre tale divario, fungendo da ponte diretto tra cittadini e istituzioni.  
+\textit{Trento Decide} nasce con l’obiettivo di ridurre tale divario, fungendo da ponte diretto tra cittadini e istituzioni.
 
 La piattaforma rende il processo decisionale più inclusivo, trasparente e reattivo, offrendo uno spazio digitale in cui proporre, discutere e votare iniziative di interesse pubblico. In questo senso, \textit{Trento Decide} si qualifica come un'iniziativa di e-democracy, applicando i principi della civic technology per modernizzare i processi partecipativi e promuovere una governance più aperta e collaborativa.
 
-Gli utenti autenticati possono pubblicare nuove iniziative corredandole di titolo e descrizione, modificarle o proporre revisioni in collaborazione con altri partecipanti.  
+Gli utenti autenticati possono pubblicare nuove iniziative corredandole di titolo e descrizione, modificarle o proporre revisioni in collaborazione con altri partecipanti.
 Inoltre, possono esprimere il proprio voto sulle proposte esistenti, contribuendo così a determinarne la priorità e la rilevanza all’interno del processo decisionale civico.
 
-Le proposte vengono periodicamente analizzate dagli amministratori comunali competenti, che avviano una valutazione di fattibilità tecnico-scientifica.  
+Le proposte vengono periodicamente analizzate dagli amministratori comunali competenti, che avviano una valutazione di fattibilità tecnico-scientifica.
 Nel caso di iniziative appartenenti a particolari categorie "notevoli" (vedi Definizione~\ref{def:categoria-notevole}), il sistema fornisce in fase preliminare analisi tecniche automatiche utili a supportare e velocizzare l’esame.
 
 Ogni proposta è automaticamente classificata in base alla propria categoria tematica e resa immediatamente accessibile agli assessorati e agli uffici competenti, che possono consultarla e valutarne la fattibilità.
 L’intero processo di valutazione è tracciato nel sistema e reso trasparente alla cittadinanza attraverso la pubblicazione delle principali fasi di analisi.
 Al termine, l’amministrazione comunica l’esito — accettazione con avvio dell’attuazione o rifiuto motivato — visibile direttamente nella pagina della proposta.
 
-Il sistema è implementato come applicazione web accessibile via browser, senza necessità di installazioni.  
+Il sistema è implementato come applicazione web accessibile via browser, senza necessità di installazioni.
 È concepito per favorire un’interazione continua e verificabile tra cittadini e amministrazione, garantendo trasparenza, chiarezza e sicurezza lungo l’intero ciclo di vita delle proposte.
 
 \section{Definizioni}
@@ -29,48 +29,48 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
 \begin{description}
 
    \item[Definizione \refstepcounter{definition}\thedefinition\label{def:categoria-notevole} – Categoria:] \label{sec:cat}
-  Ambito tematico di particolare rilevanza pubblica, la cui trattazione comporta un impatto significativo sul territorio comunale o sulla qualità della vita collettiva.  
-  Le iniziative pubblicate in tali categorie sono sottoposte a una prima analisi tecnico-scientifica automatica a supporto dell’attività decisionale dell’amministrazione.  
-  L’elenco e i criteri di eleggibilità sono definiti con deliberazione dell’amministrazione comunale.  
+  Ambito tematico di particolare rilevanza pubblica, la cui trattazione comporta un impatto significativo sul territorio comunale o sulla qualità della vita collettiva.
+  Le iniziative pubblicate in tali categorie sono sottoposte a una prima analisi tecnico-scientifica automatica a supporto dell’attività decisionale dell’amministrazione.
+  L’elenco e i criteri di eleggibilità sono definiti con deliberazione dell’amministrazione comunale.
   Le principali categorie comprendono: Urbanistica, Ambiente, Sicurezza, Cultura e Istruzione, Innovazione e Digitale, Sociale e Inclusione, Mobilità Sostenibile.
 
   \vspace{1em}
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:utente} – Utente:] 
-  Soggetto registrato e autenticato alla piattaforma \textit{Trento Decide} tramite SPID, CIE o credenziali locali.  
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:utente} – Utente:]
+  Soggetto registrato e autenticato alla piattaforma \textit{Trento Decide} tramite SPID, CIE o credenziali locali.
   Comprende tutti i ruoli predefiniti previsti dal sistema — cittadino, moderatore, amministratore comunale e rappresentante di associazione o comitato — come specificato nel Requisito Funzionale~\ref{sec:ruoli}.
 
-\item[Definizione \refstepcounter{definition}\thedefinition\label{def:ruoli} – Ruoli utente:] 
+\item[Definizione \refstepcounter{definition}\thedefinition\label{def:ruoli} – Ruoli utente:]
 La piattaforma \textit{Trento Decide} prevede quattro ruoli distinti, utilizzati per regolare l’accesso alle funzionalità del sistema.
 
-\textbf{Cittadino}: 
-Persona fisica di età pari o superiore a 18 anni, residente nel Comune di Trento o ivi domiciliata per studio o lavoro.  
-L’identità e l’eleggibilità al voto sono verificate tramite SPID o CIE.  
+\textbf{Cittadino}:
+Persona fisica di età pari o superiore a 18 anni, residente nel Comune di Trento o ivi domiciliata per studio o lavoro.
+L’identità e l’eleggibilità al voto sono verificate tramite SPID o CIE.
 La residenza è verificata tramite integrazione con ANPR.
 
-\textbf{Associazione/Comitato}:  
-Entità giuridica registrata che presenta proposte collettive.  
-La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.  
+\textbf{Associazione/Comitato}:
+Entità giuridica registrata che presenta proposte collettive.
+La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.
 Le deleghe devono essere rinnovate annualmente o alla loro scadenza naturale, con notifica automatica di rinnovo.
 
-\textbf{Moderatore}:  
-Utente incaricato dell’attività di verifica e controllo delle proposte e dei contenuti generati dagli utenti.  
+\textbf{Moderatore}:
+Utente incaricato dell’attività di verifica e controllo delle proposte e dei contenuti generati dagli utenti.
 L’account è creato dall’amministratore e dispone di permessi di gestione limitati alle funzioni di moderazione.
 
-\textbf{Amministratore}:  
-Utente con privilegi completi di gestione della piattaforma.  
+\textbf{Amministratore}:
+Utente con privilegi completi di gestione della piattaforma.
 È responsabile della creazione degli account speciali (moderatori, associazioni/comitati), della supervisione dei processi di verifica e della configurazione dei parametri operativi del sistema.
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:proposta-collettiva} – Proposta collettiva:] 
-  Proposta promossa da un gruppo di cittadini o da un’associazione riconosciuta.  
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:proposta-collettiva} – Proposta collettiva:]
+  Proposta promossa da un gruppo di cittadini o da un’associazione riconosciuta.
   Le regole di ponderazione del loro peso nel ranking sono pubbliche e documentate; il sistema rileva automaticamente eventuali pattern anomali (concentrazioni temporali, account recenti) e li segnala ai moderatori.
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:endorsement} – Endorsement:] 
-  Azione di sostegno digitale espressa da cittadini o enti collettivi a favore di una proposta.  
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:endorsement} – Endorsement:]
+  Azione di sostegno digitale espressa da cittadini o enti collettivi a favore di una proposta.
   Il numero e il peso degli endorsement concorrono al ranking secondo coefficienti configurabili e trasparenti.
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:voto} – Voto:] 
+  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:voto} – Voto:]
   Espressione anonima di consenso o dissenso da parte di un cittadino autenticato tramite SPID o CIE.
- 
+
 \end{description}
 
 \section{Vantaggi}
@@ -78,63 +78,49 @@ Utente con privilegi completi di gestione della piattaforma.
 \subsection{Per il Comune}
 
 \begin{itemize}
-  \item \textbf{Prioritizzazione data-driven}: il sistema di pubblicazione, voto e ranking aiuta a individuare rapidamente le iniziative più rilevanti per la comunità, riducendo il divario tra bisogni territoriali e agenda amministrativa.
+  \item \textbf{Prioritizzazione data-driven}: La piattaforma aiuta a individuare rapidamente le iniziative più rilevanti per la comunità, riducendo il divario tra bisogni territoriali e agenda amministrativa.
 
-  \item \textbf{Flusso operativo tracciabile}: dalla creazione della proposta all’inoltro all’ufficio competente, con cronologia pubblica e regole chiare; maggiore trasparenza e meno frammentazione procedurale.
+  \item \textbf{Flusso operativo tracciabile}: flusso end-to-end con stati, cronologia e registri pubblici di azioni e decisioni.
 
-  \item \textbf{Allocazione efficiente delle risorse}: per le categorie notevoli il sistema fornisce pre-analisi tecnico-scientifiche, concentrando i tecnici sulle pratiche più impattanti.
+  \item \textbf{Sportello unico digitale}: riduzione di canali frammentati e carico sugli uffici grazie a una piattaforma web unica.
 
-  \item \textbf{Canale unico e verificabile}: ogni proposta segue un flusso chiaro con registri pubblici, agevolando audit interni e garantendo trasparenza verso la cittadinanza.
+  \item \textbf{Analisi tecnica}: simulazioni e indicatori per valutare impatti economici, sociali e ambientali.
 
-  \item \textbf{Riduzione del carico sugli sportelli}: la centralizzazione delle proposte diminuisce email, PEC e richieste frammentate agli URP, con risparmi operativi e di tempo.
+  \item \textbf{Open Data}: dashboard, report esportabili e API per la pubblicazione di dati aggregati.
 \end{itemize}
 
 \subsection{Per i cittadini}
 
 \begin{itemize}
-  \item \textbf{Partecipazione effettiva}: pubblicare, votare e proporre modifiche rende la cittadinanza protagonista nella definizione delle priorità pubbliche.
+  \item \textbf{Partecipazione effettiva}: pubblicare, votare e co-progettare le proposte rende i cittadini protagonisti, orientando in modo concreto le priorità pubbliche.
 
-  \item \textbf{Chiarezza sul percorso}: ogni proposta riporta in modo trasparente il proprio stato
-  (\textit{bozza}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}),
-  in conformità al Requisito Funzionale \ref{sec:stato-tracciabilita}, garantendo tracciabilità e riducendo l’asimmetria informativa.
+  \item \textbf{Accesso semplice}: la piattaforma è accessibile via web senza installazioni.
 
-  \item \textbf{Accesso semplice e universale}: la piattaforma è accessibile via web senza installazioni.
+  \item \textbf{Accessibilità}: interfaccia conforme a WCAG 2.1 AA e multilingua.
 
-  \item \textbf{Tracciabilità personale}: ogni cittadino può seguire le proprie iniziative, modifiche e voti espressi.
+  \item \textbf{Chiarezza sul percorso}: ogni proposta riporta in modo trasparente il proprio stato (\textit{bozza}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}),  garantendo tracciabilità e riducendo l’asimmetria informativa.
+
+  \item \textbf{Tracciabilità personale}: ogni cittadino può seguire le proprie proposte, modifiche e voti espressi anche con notifiche su aggiornamenti.
 \end{itemize}
 
 \section{Limiti e mitigazioni}
 
-Il progetto \textit{Trento Decide}, pur garantendo un elevato grado di trasparenza e partecipazione, presenta alcuni limiti intrinseci di natura tecnica, organizzativa e sociale.  
+Il progetto \textit{Trento Decide}, pur garantendo un elevato grado di trasparenza e partecipazione, presenta alcuni limiti intrinseci di natura tecnica, organizzativa e sociale.
 La seguente sezione identifica i principali rischi e descrive le strategie di mitigazione previste.
 
 \begin{itemize}
 
-  \item \textbf{Definizione dei criteri di priorità}:  
-  Stabilire parametri oggettivi per la valutazione delle proposte è complesso.  
-  La formula di ranking richiede un monitoraggio continuo e revisioni periodiche, come previsto dal Requisito Non Funzionale sulla neutralità algoritmica (\ref{ref:neutralita}).
+  \item \textbf{Definizione dei criteri di priorità}: Stabilire parametri oggettivi per la valutazione delle proposte è complesso. La formula di ranking richiede un monitoraggio continuo e revisioni periodiche, come previsto dal Requisito Non Funzionale sulla neutralità algoritmica (\ref{ref:neutralita}).
 
-  \item \textbf{Neutralità e bias cognitivi}:  
-  Le decisioni automatizzate e i comportamenti collettivi possono introdurre distorsioni involontarie.  
-  Si prevede la revisione annuale degli algoritmi e l’audit di neutralità per garantire imparzialità e trasparenza dei processi.
-
-  \item \textbf{Rischio di manipolazione o brigading}:  
-  Coordinamenti di gruppo o attività fraudolente possono alterare voti e ranking.  
-  Il sistema applica limiti di frequenza, verifica d’identità tramite SPID/CIE e rilevamento automatico di anomalie, integrato con la moderazione (\ref{ref:moderazione}).
-
-  \item \textbf{Digital divide}:  
-  Una parte della popolazione può trovarsi in difficoltà nell’uso di strumenti digitali.  
+  \item \textbf{Digital divide}:
+  Una parte della popolazione può trovarsi in difficoltà nell’uso di strumenti digitali.
   Sono previsti punti di facilitazione presso biblioteche e sportelli comunali, supporto telefonico e assistenza tramite delega per l’inserimento delle proposte.
 
-  \item \textbf{Competenza multi-ente}:  
-  Alcune proposte ricadono su enti diversi dal Comune di Trento (Provincia, Stato, gestori di servizi pubblici).  
-  Il sistema deve prevedere un flusso chiaro e tracciabile di reindirizzamento e presa verso l’ente competente.
-
-  \item \textbf{Aspettative giuridiche ambigue}:  
-  L’approvazione o la priorità elevata di una proposta non implicano un diritto automatico alla sua attuazione.  
+  \item \textbf{Aspettative giuridiche ambigue}:
+  L’approvazione o la priorità elevata di una proposta non implicano un diritto automatico alla sua attuazione.
   L’amministrazione pubblica deve fornire motivazioni chiare e documentate per ogni decisione finale.
 
-  \item \textbf{Costi ricorrenti e sostenibilità}:  
-  Il mantenimento della piattaforma richiede risorse continuative per moderazione, assistenza, comunicazione, sicurezza e aggiornamenti software.  
-  È raccomandata la previsione di un piano di sostenibilità tecnica ed economica pluriennale.
+  \item \textbf{Sostenibilità operativa ed economica}:
+  Il mantenimento della piattaforma richiede risorse continuative per moderazione, assistenza, comunicazione, sicurezza e aggiornamenti software. È raccomandata la previsione di un piano di sostenibilità tecnica ed economica pluriennale.
+
 \end{itemize}
