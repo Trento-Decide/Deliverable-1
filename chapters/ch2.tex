@@ -18,14 +18,14 @@ Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal
 \subsection{Registrazione dei cittadini} \label{sec:registrazione}
 L'utente che intende registrarsi come cittadino deve accedere inizialmente con SPID o CIE, il sistema richiede l'inserimento di email, password e nome utente (credenziali locali); inoltre l’utente può opzionalmente acconsentire a ricevere notifiche via email.  Al termine, il sistema invia all'utente una email di conferma.
 
-\subsection{Registrazione di moderatori e associazioni}
+\subsection{Registrazione di moderatori e associazioni} \label{sec:specialregistrazione}
 Gli account dei moderatori e delle associazioni/comitati vengono creati dall’amministratore tramite l’interfaccia di gestione.
 Il sistema invia ai destinatari le credenziali di accesso tramite email.
 
 \subsection{Login} \label{sec:login}
 Il sistema deve consentire il login tramite credenziali locali (email e password) oppure tramite SPID o CIE.
 
-\subsection{Gestione credenziali utente}
+\subsection{Gestione credenziali utente} \label{sec:credenzialihandling}
 L'utente deve poter:
 \begin{itemize}
   \item visualizzare e aggiornare email, username e password;
@@ -40,7 +40,7 @@ L'utente deve poter:
 
 \section{Gestione proposte cittadine}
 
-\subsection{Creazione proposta}
+\subsection{Creazione proposta} \label{sec:creazioneproposta}
 Il sistema deve consentire ai cittadini di creare nuove proposte in stato di \textit{bozza}, compilando un modulo composto dai seguenti campi obbligatori:
 \begin{itemize}
     \item \textbf{Titolo} — testo breve che identifica la proposta;
@@ -58,7 +58,7 @@ Inoltre il sistema deve salvare automaticamente, per ogni proposta, le seguenti 
 I valori e la presenza di ciascun campo possono variare in base alla categoria selezionata.  
 Il sistema deve utilizzare per ogni categoria l’elenco dei campi obbligatori e facoltativi configurato dall’amministrazione comunale.
 
-\subsection{Pubblicazione proposta}
+\subsection{Pubblicazione proposta} \label{sec:pubblicazioneproposta}
 Il sistema deve consentire al cittadino autore di pubblicare una proposta precedentemente salvata in stato di \textit{bozza}.  
 La pubblicazione è possibile solo se tutti i campi obbligatori previsti per la categoria selezionata risultano compilati.  
 Al momento della pubblicazione il sistema aggiorna lo stato della proposta a \textit{pubblicata}.
@@ -67,7 +67,7 @@ Al momento della pubblicazione il sistema aggiorna lo stato della proposta a \te
 Il sistema deve consentire ad associazioni e comitati di presentare \textbf{proposte collettive} (def.~\ref{def:proposta-collettiva}).  
 Il sistema deve etichettare tali proposte come “collettive” e applicare ad esse gli stessi processi di validazione e pubblicazione previsti per le proposte individuali.
 
-\subsection{Visualizzazione proposte}
+\subsection{Visualizzazione proposte} \label{sec:visualizzazioneproposte}
 Il sistema deve consentire al cittadino di:
 \begin{itemize}
   \item visualizzare l’elenco delle proprie proposte, distinguendo tra quelle in stato di \textit{bozza} e quelle pubblicate;
@@ -77,7 +77,7 @@ Il sistema deve consentire al cittadino di:
 \subsection{Stato e tracciabilità delle proposte} \label{sec:stato-tracciabilita}
 Il sistema deve mostrare per ogni proposta lo stato corrente — \textit{bozza}, \textit{pubblicata}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}, \textit{in attuazione}, \textit{completata} — e la cronologia pubblica delle transizioni di stato.
 
-\subsection{Modifica collaborativa}
+\subsection{Modifica collaborativa} \label{sec:modificaproposta}
 Il sistema deve consentire la modifica collaborativa delle proposte, come segue:
 
 \subsubsection{Versionamento}
@@ -102,7 +102,7 @@ Il sistema deve inoltre registrare e verificare le firme fisiche raccolte offlin
 \subsection{Preferiti} \label{sec:preferiti}
 Il sistema deve consentire ai cittadini di contrassegnare come “preferiti” proposte o sondaggi, ricevendo aggiornamenti automatici in caso di variazioni di stato o nuovi commenti.  
 
-\subsection{Cambio di lingua}
+\subsection{Cambio di lingua}  \label{sec:cambiolingua}
 Il sistema deve consentire all’utente di modificare in qualsiasi momento la lingua dell’interfaccia, selezionandola da un menu dedicato.  
 La preferenza linguistica deve essere salvata nel profilo utente, in modo da persistere tra diverse sessioni di accesso e dispositivi.  
 
@@ -112,11 +112,11 @@ La preferenza linguistica deve essere salvata nel profilo utente, in modo da per
 
 \section{Votazioni e ranking}
 
-\subsection{Votazione delle proposte}
+\subsection{Votazione delle proposte}  \label{sec:voto}
 Il sistema deve consentire agli utenti eleggibili al voto (cfr. Definizioni) di esprimere un voto positivo o negativo su ciascuna proposta attiva.  
 Ogni elettore può esprimere al massimo un voto per proposta e può modificare o revocare il proprio voto entro la finestra temporale della consultazione.  
 
-\subsection{Consultazioni e sondaggi}
+\subsection{Consultazioni e sondaggi}  \label{sec:sondaggi}
 Il sistema deve consentire all’amministrazione di creare consultazioni/sondaggi tematici, definirne il periodo di apertura e raccogliere le risposte dai cittadini.
 
 \subsection{Ordinamento delle proposte}  \label{sec:sorting}
@@ -161,7 +161,7 @@ Il sistema deve includere un modulo che consenta di calcolare indicatori di impa
 \subsection{Analisi predittiva e statistica}
 Il sistema deve consentire la generazione di previsioni sull’effetto delle proposte tramite modelli configurabili; gli indicatori prodotti devono essere quantitativi e misurabili (es. variazioni stimate di traffico, emissioni o costi).
 
-\subsection{Visualizzazione interattiva delle simulazioni}
+\subsection{Visualizzazione interattiva delle simulazioni}  \label{sec:vederepolicies}
 Il sistema deve visualizzare i risultati delle simulazioni tramite mappe tematiche e grafici comparativi.
 
 % ====================================================
@@ -183,7 +183,7 @@ Il sistema deve fornire un feed aggiornato che mostri attività in corso, consul
 
 \section{Trasparenza e reportistica}
 
-\subsection{Dashboard amministrativa}
+\subsection{Dashboard amministrativa}  \label{sec:dashboard}
 Il sistema deve fornire all’amministrazione una dashboard che mostri il numero di utenti attivi, le proposte per categoria, la distribuzione territoriale dei voti e i tassi di approvazione.  
 I dati devono poter essere esportati almeno in formato CSV o PDF.
 
