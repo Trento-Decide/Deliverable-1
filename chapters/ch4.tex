@@ -14,10 +14,10 @@ Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti f
 % ====================================================
 
 \section{Utente Anonimo}
-\begin{itemize}
+\begin{enumerate}
     \item Fare login sulla piattaforma (\ref{sec:login})
     \item Registrare un nuovo cittadino nella piattaforma (\ref{sec:registrazione})
-\end{itemize}
+\end{enumerate}
 
 \begin{center}
 	\includegraphics[scale=1.1]{img/usecase/1.png}
@@ -94,3 +94,92 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \begin{itemize}
     \item[(1)] \textit{Estensione del passo 3:} l’utente può selezionare l’opzione per ricevere notifiche via email; il sistema registra la preferenza.
 \end{itemize}
+
+% ====================================================
+% UC2
+% ====================================================
+
+\section{Utente autenticato}
+\begin{enumerate}
+	\item Gestire le proprie credenziali (\ref{sec:credenzialihandling})
+	\item Visualizzazione proposte (\ref{sec:visualizzazioneproposte}) MHHH NON SONO SICURO QUI!
+	\item Ordinare e filtrare le proposte (\ref{sec:sorting}) MHHH NON SONO SICURO QUI!
+	\item Cambiare lingua (\ref{sec:cambiolingua})
+	\item Visualizzare policy simulator (\ref{sec:vederepolicies}) MHHH NON SONO SICURO QUI!
+\end{enumerate}
+
+\begin{center}
+	% \includegraphics[scale=1.1]{img/usecase/1.png}
+\end{center}
+
+% ====================================================
+
+% ====================================================
+% UC3
+% ====================================================
+
+\section{Amministratore}
+\begin{enumerate}
+	\item Creare account moderatore o associazione/comitato (\ref{sec:specialregistrazione})
+	\item Pubblicare sondaggi (\ref{sec:sondaggi})
+	\item Interazione dashboard amministrativa (\ref{sec:dashboard})
+\end{enumerate}
+
+\begin{center}
+	% \includegraphics[scale=1.1]{img/usecase/1.png}
+\end{center}
+
+% ====================================================
+
+% ====================================================
+% UC4
+% ====================================================
+
+\section{Cittadino}
+\begin{enumerate}
+	\item Creare una proposta (\ref{sec:creazioneproposta})
+	\item Pubblicare una proposta in stato di bozza (\ref{sec:pubblicazioneproposta})
+	\item Proporre una modifica ad una proposta (\ref{sec:modificaproposta})
+	\item Modificare i propri preferiti (\ref{sec:preferiti})
+	\item Votare una proposta (\ref{sec:voto})
+\end{enumerate}
+
+\begin{center}
+	% \includegraphics[scale=1.1]{img/usecase/1.png}
+\end{center}
+
+% ====================================================
+
+% ====================================================
+% UC5
+% ====================================================
+
+\section{Associazione/Comitato}
+\begin{enumerate}
+	\item Creare proposte collettive (\ref{sec:creazioneproposta})
+\end{enumerate}
+
+\begin{center}
+	% \includegraphics[scale=1.1]{img/usecase/1.png}
+	Da capire se possiamo mergiare questo UC5 con Cittadino ma specificandone un' estensione ad hoc per questo
+	tipo di accountss
+\end{center}
+
+% ====================================================
+
+% ====================================================
+% UC6
+% ====================================================
+
+\section{Moderatore}
+\begin{enumerate}
+	\item Fare meglio i RF di moderatore, incompleti
+\end{enumerate}
+
+\begin{center}
+	% \includegraphics[scale=1.1]{img/usecase/1.png}
+\end{center}
+
+% ====================================================
+
+
