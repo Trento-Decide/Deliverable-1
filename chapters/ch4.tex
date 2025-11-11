@@ -1,6 +1,96 @@
 \chapter{Use Case Diagram}
 
+\renewcommand{\thesubsection}{UC\arabic{subsection}}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
 \section{Introduzione}
 In questa sezione vengono presentati gli Use Case Diagram del sistema Trento Decide.
 Essi rappresentano, in forma grafica, le interazioni tra gli attori e la piattaforma, illustrando le principali funzionalità e relazioni di inclusione o estensione tra i casi d’uso.
 Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti funzionali (RF) si traducono in comportamenti concreti del sistema, offrendo una visione d’insieme delle dinamiche operative e dei ruoli coinvolti.
+
+% ====================================================
+% UC1
+% ====================================================
+
+\section{Utente Anonimo}
+\begin{itemize}
+    \item Fare login sulla piattaforma (\ref{sec:login})
+    \item Registrare un nuovo cittadino nella piattaforma (\ref{sec:registrazione})
+\end{itemize}
+
+\begin{center}
+	\includegraphics[scale=1.1]{img/usecase/1.png}
+\end{center}
+
+% ====================================================
+
+\subsection{Login \ref{sec:login}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un utente anonimo accede alla piattaforma tramite credenziali locali oppure tramite SPID o CIE.
+
+\textbf{Precondizioni:}  
+L’utente non è autenticato.
+
+\textbf{Postcondizioni:}  
+L’utente risulta autenticato e accede alla piattaforma.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+    \item L’utente visualizza la schermata di login.
+    \item L’utente può scegliere una delle seguenti modalità:
+    \begin{enumerate}
+        \item \textbf{Credenziali locali:} inserisce email e password nei campi dedicati e conferma l’accesso.
+        \item \textbf{SPID/CIE:} seleziona l’opzione SPID o CIE; il sistema reindirizza al relativo servizio di autenticazione.
+    \end{enumerate}
+    \item Se l’autenticazione è valida, l'utente accede al sistema \textbf{[eccezione 1][eccezione 2]}.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+    \item[(1)] Se email o password non sono valide, il sistema mostra un messaggio di errore e richiede di reinserire i dati.
+    \item[(2)] Se l’autenticazione SPID/CIE fallisce, viene annullata o scade, il sistema mostra un messaggio di errore e ritorna alla schermata di login.
+\end{itemize}
+
+% ====================================================
+
+\subsection{Registrare un cittadino \ref{sec:registrazione}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un utente anonimo registra un nuovo account cittadino tramite SPID o CIE e definisce le proprie credenziali locali.
+
+\textbf{Precondizioni:}  
+L’utente non possiede ancora un account sulla piattaforma.
+
+\textbf{Postcondizioni:}  
+Un nuovo account cittadino è creato e attivo; le credenziali locali risultano configurate.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+    \item L’utente accede alla schermata di registrazione.
+    \item L’utente seleziona una modalità di identificazione:
+    \begin{enumerate}
+        \item \textbf{SPID} — reindirizzamento al provider SPID;
+        \item \textbf{CIE} — reindirizzamento al servizio di autenticazione tramite CIE.
+    \end{enumerate}
+    \item Una volta validata l’identità tramite SPID/CIE \textbf{[eccezione 1]}, il sistema richiede:
+    \begin{enumerate}
+        \item inserimento dell’email;
+        \item definizione della password;
+        \item scelta del nome utente.
+    \end{enumerate}
+    \item L’utente conferma i dati inseriti.
+    \item Il sistema crea l’account e invia un’email di conferma all’indirizzo fornito \textbf{[eccezione 2]}.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+	\item[(1)] Se l’autenticazione SPID/CIE fallisce o viene annullata, la registrazione non procede.
+    	\item[(2)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato. 
+\end{itemize}
+
+\textbf{Estensioni:}
+\begin{itemize}
+    \item[(1)] \textit{Estensione del passo 3:} l’utente può selezionare l’opzione per ricevere notifiche via email; il sistema registra la preferenza.
+\end{itemize}

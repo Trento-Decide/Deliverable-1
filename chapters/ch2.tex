@@ -15,20 +15,21 @@ Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal
 
 \section{Autenticazione e gestione credenziali}
 
-\subsection{Registrazione dei cittadini}
-L'utente che intende registrarsi come cittadino deve accedere inizialmente con SPID o CIE, il sistema richiede l'inserimento di email, password e nome utente; generando così le credenziali locali. Al termine, il sistema invia all'utente una email di conferma.
+\subsection{Registrazione dei cittadini} \label{sec:registrazione}
+L'utente che intende registrarsi come cittadino deve accedere inizialmente con SPID o CIE, il sistema richiede l'inserimento di email, password e nome utente (credenziali locali); inoltre l’utente può opzionalmente acconsentire a ricevere notifiche via email.  Al termine, il sistema invia all'utente una email di conferma.
 
 \subsection{Registrazione di moderatori e associazioni}
 Gli account dei moderatori e delle associazioni/comitati vengono creati dall’amministratore tramite l’interfaccia di gestione.
 Il sistema invia ai destinatari le credenziali di accesso tramite email.
 
-\subsection{Login}
+\subsection{Login} \label{sec:login}
 Il sistema deve consentire il login tramite credenziali locali (email e password) oppure tramite SPID o CIE.
 
 \subsection{Gestione credenziali utente}
 L'utente deve poter:
 \begin{itemize}
   \item visualizzare e aggiornare email, username e password;
+  \item aggiornare la preferenza relativa alla ricezione delle notifiche via email;
    \item consultare lo storico di modifiche alle proprie credenziali;
   \item richiedere la cancellazione del proprio profilo;
 \end{itemize}
@@ -98,7 +99,7 @@ Il sistema deve inoltre registrare e verificare le firme fisiche raccolte offlin
 
 \section{Personalizzazione e preferenze}
 
-\subsection{Preferiti}
+\subsection{Preferiti} \label{sec:preferiti}
 Il sistema deve consentire ai cittadini di contrassegnare come “preferiti” proposte o sondaggi, ricevendo aggiornamenti automatici in caso di variazioni di stato o nuovi commenti.  
 
 \subsection{Cambio di lingua}
