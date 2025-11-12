@@ -79,6 +79,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
         \item inserimento dell’email;
         \item definizione della password;
         \item scelta del nome utente.
+        \item \textit{facoltativamente} ricezione delle modifiche via email.
     \end{enumerate}
     \item L’utente conferma i dati inseriti.
     \item Il sistema crea l’account e invia un’email di conferma all’indirizzo fornito \textbf{[eccezione 2]}.
@@ -90,11 +91,6 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
     	\item[(2)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato. 
 \end{itemize}
 
-\textbf{Estensioni:}
-\begin{itemize}
-    \item[(1)] \textit{Estensione del passo 3:} l’utente può selezionare l’opzione per ricevere notifiche via email; il sistema registra la preferenza.
-\end{itemize}
-
 % ====================================================
 % UC2
 % ====================================================
@@ -102,17 +98,103 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \section{Utente autenticato}
 \begin{enumerate}
 	\item Gestire le proprie credenziali (\ref{sec:credenzialihandling})
-	\item Visualizzazione proposte (\ref{sec:visualizzazioneproposte}) MHHH NON SONO SICURO QUI!
-	\item Ordinare e filtrare le proposte (\ref{sec:sorting}) MHHH NON SONO SICURO QUI!
+	\item Visualizzazione proposte (con ordinamento) e sondaggi (\ref{sec:visualizzapropsond}, \ref{sec:sorting})
 	\item Cambiare lingua (\ref{sec:cambiolingua})
-	\item Visualizzare policy simulator (\ref{sec:vederepolicies}) MHHH NON SONO SICURO QUI!
 \end{enumerate}
 
 \begin{center}
-	% \includegraphics[scale=1.1]{img/usecase/1.png}
+	 \includegraphics[scale=1.25]{img/usecase/2.png}
 \end{center}
 
 % ====================================================
+
+\subsection{Gestire le proprie credenziali \ref{sec:credenzialihandling}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un utente autenticato gestisce le proprie credenziali di accesso e preferenze personali tramite l’area profilo.
+
+\textbf{Precondizioni:}  
+L’utente è autenticato nella piattaforma.
+
+\textbf{Postcondizioni:}  
+Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effettive per le successive sessioni di accesso.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’utente accede alla sezione “Profilo”.
+	\item Il sistema mostra i dati attuali: email, username, password mascherata e stato della preferenza notifiche.
+	\item L’utente può:
+	\begin{enumerate}
+		\item modificare l’\textbf{email}, il sistema invia un messaggio di verifica al vecchio e al nuovo indirizzo email \textbf{[eccezione 1]};
+		\item modificare l’\textbf{username};
+		\item modificare la \textbf{password};
+		\item aggiornare la preferenza di \textbf{ricezione notifiche}.
+	\end{enumerate}
+	\item Se le modifiche sono valide il sistema le salva. \textbf{[eccezione 2]}, \textbf{[eccezione 3]}.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+		\item[(1)] Se da parte dei due indirizzi email coinvolti il sistema non riceve da entrambi conferma della modifica, il processo di cambio email viene annullato.
+	\item[(2)] Se l’email inserita non è valida o già associata a un altro account, il sistema notifica l’errore e annulla la modifica.
+		\item[(3)] Se il nome utente inserito non è valido o già associato a un altro account, il sistema notifica l’errore e annulla la modifica.
+\end{itemize}
+
+% ====================================================
+
+\subsection{Visualizzare proposte e sondaggi \ref{sec:visualizzapropsond}, \ref{sec:sorting}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un utente autenticato consulta le proposte pubblicate e i sondaggi disponibili, applicando criteri di ordinamento e filtraggio.
+
+\textbf{Precondizioni:}  
+L’utente è autenticato nella piattaforma e sono presenti proposte o sondaggi pubblicati.
+
+\textbf{Postcondizioni:}  
+Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o filtro selezionati.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’utente accede alla sezione “Proposte e Sondaggi”.
+	\item Il sistema mostra:
+	\begin{enumerate}
+		\item le \textbf{proposte} pubblicate, con titolo, autore, stato e categoria;
+		\item i \textbf{sondaggi} attivi e chiusi con data di apertura e chiusura.
+	\end{enumerate}
+	\item L’utente può:
+	\begin{enumerate}
+		\item ordinare le proposte per rilevanza, numero di voti, data di pubblicazione o categoria;
+		\item filtrare i risultati per categoria o stato della proposta;
+		\item accedere al dettaglio di una proposta o di un sondaggio selezionato.
+	\end{enumerate}
+	\item Il sistema aggiorna dinamicamente l’elenco in base ai criteri scelti  \textbf{[eccezione 1]}.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+	\item[(1)] Se non sono presenti proposte o sondaggi attivi, il sistema mostra un messaggio informativo.
+\end{itemize}
+
+% ====================================================
+
+\subsection{Cambiare lingua \ref{sec:cambiolingua}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un utente autenticato modifica la lingua dell’interfaccia della piattaforma.
+
+\textbf{Precondizioni:}  
+L’utente è autenticato nella piattaforma.
+
+\textbf{Postcondizioni:}  
+La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo utente.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’utente accede all’area “Impostazioni lingua” dal menu del profilo.
+	\item Il sistema mostra l’elenco delle lingue disponibili.
+	\item L’utente seleziona la lingua desiderata.
+	\item Il sistema aggiorna l’interfaccia nella lingua scelta e registra la preferenza nel profilo utente.
+\end{enumerate}
 
 % ====================================================
 % UC3
