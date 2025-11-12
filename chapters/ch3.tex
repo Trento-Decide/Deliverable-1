@@ -11,28 +11,34 @@ I requisiti non funzionali definiscono le proprietà qualitative, operative e no
 Ogni requisito è formulato in modo chiaro, verificabile e, ove possibile, riferito a metriche misurabili e standard riconosciuti.
 
 \subsection{Affidabilità}
-Il sistema deve garantire una disponibilità minima del 99.72\% (downtime massimo 24 ore/anno).  
-Devono essere definiti obiettivi RTO $\le$ 2 ore e RPO $\le$ 12 ore.  
-Deve essere previsto un piano di \textit{incident response} e test di resilienza semestrali.
+Il sistema deve garantire una disponibilità minima del 99.91\% (downtime massimo 8 ore/anno).
+Devono essere definiti obiettivi RTO $\le$ 2 ore e RPO $\le$ 12 ore.
+Deve essere previsto un piano di \textit{incident response} che definisca ruoli e procedure di gestione dei guasti,
+e devono essere effettuati test di resilienza semestrali comprendenti prove di ripristino del servizio.
 
 \subsection{Backup e ripristino}
-Il sistema deve eseguire backup automatici ogni 12 ore di dati, configurazioni e log applicativi.  
-I backup devono essere conservati per almeno 90 giorni e replicati in un data center situato nell’Unione Europea qualificato AgID. 
-Devono essere previsti controlli di integrità e procedure di ripristino periodicamente testate.
+Il sistema deve eseguire backup automatici ogni 3 ore di dati, includendo dati, le configurazioni applicative e i log di sistema. I backup devono essere conservati per almeno 90 giorni e replicati in un data center dell’Unione Europea
+qualificato AgID e geograficamente separato dalla sede primaria.
+Devono essere previsti controlli di integrità dei backup, verificando la coerenza dei dati e la loro
+effettiva ripristinabilità, e devono essere svolti test semestrali delle procedure di ripristino.
 
 \subsection{Compatibilità}
 Il sistema deve essere conforme agli standard HTML5, CSS3 ed ECMAScript 6, garantendo la piena compatibilità con i principali browser utilizzati nei contesti della Pubblica Amministrazione e dagli utenti finali.  
-Il supporto deve coprire almeno le ultime due versioni stabili dei browser Mozilla Firefox (inclusa ESR), Google Chrome/Chromium, Microsoft Edge, Apple Safari e Opera.    
-L’interfaccia deve risultare completamente responsive e accessibile da desktop, tablet e smartphone.
+Il supporto deve coprire almeno le seguenti versioni dei software: Mozilla Firefox versione 52 ESR o superiore, Chromium/Chrome versione 52 o superiore, Opera versione 40 o superiore, Safari versione 10 o superiore e Microsoft Edge versione 79 o superiore.
+L’interfaccia deve essere completamente responsive, garantendo un adattamento ottimale a desktop, tablet e smartphone.
 
 \subsection{Etica e imparzialità del sistema} \label{ref:etica}
-Il sistema deve promuovere trasparenza, equità e neutralità nei processi di partecipazione, evitando ogni forma di bias politico, ideologico o sociale.  
-Tale principio si applica sia ai comportamenti umani sia ai processi automatizzati.
+Il sistema deve garantire trasparenza, equità e neutralità nei processi di partecipazione,
+evitando l’introduzione di bias politici, ideologici o sociali derivanti dalle logiche applicative o dall'utilizzo scorretto della piattaforma da parte di utenti (si veda \ref{ref:moderazione}). Tali principi riguardano esclusivamente il funzionamento della
+piattaforma e non limitano l’espressione degli utenti.
 
 \subsubsection{Neutralità e trasparenza algoritmica} \label{ref:neutralita}
-Gli algoritmi di ranking e simulazione devono essere progettati per evitare distorsioni sistematiche o favoritismi impliciti.  
-Le formule e i parametri utilizzati devono essere documentati, versionati e sottoposti a revisione almeno annuale.  
-Ogni modifica deve essere tracciata in un registro pubblico consultabile dai cittadini.
+Gli algoritmi di ranking, classificazione e simulazione devono essere progettati per prevenire
+distorsioni sistematiche e trattare in modo uniforme contenuti e partecipanti a parità di condizioni.
+Le formule, i parametri utilizzati e gli eventuali pesi assegnati devono essere documentati,
+versionati e sottoposti a revisione almeno annuale. 
+Ogni modifica deve essere tracciata e pubblicata in un registro consultabile dai cittadini,
+comprendente la versione attuale dell’algoritmo, la data di aggiornamento e la descrizione delle modifiche apportate.
 
 \subsection{Internazionalizzazione e lingua} \label{ref:i18n}
 Il sistema deve supportare almeno cinque lingue: Italiano, Inglese, Tedesco, Arabo (RTL) e Rumeno.  
@@ -42,26 +48,31 @@ I contenuti generati dagli utenti rimangono nella lingua di origine, con possibi
 \subsection{Moderazione e correttezza d’uso} \label{ref:moderazione}
 Il sistema deve garantire un ambiente rispettoso mediante meccanismi di moderazione dei contenuti e delle interazioni tra utenti.  
 Le segnalazioni devono essere prese in carico entro 24 ore dalla ricezione.  
-Tutte le azioni di moderazione devono essere registrate (utente, data/ora, motivazione) con log non alterabile; deve esistere un canale di appello per l’utente.
+Tutte le azioni di moderazione devono essere registrate (utente, data/ora, motivazione) con log non alterabile.
 
 \subsection{Performance} \label{ref:performance}
 Il sistema deve garantire che il 95\% delle operazioni principali (login, consultazione, voto) sia completato entro 1 secondo.  
-Tale requisito deve essere mantenuto con un carico simultaneo fino a 20.000 utenti.  
-L’interfaccia deve rispettare i target \textit{Core Web Vitals}: LCP $\le$ 2,5 s (p75), INP $\le$ 200 ms (p75), CLS $\le$ 0,1 (p75).
+Tale requisito deve essere mantenuto con un carico simultaneo fino a 20.000 utenti attivi.  
+L’interfaccia deve rispettare i target \textit{Core Web Vitals}: LCP $\leq$ 2{,}5 s (p75), INP $\leq$ 200 ms (p75), CLS $\leq$ 0{,}1 (p75),
+misurati su dispositivi reali e non mediante test sintetici locali.
 
 \subsection{Portabilità}
-Il sistema deve poter essere distribuito su infrastrutture on-premise o cloud qualificati nell’Unione Europea.  
-La distribuzione deve essere containerizzata e replicabile tramite strumenti di \textit{Infrastructure as Code}.  
-Compatibilità garantita con database relazionali standard (es. PostgreSQL) e storage a oggetti.
+Il sistema deve poter essere distribuito su infrastrutture on-premise o cloud qualificati nell’Unione Europea (servizi conformi alle linee guida AgID). 
+Compatibilità garantita con database relazionali standard (es. PostgreSQL).
 
 \subsection{Scalabilità}
 Il sistema deve supportare la scalabilità orizzontale e verticale senza downtime.  
 L’architettura deve permettere l’aggiunta di nuove istanze di servizio e la gestione di carichi concorrenti elevati.
 
 \subsection{Sicurezza}
-Il sistema deve rispettare il livello 2 dello standard OWASP ASVS e adottare il principio di \textit{security by design}.  
-Le comunicazioni devono essere cifrate, i dati sensibili protetti e devono essere attuate misure contro attacchi comuni (CSRF, XSS, SQLi, brute force).  
-È richiesto un audit di sicurezza annuale e la disponibilità di un piano DPIA approvato dal DPO.
+Il sistema deve adottare un approccio di \textit{security by design}, implementando meccanismi di protezione dei dati
+e delle funzionalità contro accessi non autorizzati e minacce comuni.  
+Tutte le comunicazioni devono essere cifrate tramite protocolli sicuri (es. TLS 1.2 o superiore) e i dati sensibili
+devono essere protetti mediante tecniche di hashing o cifratura a riposo.  
+Devono essere previste contromisure contro attacchi applicativi frequenti, quali XSS, CSRF, SQL injection e tentativi
+di bruteforce.  
+È inoltre richiesto un aggiornamento periodico delle componenti software e una revisione annuale dei principali
+controlli di sicurezza, nel rispetto delle normative vigenti e del GDPR.
 
 \subsection{Usabilità e accessibilità}
 Il sistema deve essere utilizzabile senza formazione per gli utenti esterni; la formazione per operatori non deve superare 45 minuti.  
