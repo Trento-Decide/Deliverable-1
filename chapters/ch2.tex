@@ -160,15 +160,22 @@ L’utente deve poter invertire l’ordine (asc/desc) quando applicabile.
 
 \section{Moderazione e qualità dei contenuti}
 
+\subsection{Segnalazione contenuti da parte dei cittadini}
+Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati (proposte, commenti, allegati) specificando una motivazione selezionabile da elenco predefinito o mediante testo libero.
+Ogni segnalazione genera un elemento in coda di revisione per i moderatori.
+
+\subsection{Validazione dei contenuti segnalati da parte dei moderatori} \label{sec:validazione-contenuti}
+Il sistema deve consentire ai moderatori di accedere all’elenco dei contenuti segnalati, visualizzarne il dettaglio (testo, allegati, metadati, motivazioni) e confermare o rimuovere il contenuto.
+Ogni decisione deve essere registrata mediante timestamp, moderatore responsabile ed esito.
+
+\subsection{Moderazione ordinaria dei contenuti pubblicati}
+Il sistema deve consentire ai moderatori di visualizzare l’elenco dei contenuti pubblicati, e di sospendere o eliminare contenuti che violano le linee guida.
+Ogni intervento deve includere una motivazione obbligatoria e deve essere registrato dal sistema.
+
 \subsection{Moderazione automatica}
 Il sistema deve analizzare automaticamente i contenuti generati dagli utenti (testi e materiali multimediali) per rilevare linguaggio inappropriato, spam o duplicati.  
 In caso di rilevamento, il sistema deve segnalare l’elemento ai moderatori o sospenderne la pubblicazione in attesa di verifica.
 
-\subsection{Intervento dei moderatori}
-Il sistema deve includere un modulo di moderazione che consenta di gestire i contenuti segnalati o non conformi.  
-I cittadini devono poter segnalare un contenuto.  
-I moderatori devono poter sospendere o eliminare i contenuti segnalati.  
-Ogni azione di moderazione deve essere registrata con identificativo utente, data e motivazione.
 
 % ====================================================
 % RF6
@@ -177,14 +184,47 @@ Ogni azione di moderazione deve essere registrata con identificativo utente, dat
 \section{Policy Simulator e modelli statistici}
 
 \subsection{Simulazione di scenari di policy}
-Il sistema deve includere un modulo che consenta di calcolare indicatori di impatto economico, ambientale e sociale delle proposte utilizzando dataset configurabili.
+Il sistema deve includere un modulo di simulazione deterministica che calcoli indicatori di impatto economico, ambientale e sociale applicando formule e parametri definiti dall’amministrazione comunale.
+
+Il modulo deve consentire:
+\begin{itemize}
+    \item la configurazione di set di parametri e coefficienti per ciascuna categoria di proposta;
+    \item l’associazione di dataset strutturati (CSV, API o database comunali) alle relative formule di calcolo;
+    \item l'applicazione di regole esplicite, documentate e riproducibili per produrre indicatori di impatto;
+    \item la generazione di risultati deterministici, ottenibili in modo identico a parità di input.
+\end{itemize}
+
+Gli indicatori devono essere visualizzati nella pagina della proposta e integrabili nei report amministrativi.
+
 
 \subsection{Analisi predittiva e statistica}
-Il sistema deve consentire la generazione di previsioni sull’effetto delle proposte tramite modelli configurabili; gli indicatori prodotti devono essere quantitativi e misurabili (es. variazioni stimate di traffico, emissioni o costi).
+Il sistema deve includere un modulo di analisi predittiva che consenta di stimare gli effetti futuri delle proposte utilizzando modelli statistici o algoritmi predittivi configurabili.
+
+Il modulo deve consentire:
+\begin{itemize}
+    \item la selezione del modello (es. regressione, serie temporali, clustering);
+    \item la definizione delle variabili di input e dei parametri del modello;
+    \item l’addestramento del modello su dataset forniti dall’amministrazione;
+    \item la generazione di stime probabilistiche rappresentate tramite intervalli di confidenza o livelli di incertezza.
+\end{itemize}
+
+Gli indicatori prodotti devono essere quantitativi e misurabili (ad es. variazioni attese di traffico, emissioni o costi).
+
 
 \subsection{Visualizzazione interattiva delle simulazioni}  \label{sec:vederepolicies}
 Il sistema deve visualizzare i risultati delle simulazioni tramite mappe tematiche e grafici comparativi.
 
+
+\section{Dashboard amministrativa}
+
+\subsection{Visualizzazione dashboard amministrativa}
+Il sistema deve fornire all’amministrazione una dashboard contenente indicatori aggregati: numero utenti attivi, proposte per categoria, voti per zona, tassi di approvazione, consultazioni attive.
+
+\subsection{Filtri e ordinamento nella dashboard}
+Il sistema deve consentire all’amministrazione di filtrare e ordinare i dati mostrati nella dashboard per categoria, periodo temporale, stato proposta o zona geografica.
+
+\subsection{Configurazione della dashboard}
+Il sistema deve consentire all’amministrazione di configurare il layout della dashboard, selezionando quali widget o indicatori visualizzare.
 
 % ====================================================
 % RF7
@@ -203,8 +243,11 @@ I dati devono poter essere esportati in formato CSV.
 Il sistema deve consentire il download in locale dei dataset relativi ai report descritti in \ref{sec:report-generali} e \ref{sec:report-votazioni}.  
 I dati devono essere resi disponibili in formato aperto (CSV) e comprendere esclusivamente informazioni anonimizzate.
 
-\subsection{Trasparenza e accountability} \label{sec:trasparenza}
-Il sistema deve consentire all’amministrazione comunale, al termine del processo di valutazione, di pubblicare per ogni proposta conclusa un riscontro ufficiale contenente l’esito (accettazione o rifiuto) e la relativa motivazione.  
-Il riscontro deve essere visibile nella pagina pubblica della proposta, associato allo stato finale.
+\subsection{Pubblicazione del riscontro amministrativo} \label{sec:trasparenza}
+Il sistema deve consentire all’amministrazione di pubblicare, per ciascuna proposta conclusa, un riscontro ufficiale contenente l’esito (accettazione o rifiuto) e una motivazione descrittiva.
+Il riscontro deve essere visibile nella pagina pubblica della proposta e associato al suo stato finale.
 
+\subsection{Aggiornamento del report amministrativo}
+Il sistema deve consentire all’amministrazione di aggiornare un report già pubblicato, mantenendo la versione precedente consultabile nel registro storico.
+La pubblicazione o l’aggiornamento di un report può comportare la modifica automatica dello stato della proposta.
 
