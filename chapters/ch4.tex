@@ -27,13 +27,13 @@ Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti f
 
 \subsection{Login \ref{sec:login}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un utente anonimo accede alla piattaforma tramite credenziali locali oppure tramite SPID o CIE.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’utente non è autenticato.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 L’utente risulta autenticato e accede alla piattaforma.
 
 \textbf{Descrizione:}
@@ -57,13 +57,13 @@ L’utente risulta autenticato e accede alla piattaforma.
 
 \subsection{Registrare un cittadino \ref{sec:registrazione}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un utente anonimo registra un nuovo account cittadino tramite SPID o CIE e definisce le proprie credenziali locali.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’utente non possiede ancora un account sulla piattaforma.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 Un nuovo account cittadino è creato e attivo; le credenziali locali risultano configurate.
 
 \textbf{Descrizione:}
@@ -88,7 +88,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \textbf{Eccezioni:}
 \begin{itemize}
 	\item[(1)] Se l’autenticazione SPID/CIE fallisce o viene annullata, la registrazione non procede.
-    	\item[(2)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato. 
+    	\item[(2)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato.
 \end{itemize}
 
 % ====================================================
@@ -110,13 +110,13 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 
 \subsection{Gestire le proprie credenziali \ref{sec:credenzialihandling}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un utente autenticato gestisce le proprie credenziali di accesso e preferenze personali tramite l’area profilo.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’utente è autenticato nella piattaforma.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effettive per le successive sessioni di accesso.
 
 \textbf{Descrizione:}
@@ -144,13 +144,13 @@ Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effe
 
 \subsection{Visualizzare proposte e sondaggi \ref{sec:visualizzapropsond}, \ref{sec:sorting}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un utente autenticato consulta le proposte pubblicate e i sondaggi disponibili, applicando criteri di ordinamento e filtraggio.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’utente è autenticato nella piattaforma e sono presenti proposte o sondaggi pubblicati.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o filtro selezionati.
 
 \textbf{Descrizione:}
@@ -179,13 +179,13 @@ Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o
 
 \subsection{Cambiare lingua \ref{sec:cambiolingua}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un utente autenticato modifica la lingua dell’interfaccia della piattaforma.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’utente è autenticato nella piattaforma.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo utente.
 
 \textbf{Descrizione:}
@@ -218,17 +218,183 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 % ====================================================
 
 \section{Cittadino}
+
 \begin{enumerate}
-	\item Creare una proposta (\ref{sec:creazioneproposta})
-	\item Pubblicare una proposta in stato di bozza (\ref{sec:pubblicazioneproposta})
-	\item Proporre una modifica ad una proposta (\ref{sec:modificaproposta})
-	\item Modificare i propri preferiti (\ref{sec:preferiti})
-	\item Votare una proposta (\ref{sec:voto})
+  \item Creare una proposta (\ref{sec:creazioneproposta} \ref{sec:pubblicazioneproposta})
+  \item Proporre una modifica ad una proposta (\ref{sec:modificaproposta})
+  \item Modificare i propri preferiti (\ref{sec:preferiti})
+  \item Votare una proposta (\ref{sec:voto})
 \end{enumerate}
 
 \begin{center}
-	% \includegraphics[scale=1.1]{img/usecase/1.png}
+  \includegraphics[scale=0.75]{img/usecase/3.png}
 \end{center}
+
+\subsection{Creare una proposta \ref{sec:creazioneproposta} \ref{sec:pubblicazioneproposta}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino autenticato crea una nuova proposta.
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino'' (Def.~3).
+    \item L’utente ha accesso alla sezione per la creazione di nuove proposte.
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Una nuova proposta è creata in stato di ``bozza'', associata all’utente come autore.
+    \item Tutti i dati inseriti e i metadati obbligatori (autore, data/ora di creazione, categoria, ecc.) sono salvati nel sistema.
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede alla sezione ``Nuova proposta''.
+    \item Il sistema mostra il modulo di creazione con i campi previsti per la categoria selezionata:
+    \begin{itemize}
+      \item Titolo
+      \item Descrizione
+      \item Luogo (selezionabile tramite indirizzo o mappa)
+      \item Categoria
+    \end{itemize}
+    \item Il cittadino compila i campi obbligatori e, se disponibili, eventuali campi facoltativi.
+    \item Il cittadino sceglie se pubblicare la proposta o salvarla come bozza.
+  \end{enumerate}
+    Se decide di pubblicarla:
+    \begin{enumerate}
+      \item Il sistema valida i dati inseriti [eccezione 1].
+      \item Se la validazione ha esito positivo, il sistema:
+      \begin{itemize}
+        \item associa la proposta all’utente come autore;
+        \item registra data/ora di creazione e la categoria selezionata;
+        \item conferma l’avvenuta pubblicazione all’utente [eccezione 2].
+      \end{itemize}
+    \end{enumerate}
+     Se invece la salva come bozza, alla sua selezione nella lista delle proposte verrà riportato al modulo di creazione, dove avrà la possibilità di modificarla e/o pubblicarla.
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se uno o più campi sono mancanti o non validi, il sistema segnala gli errori e richiede la correzione dei dati.
+    \item In caso di errore di sistema (es. problemi di salvataggio sul database), il sistema notifica un messaggio di errore e la proposta non viene creata o viene richiesto un nuovo tentativo.
+  \end{enumerate}
+\end{description}
+
+\subsection{Proporre una modifica ad una proposta \ref{sec:modificaproposta}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino propone una modifica al contenuto di una proposta esistente, distinta dalla modifica diretta da parte dell’autore originale.
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
+    \item Esiste almeno una proposta pubblicata o visibile all’utente su cui è consentito proporre modifiche.
+    \item L’utente non è necessariamente l’autore della proposta.
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Una nuova proposta di modifica è creata e associata alla proposta originale in stato ``in revisione'' (non pubblica).
+    \item L’autore della proposta originale può successivamente accettare o rifiutare la modifica.
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede al dettaglio di una proposta pubblicata.
+    \item Il sistema mostra le informazioni della proposta e l’opzione ``Proponi una modifica''.
+    \item Il cittadino seleziona l’opzione ``Proponi una modifica''.
+    \item Il sistema mostra un’interfaccia che consente di:
+    \begin{itemize}
+      \item modificare il testo dei campi proposti (es. titolo, descrizione, luogo, ecc.);
+      \item inserire una breve descrizione della modifica suggerita (motivazione).
+    \end{itemize}
+    \item Il cittadino apporta le modifiche desiderate e conferma l’invio della proposta di modifica.
+    \item Il sistema valida i dati inseriti [eccezione 1].
+    \item Se la validazione ha esito positivo, il sistema:
+    \begin{itemize}
+      \item registra la proposta di modifica come nuova versione in stato ``in revisione'';
+      \item associa alla versione proposta autore, data/ora, descrizione delle modifiche e differenze rispetto alla versione corrente;
+      \item notifica l’autore originale della proposta (e, se previsto, altri soggetti interessati) [eccezione 2].
+    \end{itemize}
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se i dati inseriti sono incompleti o non validi (es. testo vuoto, formato non corretto), il sistema segnala gli errori e richiede la correzione.
+    \item Se per quella proposta non è consentito proporre modifiche (es. proposta chiusa, stato non modificabile), il sistema nasconde o disabilita l’opzione di modifica e mostra un messaggio informativo.
+    \item In caso di errore di sistema nel salvataggio della proposta di modifica, il sistema notifica l’errore e la modifica non viene registrata.
+  \end{enumerate}
+\end{description}
+
+\subsection{Modificare i propri preferiti \ref{sec:preferiti}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino gestisce l’elenco dei propri elementi preferiti (proposte e sondaggi).
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
+    \item Sono presenti proposte o sondaggi visualizzabili.
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item L’elenco dei preferiti del cittadino è aggiornato in base alle azioni di aggiunta/rimozione.
+    \item Le eventuali notifiche collegate agli elementi preferiti sono aggiornate (RF4.2).
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede alla lista delle proposte e/o dei sondaggi, oppure al dettaglio di un singolo elemento.
+    \item Per ogni proposta/sondaggio il sistema mostra lo stato di preferito con l'icona di una stella che, se colorata, indica l'aggiunta ai preferiti.
+    \item L'utente può cliccare sulla stella per modificarne lo stato.
+    \item Il sistema aggiorna l’elenco dei preferiti dell’utente e conferma l’operazione [eccezione 1].
+    \item Il cittadino può accedere alla sezione ``Preferiti'' per visualizzare l’elenco aggiornato delle proposte e dei sondaggi contrassegnati.
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se l’elemento selezionato non è più disponibile (es. rimosso, oscurato, archiviato), il sistema informa l’utente che l’operazione non può essere completata e, se necessario, lo rimuove automaticamente dall’elenco dei preferiti.
+    \item In caso di errore tecnico nella registrazione dell’operazione, il sistema segnala l’errore e l’elenco dei preferiti rimane invariato.
+  \end{enumerate}
+\end{description}
+
+\subsection{Votare una proposta \ref{sec:voto}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino eleggibile esprime un voto positivo o negativo su una proposta.
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
+    \item La proposta su cui si intende votare è in uno stato che consente la votazione (es. pubblicata, in valutazione, non ancora accettata o rifiutata).
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Il voto del cittadino è registrato in forma anonima.
+    \item Il conteggio dei voti e/o il punteggio della proposta è aggiornato secondo le regole di calcolo previste.
+    \item L’utente può, se consentito, modificare il proprio voto fino alla chiusura della votazione o al cambio di stato della proposta.
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede al dettaglio di una proposta su cui è possibile votare.
+    \item Il sistema mostra lo stato corrente della proposta e le opzioni di voto (es. ``Voto favorevole'', ``Voto contrario''), nonché l’eventuale voto già espresso dall’utente.
+    \item Il cittadino seleziona l’opzione di voto desiderata o modifica un voto precedentemente espresso.
+    \item Se i controlli hanno esito positivo, il sistema:
+    \begin{itemize}
+      \item registra il voto in forma anonima;
+      \item aggiorna il conteggio totale e, se previsto, gli altri indicatori associati;
+      \item conferma l’avvenuta registrazione del voto all’utente [eccezione 1].
+    \end{itemize}
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se la proposta si trova in uno stato che non consente più la votazione (es. accettata, rifiutata, chiusa), il sistema disabilita l’azione di voto e notifica che la votazione non è più disponibile.
+    \item In caso di errore tecnico durante la registrazione del voto, il sistema segnala l’errore e il voto non viene considerato valido fino a nuovo tentativo dell’utente.
+  \end{enumerate}
+\end{description}
 
 % ====================================================
 
