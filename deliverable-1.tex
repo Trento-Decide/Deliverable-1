@@ -7,6 +7,9 @@
 \usepackage[italian]{babel}
 \usepackage{fancyhdr}
 
+\setcounter{secnumdepth}{3} % numera fino alle subsubsection
+\setcounter{tocdepth}{3}
+
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
@@ -21,6 +24,8 @@
 \cfoot{\thepage}
 
 \usepackage{graphicx}
+
+\newcommand{\defref}[1]{(def.~\ref{#1})}
 
 \newcounter{definition}
 \renewcommand{\thedefinition}{\arabic{definition}}
@@ -37,7 +42,7 @@
   \Large {Corso di Ingegneria del Software \\
 Università di Trento}\\[1em]
 
-  {\large Versione 1.7 }
+  {\large Versione 1.8 }
   \vspace{0.5cm}
 
   {\large \today \par}
