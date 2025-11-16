@@ -220,7 +220,7 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 \section{Cittadino}
 
 \begin{center}
-  \includegraphics[scale=0.75]{img/usecase/3.png}
+  \includegraphics[scale=0.55]{img/usecase/3.png}
 \end{center}
 
 \subsection{Creare una proposta \ref{sec:creazioneproposta} \ref{sec:pubblicazioneproposta}}
@@ -488,6 +488,61 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
     \item In caso di errore tecnico durante la registrazione del voto, il sistema segnala l’errore e il voto non viene considerato valido fino a nuovo tentativo dell’utente.
   \end{enumerate}
 \end{description}
+
+\subsection{Segnalare un contenuto}
+
+\textbf{Riassunto:}
+Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (proposta o modifica) ritenuto inappropriato, inserendolo nella coda di revisione dei moderatori in conformità al requisito RF5.1.
+
+\textbf{Precondizioni:}
+\begin{itemize}
+  \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
+  \item Sta visualizzando un contenuto pubblicato (proposta o modifica).
+\end{itemize}
+
+\textbf{Postcondizioni:}
+\begin{itemize}
+  \item È stata registrata una segnalazione associata al contenuto e al cittadino.
+  \item Il contenuto risulta presente nella coda di revisione dei moderatori.
+\end{itemize}
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item Il cittadino visualizza una proposta o una modifica pubblicata che ritiene inappropriata.
+  \item Il cittadino seleziona il comando \textit{``Segnala contenuto''} associato al contenuto.
+  \item Il sistema mostra un modulo di segnalazione che include:
+  \begin{enumerate}
+    \item identificativo e anteprima del contenuto;
+    \item un elenco di motivazioni predefinite, ad esempio:
+    \begin{enumerate}
+      \item incitamento all’odio;
+      \item contenuti offensivi o volgari;
+      \item informazioni false;
+      \item spam;
+      \item contenuto duplicato;
+      \item violazione della privacy;
+      \item altro.
+    \end{enumerate}
+    \item un campo di testo libero per una descrizione opzionale del problema.
+  \end{enumerate}
+  \item Il cittadino seleziona una motivazione dall’elenco.
+  \item \textit{Facoltativamente}, il cittadino inserisce una descrizione aggiuntiva nel campo di testo.
+  \item Il cittadino conferma l’invio della segnalazione.
+  \item Il sistema verifica che sia stata selezionata almeno una motivazione e che i campi obbligatori siano compilati correttamente [eccezione 1].
+  \item Il sistema verifica che il contenuto sia ancora disponibile e non sia già stato rimosso [eccezione 2].
+  \item In caso di esito positivo dei controlli, il sistema:
+  \begin{enumerate}
+    \item registra la segnalazione associandola al contenuto e al cittadino;
+    \item inserisce il contenuto nella coda di revisione dei moderatori;
+    \item mostra un messaggio di conferma al cittadino sull’avvenuta registrazione della segnalazione.
+  \end{enumerate}
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{enumerate}
+  \item Campi obbligatori mancanti o non validi (ad esempio nessuna motivazione selezionata): il sistema evidenzia i campi da correggere e non conferma l’invio della segnalazione.
+  \item Contenuto non più disponibile (ad esempio rimosso da un moderatore o dall’autore): il sistema annulla la procedura e informa il cittadino che il contenuto non è più accessibile.
+\end{enumerate}
 
 % ====================================================
 
