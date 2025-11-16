@@ -16,7 +16,7 @@ Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti f
 \section{Utente Anonimo}
 \begin{enumerate}
     \item Fare login sulla piattaforma (\ref{sec:login})
-    \item Registrare un nuovo cittadino nella piattaforma (\ref{sec:registrazione})
+    \item Registrarsi come cittadino (\ref{sec:registrazione})
 \end{enumerate}
 
 \begin{center}
@@ -98,7 +98,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \section{Utente autenticato}
 \begin{enumerate}
 	\item Fare logout dalla piattaforma (\ref{sec:logout})
-	\item Gestire le proprie credenziali (\ref{sec:credenzialihandling})
+	\item Gestione profilo e dati personali (\ref{sec:credenzialihandling})
 	\item Visualizzazione proposte (con ordinamento) e sondaggi (\ref{sec:visualizzapropsond}, \ref{sec:sorting})
 	\item Cambiare lingua (\ref{sec:cambiolingua})
 \end{enumerate}
@@ -204,10 +204,12 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 \section{Amministratore}
 
 \begin{enumerate}
-	\item Creare account moderatore o associazione/comitato (\ref{sec:specialregistrazione})
+	\item Registrare moderatore o associazione (\ref{sec:specialregistrazione})
 	\item Pubblicare sondaggi (\ref{sec:sondaggi})
-	\item Interazione dashboard amministrativa (\ref{sec:dashboard})
-	\item MODIFICARE STATO PROPOSTA + VEDI SEZIONE DASHBOARD AMM
+	\item Visualizzare risultati policy simulation (\ref{sec:vederepolicies})
+	\item Visualizzare dashboard e dati (\ref{sec:vederedashboard})
+	\item Modificare lo stato di una proposta (\ref{sec:editproposta})
+	\item Generazione dei report ({\ref{sec:report-attivita}})
 \end{enumerate}
 
 \begin{center}
@@ -357,10 +359,11 @@ Lo stato della proposta può essere aggiornato.
 \section{Cittadino}
 \begin{enumerate}
 	\item Creare una proposta (\ref{sec:creazioneproposta})
-	\item Pubblicare una proposta in stato di bozza (\ref{sec:pubblicazioneproposta})
+	\item Pubblicare una proposta (\ref{sec:pubblicazioneproposta})
 	\item Proporre una modifica ad una proposta (\ref{sec:modificaproposta})
 	\item Modificare i propri preferiti (\ref{sec:preferiti})
 	\item Votare una proposta (\ref{sec:voto})
+	\item Segnalare un contenuto (\ref{sec:segnalazione})
 \end{enumerate}
 
 \begin{center}
@@ -375,14 +378,12 @@ Lo stato della proposta può essere aggiornato.
 
 \section{Associazione/Comitato}
 \begin{enumerate}
-	\item Creare proposte collettive (\ref{sec:creazioneproposta})
-		\item Fare endorsement
+	\item Pubblicare proposte collettive (\ref{sec:creazioneproposta})
+	\item Fare endorsement (\ref{sec:endorsement})
 \end{enumerate}
 
 \begin{center}
 	% \includegraphics[scale=1.1]{img/usecase/1.png}
-	Da capire se possiamo mergiare questo UC5 con Cittadino ma specificandone un' estensione ad hoc per questo
-	tipo di accountss
 \end{center}
 
 % ====================================================
@@ -391,7 +392,9 @@ Lo stato della proposta può essere aggiornato.
 
 \section{Moderatore}
 \begin{enumerate}
-	\item VEDI RF MODERATORE
+	\item Visualizzazione coda di revisione (\ref{sec:validazione-contenuti})
+	\item Rimuovere un contenuto (\ref{sec:rimozione})
+	\item Moderazione sugli utenti (\ref{sec:modcittadini}, \ref{sec:modassociazioni})
 \end{enumerate}
 
 \begin{center}
