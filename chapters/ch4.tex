@@ -219,13 +219,6 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 
 \section{Cittadino}
 
-\begin{enumerate}
-  \item Creare una proposta (\ref{sec:creazioneproposta} \ref{sec:pubblicazioneproposta})
-  \item Proporre una modifica ad una proposta (\ref{sec:modificaproposta})
-  \item Modificare i propri preferiti (\ref{sec:preferiti})
-  \item Votare una proposta (\ref{sec:voto})
-\end{enumerate}
-
 \begin{center}
   \includegraphics[scale=0.75]{img/usecase/3.png}
 \end{center}
@@ -322,6 +315,106 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
     \item Se i dati inseriti sono incompleti o non validi (es. testo vuoto, formato non corretto), il sistema segnala gli errori e richiede la correzione.
     \item Se per quella proposta non è consentito proporre modifiche (es. proposta chiusa, stato non modificabile), il sistema nasconde o disabilita l’opzione di modifica e mostra un messaggio informativo.
     \item In caso di errore di sistema nel salvataggio della proposta di modifica, il sistema notifica l’errore e la modifica non viene registrata.
+  \end{enumerate}
+\end{description}
+
+\subsection{Gestire le proposte di modifica ricevute \ref{sec:modificaproposta}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino autore di una proposta gestisce le proposte di modifica ricevute, decidendo se accettarle o rifiutarle.
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
+    \item L’utente è autore di almeno una proposta pubblicata.
+    \item Per almeno una delle proposte di cui è autore esistono una o più proposte di modifica in stato ``in revisione'' associate alla proposta originale.
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Ogni proposta di modifica selezionata è posta in stato ``accettata'' oppure ``rifiutata'' in base alla decisione dell’autore.
+    \item In caso di accettazione, il contenuto della proposta originale è aggiornato generando una nuova versione corrente che incorpora le modifiche accettate e aggiornando la cronologia delle versioni.
+    \item Il proponente della modifica (e, se previsto, altri soggetti interessati) è notificato dell’esito (accettazione/rifiuto).
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede alla sezione ``Le mie proposte''.
+    \item Il sistema mostra l’elenco delle proposte di cui l’utente è autore, con l’indicazione della presenza di proposte di modifica in sospeso.
+    \item Il cittadino seleziona una proposta per la quale sono presenti modifiche in revisione.
+    \item Il sistema mostra l’elenco delle proposte di modifica ricevute per quella proposta, con le principali informazioni (autore della modifica, data/ora, breve descrizione).
+    \item Il cittadino seleziona una proposta di modifica dall’elenco.
+    \item Il sistema mostra il dettaglio della proposta di modifica, evidenziando le differenze rispetto alla versione corrente della proposta originale.
+    \item Il cittadino esamina le modifiche e:
+    \begin{itemize}
+      \item decide di accettare la proposta di modifica; oppure
+      \item decide di rifiutare la proposta di modifica, eventualmente inserendo una motivazione.
+    \end{itemize}
+    \item In caso di accettazione:
+    \begin{enumerate}
+      \item Il sistema registra l’esito come ``accettata'', genera una nuova versione della proposta originale che incorpora le modifiche e la imposta come versione corrente.
+      \item Il sistema aggiorna la cronologia delle versioni e notifica il proponente della modifica dell’avvenuta accettazione [eccezione 2].
+    \end{enumerate}
+    \item In caso di rifiuto:
+    \begin{enumerate}
+      \item Il sistema registra l’esito come ``rifiutata'' e, se presente, memorizza la motivazione fornita dall’autore.
+      \item Il sistema mantiene invariata la versione corrente della proposta originale e notifica il proponente della modifica dell’avvenuto rifiuto [eccezione 2].
+    \end{enumerate}
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se la proposta originale non è più modificabile (ad esempio perché archiviata, chiusa o in stato che non consente modifiche), il sistema disabilita l’accettazione delle modifiche e informa l’utente che le proposte di modifica non possono essere applicate.
+    \item In caso di errore di sistema nel salvataggio dell’esito (accettazione o rifiuto) o nell’aggiornamento della versione della proposta, il sistema notifica un messaggio di errore e non modifica lo stato della proposta di modifica.
+    \item Se l’utente non risulta più essere l’autore della proposta (ad esempio a causa di inconsistenze o revoche di privilegi), il sistema nega l’accesso alla gestione delle modifiche e mostra un messaggio di errore.
+  \end{enumerate}
+\end{description}
+
+
+\subsection{Ripristinare una versione precedente di una proposta \ref{sec:modificaproposta}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino autore di una proposta può ripristinare una versione precedente della stessa, rendendola nuovamente la versione corrente.
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
+    \item L’utente è autore della proposta oggetto del ripristino.
+    \item Per la proposta esiste una cronologia versioni contenente almeno una versione precedente rispetto a quella corrente.
+    \item La proposta si trova in uno stato che consente modifiche e ripristini di versione.
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Una nuova versione della proposta è creata a partire dal contenuto della versione selezionata e impostata come versione corrente.
+    \item La cronologia delle versioni è aggiornata, mantenendo traccia del ripristino e dei legami tra versioni.
+    \item Gli eventuali soggetti interessati (es. utenti che seguono la proposta) sono notificati del cambiamento, se previsto.
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede alla sezione ``Le mie proposte''.
+    \item Il sistema mostra l’elenco delle proposte di cui l’utente è autore.
+    \item Il cittadino seleziona la proposta per la quale desidera consultare la cronologia delle versioni.
+    \item Il sistema mostra la cronologia delle versioni della proposta, ordinata temporalmente, con le principali informazioni (data/ora, autore della modifica, breve descrizione delle modifiche).
+    \item Il cittadino seleziona una versione precedente da ripristinare.
+    \item Il sistema mostra il dettaglio della versione selezionata e, se utile, le differenze rispetto alla versione corrente.
+    \item Il cittadino conferma l’azione di ripristino della versione selezionata.
+    \item Il sistema verifica che la proposta sia ancora in uno stato che consente modifiche e ripristini [eccezione 1].
+    \item Se la verifica ha esito positivo, il sistema:
+    \begin{itemize}
+      \item crea una nuova versione della proposta, copiando il contenuto della versione selezionata;
+      \item imposta la nuova versione come versione corrente della proposta;
+      \item aggiorna la cronologia delle versioni registrando l’operazione di ripristino;
+      \item notifica, se previsto, gli utenti interessati del cambiamento [eccezione 2].
+    \end{itemize}
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se la proposta non è più modificabile (ad esempio perché chiusa, archiviata o in un processo di voto che non consente modifiche), il sistema impedisce il ripristino e mostra un messaggio informativo all’utente.
+    \item In caso di errore di sistema nel salvataggio della nuova versione o nell’aggiornamento della cronologia, il sistema notifica un messaggio di errore e non modifica la versione corrente della proposta.
+    \item Se la versione selezionata non è più disponibile (ad esempio a causa di inconsistenze nella cronologia), il sistema segnala l’errore e invita l’utente a selezionare un’altra versione.
   \end{enumerate}
 \end{description}
 
