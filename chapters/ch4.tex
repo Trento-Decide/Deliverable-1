@@ -4,7 +4,7 @@
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{0pt}
 
-\section{Introduzione}
+\section*{Introduzione}
 In questa sezione vengono presentati gli Use Case Diagram del sistema Trento Decide.
 Essi rappresentano, in forma grafica, le interazioni tra gli attori e la piattaforma, illustrando le principali funzionalità e relazioni di inclusione o estensione tra i casi d’uso.
 Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti funzionali (RF) si traducono in comportamenti concreti del sistema, offrendo una visione d’insieme delle dinamiche operative e dei ruoli coinvolti.
@@ -20,7 +20,7 @@ Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti f
 \end{enumerate}
 
 \begin{center}
-	\includegraphics[scale=1.1]{img/usecase/1.png}
+	\includegraphics[scale=1.1]{img/usecase/utenteanonimo.png}
 \end{center}
 
 % ====================================================
@@ -97,13 +97,14 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 
 \section{Utente autenticato}
 \begin{enumerate}
+	\item Fare logout dalla piattaforma (\ref{sec:logout})
 	\item Gestire le proprie credenziali (\ref{sec:credenzialihandling})
 	\item Visualizzazione proposte (con ordinamento) e sondaggi (\ref{sec:visualizzapropsond}, \ref{sec:sorting})
 	\item Cambiare lingua (\ref{sec:cambiolingua})
 \end{enumerate}
 
 \begin{center}
-	 \includegraphics[scale=1.25]{img/usecase/2.png}
+	 \includegraphics[scale=1.25]{img/usecase/utenteautenticato.png}
 \end{center}
 
 % ====================================================
@@ -206,10 +207,11 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 	\item Creare account moderatore o associazione/comitato (\ref{sec:specialregistrazione})
 	\item Pubblicare sondaggi (\ref{sec:sondaggi})
 	\item Interazione dashboard amministrativa (\ref{sec:dashboard})
+	\item MODIFICARE STATO PROPOSTA + VEDI SEZIONE DASHBOARD AMM
 \end{enumerate}
 
 \begin{center}
-	\includegraphics[scale=0.55]{img/usecase/3.png}
+	\includegraphics[scale=0.53]{img/usecase/Amministratore.png}
 \end{center}
 
 \subsection{Creare account moderatore o associazione/comitato \ref{sec:specialregistrazione}}
@@ -374,6 +376,7 @@ Lo stato della proposta può essere aggiornato.
 \section{Associazione/Comitato}
 \begin{enumerate}
 	\item Creare proposte collettive (\ref{sec:creazioneproposta})
+		\item Fare endorsement
 \end{enumerate}
 
 \begin{center}
@@ -383,22 +386,16 @@ Lo stato della proposta può essere aggiornato.
 \end{center}
 
 % ====================================================
-
-% DEBUUUUGG!!
-
-\newpage
-
-% ====================================================
 % UC6
 % ====================================================
 
 \section{Moderatore}
 \begin{enumerate}
-	\item Fare meglio i RF di moderatore, incompleti
+	\item VEDI RF MODERATORE
 \end{enumerate}
 
 \begin{center}
-	\includegraphics[scale=0.9]{img/usecase/4.png}
+	\includegraphics[scale=0.9]{img/usecase/Moderatore.png}
 \end{center}
 
 
