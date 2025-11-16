@@ -9,13 +9,12 @@ Tale limite non deriva da inefficienze, ma è una conseguenza fisiologica della 
 
 La piattaforma rende il processo decisionale più inclusivo, trasparente e reattivo, offrendo uno spazio digitale in cui proporre, discutere e votare iniziative di interesse pubblico. In questo senso, \textit{Trento Decide} si qualifica come un'iniziativa di e-democracy, applicando i principi della civic technology per modernizzare i processi partecipativi e promuovere una governance più aperta e collaborativa.
 
-Gli utenti autenticati possono pubblicare nuove iniziative corredandole di titolo e descrizione, modificarle o proporre revisioni in collaborazione con altri partecipanti.  
+I cittadini possono pubblicare nuove iniziative, modificarle o proporre revisioni in collaborazione con altri partecipanti.  
 Inoltre, possono esprimere il proprio voto sulle proposte esistenti, contribuendo così a determinarne la priorità e la rilevanza all’interno del processo decisionale civico.
 
-Le proposte vengono periodicamente analizzate dagli amministratori comunali competenti, che avviano una valutazione di fattibilità tecnico-scientifica.  
-Nel caso di iniziative appartenenti a particolari categorie "notevoli" (vedi Definizione~\ref{def:categoria-notevole}), il sistema fornisce in fase preliminare analisi tecniche automatiche utili a supportare e velocizzare l’esame.
+Le proposte vengono periodicamente analizzate dall'amministrazione comunale, che ne verifica la fattibilità tecnico-scientifica.  
+Nel caso di iniziative appartenenti a particolari categorie "notevoli" \defref{def:categoria-notevole}, il sistema fornisce in fase preliminare analisi tecniche automatiche utili a supportare e velocizzare l’esame.
 
-Ogni proposta è automaticamente classificata in base alla propria categoria tematica e resa immediatamente accessibile agli assessorati e agli uffici competenti, che possono consultarla e valutarne la fattibilità.
 L’intero processo di valutazione è tracciato nel sistema e reso trasparente alla cittadinanza attraverso la pubblicazione delle principali fasi di analisi.
 Al termine, l’amministrazione comunica l’esito — accettazione con avvio dell’attuazione o rifiuto motivato — visibile direttamente nella pagina della proposta.
 
@@ -28,16 +27,32 @@ Le seguenti definizioni stabiliscono la terminologia di riferimento adottata nel
 
 \begin{description}
 
-   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:categoria-notevole} – Categoria:] \label{sec:cat}
-  Ambito tematico di particolare rilevanza pubblica, la cui trattazione comporta un impatto significativo sul territorio comunale o sulla qualità della vita collettiva.  
-  Le iniziative pubblicate in tali categorie sono sottoposte a una prima analisi tecnico-scientifica automatica a supporto dell’attività decisionale dell’amministrazione.  
-  L’elenco e i criteri di eleggibilità sono definiti con deliberazione dell’amministrazione comunale.  
-  Le principali categorie comprendono: Urbanistica, Ambiente, Sicurezza, Cultura e Istruzione, Innovazione e Digitale, Sociale e Inclusione, Mobilità Sostenibile.
+\item[Definizione \refstepcounter{definition}\thedefinition\label{def:categoria} – Categoria:] 
+Ambito tematico utilizzato per classificare le proposte in fase di creazione e pubblicazione.  
+Ogni categoria può richiedere campi aggiuntivi specifici necessari alla valutazione tecnico-amministrativa.  
+Le categorie previste sono:
 
-  \vspace{1em}
+\begin{itemize}
+	\item \textbf{Urbanistica} — interventi sulla pianificazione e trasformazione urbana (campi tipici: tipologia intervento, destinazione d’uso).
+	\item \textbf{Ambiente} — proposte a tutela dell’ambiente e della sostenibilità (campi tipici: ambito ambientale, impatto previsto).
+	\item \textbf{Sicurezza} — segnalazioni o interventi su rischi e criticità pubbliche (campi tipici: tipo di criticità, priorità).
+	\item \textbf{Cultura} — iniziative culturali e artistiche (campi tipici: ambito culturale, target).
+	\item \textbf{Istruzione} — interventi per scuole e servizi formativi (campi tipici: livello educativo, benefici).
+	\item \textbf{Innovazione e Digitale} — progetti tecnologici o di digitalizzazione (campi tipici: tecnologia proposta, processo coinvolto).
+	\item \textbf{Sociale e Inclusione} — iniziative rivolte al benessere e all’inclusione sociale (campi tipici: destinatari, problema affrontato).
+	\item \textbf{Mobilità e Trasporti} — proposte sul sistema di mobilità urbana (campi tipici: tipologia intervento, impatto sulla mobilità).
+	\item \textbf{Welfare} — interventi socio-assistenziali (campi tipici: destinatari, impatto sociale).
+	\item \textbf{Sport e Tempo Libero} — attività e infrastrutture sportive o ricreative (campi tipici: tipo attività, struttura coinvolta).
+	\item \textbf{Patrimonio e Lavori Pubblici} — manutenzione o interventi su edifici e infrastrutture pubbliche (campi tipici: tipo intervento, urgenza).
+\end{itemize}
+  
+\item[Definizione \refstepcounter{definition}\thedefinition\label{def:classificazione} – Classificazione:] 
+Meccanismo interno che consente all’amministrazione comunale di ordinare e filtrare le proposte sulla base di un indicatore sintetico di “valore”, inteso come rilevanza amministrativa o impatto potenziale.  
+Ogni proposta è associata a un punteggio calcolato tramite coefficienti moltiplicativi configurabili dall’amministrazione e non visibili al pubblico.
+
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:utente} – Utente:] 
-  Soggetto registrato e autenticato alla piattaforma \textit{Trento Decide} tramite SPID, CIE o credenziali locali.  
-  Comprende tutti i ruoli predefiniti previsti dal sistema — cittadino, moderatore, amministratore comunale e rappresentante di associazione o comitato — come specificato nel Requisito Funzionale~\ref{sec:ruoli}.
+  Soggetto registrato e autenticato alla piattaforma \textit{Trento Decide}. 
+  Comprende tutti i ruoli predefiniti previsti dal sistema: cittadino, moderatore, amministratore comunale e rappresentante di associazione \defref{def:ruoli}.
 
 \item[Definizione \refstepcounter{definition}\thedefinition\label{def:ruoli} – Ruoli utente:] 
 La piattaforma \textit{Trento Decide} prevede quattro ruoli distinti, utilizzati per regolare l’accesso alle funzionalità del sistema.
@@ -47,10 +62,9 @@ Persona fisica di età pari o superiore a 18 anni, residente nel Comune di Trent
 L’identità e l’eleggibilità al voto sono verificate tramite SPID o CIE.  
 La residenza è verificata tramite integrazione con ANPR.
 
-\textbf{Associazione/Comitato}:  
+\textbf{Associazione}:  
 Entità giuridica registrata che presenta proposte collettive.  
 La rappresentanza è certificata tramite atto costitutivo e delega del legale rappresentante, caricati in piattaforma e soggetti a verifica amministrativa.  
-Le deleghe devono essere rinnovate annualmente o alla loro scadenza naturale, con notifica automatica di rinnovo.
 
 \textbf{Moderatore}:  
 Utente incaricato dell’attività di verifica e controllo delle proposte e dei contenuti generati dagli utenti.  
@@ -60,16 +74,17 @@ L’account è creato dall’amministratore e dispone di permessi di gestione li
 Utente con privilegi completi di gestione della piattaforma.  
 È responsabile della creazione degli account speciali (moderatori, associazioni/comitati), della supervisione dei processi di verifica e della configurazione dei parametri operativi del sistema.
 
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:proposta-collettiva} – Proposta collettiva:] 
-  Proposta promossa da un gruppo di cittadini o da un’associazione riconosciuta.  
-  Le regole di ponderazione del loro peso nel ranking sono pubbliche e documentate; il sistema rileva automaticamente eventuali pattern anomali (concentrazioni temporali, account recenti) e li segnala ai moderatori.
+\item[Definizione \refstepcounter{definition}\thedefinition\label{def:statoproposta} – Stato della proposta:]
+Ogni proposta è associata a uno stato che ne descrive l’avanzamento nel processo amministrativo.  
+Gli stati previsti sono: \textit{bozza}, \textit{pubblicata}, \textit{in valutazione}, \textit{accettata}, \textit{rifiutata}, \textit{in attuazione}, \textit{completata}.  
+
+\item[Definizione \refstepcounter{definition}\thedefinition\label{def:proposta-collettiva} – Proposta collettiva:] 
+Proposta presentata da un’associazione o comitato riconosciuto.  
+Nel processo di classificazione \defref{def:classificazione}, le proposte collettive sono soggette a una sezione dedicata che consente all’amministrazione di applicare criteri o pesi specifici rispetto alle proposte individuali.
 
   \item[Definizione \refstepcounter{definition}\thedefinition\label{def:endorsement} – Endorsement:] 
-  Azione di sostegno digitale espressa da cittadini o enti collettivi a favore di una proposta.  
-  Il numero e il peso degli endorsement concorrono al ranking secondo coefficienti configurabili e trasparenti.
-
-  \item[Definizione \refstepcounter{definition}\thedefinition\label{def:voto} – Voto:] 
-  Espressione anonima di consenso o dissenso da parte di un cittadino autenticato tramite SPID o CIE.
+  Azione di sostegno digitale espressa da associazioni a favore di una proposta.  
+  Il numero e il peso degli endorsement concorrono alla classificazione \defref{def:classificazione}.
  
 \end{description}
 
