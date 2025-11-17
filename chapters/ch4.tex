@@ -217,13 +217,13 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 \end{center}
 
 \subsection{Creare account moderatore o associazione/comitato \ref{sec:specialregistrazione}}
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo caso d’uso descrive la procedura di creazione di un nuovo account di tipo moderatore o associazione/comitato tramite l’interfaccia amministrativa.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’amministratore è autenticato e ha i permessi di gestione utenti.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 L’account risulta creato, registrato e notificato via email.
 
 \textbf{Descrizione:}
@@ -243,14 +243,14 @@ L’account risulta creato, registrato e notificato via email.
   \item [E3.] Errore nell’invio dell’email: il sistema registra l’errore e notifica l’amministratore.
 \end{itemize}
 
-\subsection{Pubblicare sondaggi \ref{sec:sondaggi}} 
-\textbf{Riassunto:}  
+\subsection{Pubblicare sondaggi \ref{sec:sondaggi}}
+\textbf{Riassunto:}
 Questo caso d’uso descrive la pubblicazione di un nuovo sondaggio o consultazione pubblica da parte dell’amministratore.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’amministratore è autenticato e dispone dei permessi di gestione sondaggi.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 Il sondaggio è pubblicato e reso visibile ai cittadini.
 
 \textbf{Descrizione:}
@@ -270,14 +270,14 @@ Il sondaggio è pubblicato e reso visibile ai cittadini.
   \item [E3.] Errore durante l’invio delle notifiche: il sistema completa la pubblicazione ma registra l’errore di comunicazione.
 \end{itemize}
 
-\subsection{Interazione con dashboard amministrativa \ref{sec:dashboard}} 
-\textbf{Riassunto:}  
+\subsection{Interazione con dashboard amministrativa \ref{sec:dashboard}}
+\textbf{Riassunto:}
 Questo caso d’uso descrive l’utilizzo della dashboard amministrativa per consultare, filtrare ed esportare i dati aggregati del sistema.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 L’amministratore è autenticato.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 I dati sono visualizzati, filtrati o esportati secondo le operazioni eseguite.
 
 \textbf{Descrizione:}
@@ -298,14 +298,14 @@ I dati sono visualizzati, filtrati o esportati secondo le operazioni eseguite.
 
 \subsection{Approvare/rifiutare una proposta}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo caso d’uso descrive come l’amministratore esamina una proposta in stato \textit{in valutazione} e decide se approvarla oppure rifiutarla, aggiornandone lo stato.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 Esistono proposte in stato \textit{in valutazione}.
 
-\textbf{Postcondizioni:}  
-La proposta risulta \textit{accettata} oppure \textit{rifiutata}.  
+\textbf{Postcondizioni:}
+La proposta risulta \textit{accettata} oppure \textit{rifiutata}.
 La transizione di stato è registrata nello storico.
 
 \textbf{Descrizione:}
@@ -325,14 +325,14 @@ La transizione di stato è registrata nello storico.
 
 \subsection{Pubblicare e aggiornare un report amministrativo}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo caso d’uso descrive come l’amministratore genera, pubblica e, se necessario, aggiorna un report relativo a una proposta. La pubblicazione può comportare un aggiornamento dello stato della proposta.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 Esistono proposte che richiedono la redazione o l’aggiornamento di un report.
 
-\textbf{Postcondizioni:}  
-Il report risulta pubblicato o aggiornato.  
+\textbf{Postcondizioni:}
+Il report risulta pubblicato o aggiornato.
 Lo stato della proposta può essere aggiornato.
 
 \textbf{Descrizione:}
@@ -367,7 +367,7 @@ Lo stato della proposta può essere aggiornato.
 \end{enumerate}
 
 \begin{center}
-  \includegraphics[scale=0.55]{img/usecase/3.png}
+  \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
 \end{center}
 
 \subsection{Creare una proposta \ref{sec:creazioneproposta} \ref{sec:pubblicazioneproposta}}
@@ -724,13 +724,13 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
 
 
 \subsection{Validare contenuti segnalati}
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo caso d’uso descrive come il moderatore analizza e valida i contenuti segnalati dal sistema o dai cittadini per verificare eventuali violazioni delle policy.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 Esistono contenuti segnalati in attesa di revisione.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 Il contenuto risulta confermato (valido) oppure rimosso.
 
 \textbf{Descrizione:}
@@ -750,13 +750,13 @@ Il contenuto risulta confermato (valido) oppure rimosso.
 
 
 \subsection{Moderare proposte e commenti pubblicati}
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo caso d’uso descrive la moderazione ordinaria dei contenuti pubblici da parte dei moderatori.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 Il moderatore è autenticato e ha visibilità sull’elenco dei contenuti pubblicati.
 
-\textbf{Postcondizioni:}  
+\textbf{Postcondizioni:}
 Il contenuto risulta confermato (valido) o eliminato.
 
 \textbf{Descrizione:}
