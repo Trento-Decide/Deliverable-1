@@ -17,7 +17,12 @@ Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal
 \section{Autenticazione e gestione credenziali}
 
 \subsection{Registrazione dei cittadini} \label{sec:registrazione}
-L'utente che intende registrarsi come cittadino deve accedere inizialmente con SPID o CIE, il sistema richiede l'inserimento di email, password e nome utente (credenziali locali); inoltre l’utente può opzionalmente acconsentire a ricevere notifiche via email (abilita/disabilita).  Al termine, il sistema invia all'utente una email di conferma.
+L’utente che intende registrarsi come cittadino deve accedere tramite SPID o CIE.  
+Dopo l’autenticazione SPID/CIE, il sistema verifica la residenza dell’utente nel Comune attraverso ANPR.  
+Superata la verifica, il sistema richiede l’inserimento delle credenziali locali (email, password e nome utente).
+
+L’utente può inoltre acconsentire facoltativamente alla ricezione di notifiche via email (abilita/disabilita).  
+Al termine della procedura, il sistema invia un’email di conferma all’indirizzo fornito.
 
 \subsection{Registrazione di moderatori e associazioni} \label{sec:specialregistrazione}
 Gli account dei moderatori e delle associazioni/comitati vengono creati dall’amministratore tramite l’interfaccia di gestione.
