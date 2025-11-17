@@ -9,21 +9,12 @@ In questa sezione vengono presentati gli Use Case Diagram del sistema Trento Dec
 Essi rappresentano, in forma grafica, le interazioni tra gli attori e la piattaforma, illustrando le principali funzionalità e relazioni di inclusione o estensione tra i casi d’uso.
 Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti funzionali (RF) si traducono in comportamenti concreti del sistema, offrendo una visione d’insieme delle dinamiche operative e dei ruoli coinvolti.
 
-% ====================================================
-% UC1
-% ====================================================
-
 \section{Utente Anonimo}
-\begin{enumerate}
-    \item Fare login sulla piattaforma (\ref{sec:login})
-    \item Registrarsi come cittadino (\ref{sec:registrazione})
-\end{enumerate}
+\localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
 	\includegraphics[scale=1.0]{img/usecase/utenteanonimo.png}
 \end{center}
-
-% ====================================================
 
 \subsection{Login \ref{sec:login}}
 
@@ -52,8 +43,6 @@ L’utente risulta autenticato e accede alla piattaforma.
     \item[(1)] Se email o password non sono valide, il sistema mostra un messaggio di errore e richiede di reinserire i dati.
     \item[(2)] Se l’autenticazione SPID/CIE fallisce, viene annullata o scade, il sistema mostra un messaggio di errore e ritorna alla schermata di login.
 \end{itemize}
-
-% ====================================================
 
 \subsection{Registrare un cittadino \ref{sec:registrazione}}
 
@@ -91,23 +80,12 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
     	\item[(2)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato.
 \end{itemize}
 
-% ====================================================
-% UC2
-% ====================================================
-
 \section{Utente autenticato}
-\begin{enumerate}
-	\item Fare logout dalla piattaforma (\ref{sec:logout})
-	\item Gestione profilo e dati personali (\ref{sec:credenzialihandling})
-	\item Visualizzazione proposte (con ordinamento) e sondaggi (\ref{sec:visualizzapropsond}, \ref{sec:sorting})
-	\item Cambiare lingua (\ref{sec:cambiolingua})
-\end{enumerate}
+\localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
 	 \includegraphics[scale=1.25]{img/usecase/utenteautenticato.png}
 \end{center}
-
-% ====================================================
 
 \subsection{Gestire le proprie credenziali \ref{sec:credenzialihandling}}
 
@@ -140,8 +118,6 @@ Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effe
 	\item[(2)] Se l’email inserita non è valida o già associata a un altro account, il sistema notifica l’errore e annulla la modifica.
 		\item[(3)] Se il nome utente inserito non è valido o già associato a un altro account, il sistema notifica l’errore e annulla la modifica.
 \end{itemize}
-
-% ====================================================
 
 \subsection{Visualizzare proposte e sondaggi \ref{sec:visualizzapropsond}, \ref{sec:sorting}}
 
@@ -176,8 +152,6 @@ Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o
 	\item[(1)] Se non sono presenti proposte o sondaggi attivi, il sistema mostra un messaggio informativo.
 \end{itemize}
 
-% ====================================================
-
 \subsection{Cambiare lingua \ref{sec:cambiolingua}}
 
 \textbf{Riassunto:}
@@ -202,12 +176,13 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 % ====================================================
 
 \section{Amministratore}
+\localtableofcontentswithrelativedepth{+1}
 
 \begin{enumerate}
 	\item Registrare moderatore o associazione (\ref{sec:specialregistrazione})
 	\item Pubblicare sondaggi (\ref{sec:sondaggi})
 	\item Visualizzare risultati policy simulation (\ref{sec:vederepolicies})
-	\item Visualizzare dashboard e dati (\ref{sec:vederedashboard})
+	\item Visualizzare dashboard e dati (\ref{sec:dashboard})
 	\item Modificare lo stato di una proposta (\ref{sec:editproposta})
 	\item Generazione dei report ({\ref{sec:report-attivita}})
 \end{enumerate}
@@ -348,48 +323,33 @@ Lo stato della proposta può essere aggiornato.
   \item Il report è in modifica da parte di un altro amministratore: l’operazione viene bloccata.
 \end{enumerate}
 
-
-
-% ====================================================
-
-% ====================================================
-% UC4
-% ====================================================
-
 \section{Cittadino}
-\begin{enumerate}
-	\item Creare una proposta (\ref{sec:creazioneproposta})
-	\item Pubblicare una proposta (\ref{sec:pubblicazioneproposta})
-	\item Proporre una modifica ad una proposta (\ref{sec:modificaproposta})
-	\item Modificare i propri preferiti (\ref{sec:preferiti})
-	\item Votare una proposta (\ref{sec:voto})
-	\item Segnalare un contenuto (\ref{sec:segnalazione})
-\end{enumerate}
+\localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
   \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
 \end{center}
 
-\subsection{Creare una proposta \ref{sec:creazioneproposta} \ref{sec:pubblicazioneproposta}}
+\subsection{Creare una proposta \ref{sec:creazioneproposta} \ref{sec:salvacomebozza}}
 
 \textbf{Riassunto:} Questo use case descrive come un cittadino autenticato crea una nuova proposta.
 
 \begin{description}
   \item[Precondizioni:]~
   \begin{itemize}
-    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino'' (Def.~3).
+    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
     \item L’utente ha accesso alla sezione per la creazione di nuove proposte.
   \end{itemize}
 
   \item[Postcondizioni:]~
   \begin{itemize}
-    \item Una nuova proposta è creata in stato di ``bozza'', associata all’utente come autore.
-    \item Tutti i dati inseriti e i metadati obbligatori (autore, data/ora di creazione, categoria, ecc.) sono salvati nel sistema.
+    \item Una nuova proposta è pubblicata o creata in stato di ``bozza'', associata all’utente come autore.
+    \item Tutti i dati inseriti e i metadati obbligatori (autore, data/ora di creazione, categoria, campi categoria) sono salvati nel sistema.
   \end{itemize}
 
   \item[Descrizione:]~
   \begin{enumerate}
-    \item Il cittadino accede alla sezione ``Nuova proposta''.
+    \item Il cittadino accede alla sezione ``Crea proposta''.
     \item Il sistema mostra il modulo di creazione con i campi previsti per la categoria selezionata:
     \begin{itemize}
       \item Titolo
@@ -428,7 +388,7 @@ Lo stato della proposta può essere aggiornato.
   \begin{itemize}
     \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
     \item Esiste almeno una proposta pubblicata o visibile all’utente su cui è consentito proporre modifiche.
-    \item L’utente non è necessariamente l’autore della proposta.
+    \item L’utente non è l’autore della proposta.
   \end{itemize}
 
   \item[Postcondizioni:]~
@@ -691,37 +651,17 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
   \item Contenuto non più disponibile (ad esempio rimosso da un moderatore o dall’autore): il sistema annulla la procedura e informa il cittadino che il contenuto non è più accessibile.
 \end{enumerate}
 
-% ====================================================
-
-% ====================================================
-% UC5
-% ====================================================
-
 \section{Associazione/Comitato}
-\begin{enumerate}
-	\item Pubblicare proposte collettive (\ref{sec:creazioneproposta})
-	\item Fare endorsement (\ref{sec:endorsement})
-\end{enumerate}
 
-\begin{center}
-	% \includegraphics[scale=1.1]{img/usecase/1.png}
-\end{center}
-
-% ====================================================
-% UC6
-% ====================================================
+\subsection{Pubblicare proposte collettive (\ref{sec:creazioneproposta})}
+\subsection{Fare endorsement (\ref{sec:endorsement})}
 
 \section{Moderatore}
-\begin{enumerate}
-	\item Visualizzazione coda di revisione (\ref{sec:validazione-contenuti})
-	\item Rimuovere un contenuto (\ref{sec:rimozione})
-	\item Moderazione sugli utenti (\ref{sec:modcittadini}, \ref{sec:modassociazioni})
-\end{enumerate}
+\localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
 	\includegraphics[scale=0.9]{img/usecase/Moderatore.png}
 \end{center}
-
 
 \subsection{Validare contenuti segnalati}
 \textbf{Riassunto:}
@@ -773,12 +713,3 @@ Il contenuto risulta confermato (valido) o eliminato.
   \item [E1.] Il contenuto è già stato modificato o rimosso dall’autore: il sistema chiude automaticamente la moderazione.
   \item [E2.] Più moderatori intervengono contemporaneamente: il sistema blocca l’operazione e assegna priorità al primo intervento registrato.
 \end{itemize}
-
-
-
-\begin{center}
-	% \includegraphics[scale=1.1]{img/usecase/1.png}
-\end{center}
-
-% ====================================================
-
