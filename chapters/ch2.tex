@@ -7,12 +7,8 @@
 \setlength{\parindent}{0pt}
 
 \section*{Introduzione}
-I requisiti funzionali definiscono le funzioni che il sistema \textit{Trento Decide} deve offrire per supportare la partecipazione civica, la collaborazione tra cittadini e amministrazione comunale e la trasparenza del processo decisionale.  
-Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal prefisso \textbf{RF}, seguito da un numero progressivo e, ove necessario, da sottosezioni tematiche.  
-
-% ====================================================
-% RF1
-% ====================================================
+I requisiti funzionali definiscono le funzioni che il sistema \textit{Trento Decide} deve offrire per supportare la partecipazione civica, la collaborazione tra cittadini e amministrazione comunale e la trasparenza del processo decisionale.
+Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal prefisso \textbf{RF}, seguito da un numero progressivo e, ove necessario, da sottosezioni tematiche.
 
 \section{Autenticazione e gestione credenziali}
 
@@ -34,7 +30,7 @@ Il sistema dunque invalida token di autenticazione e reindirizza l’utente alla
 L’utente deve poter visualizzare e gestire i propri dati personali, come segue:
 
 \subsubsection{Credenziali}
-Il sistema deve consentire all’utente di aggiornare email, password e username.  
+Il sistema deve consentire all’utente di aggiornare email, password e username.
 Il sistema deve inoltre mostrare all’utente i valori correnti di email e username.
 
 \subsubsection{Ricezione notifiche}
@@ -44,17 +40,13 @@ Il sistema deve consentire all’utente di modificare la propria preferenza rigu
 Il sistema deve mostrare all’utente lo storico delle modifiche effettuate alle proprie credenziali, includendo data e tipo di modifica.
 
 \subsubsection{Eliminazione profilo}
-Il sistema deve consentire all’utente di richiedere la cancellazione del proprio profilo.  
+Il sistema deve consentire all’utente di richiedere la cancellazione del proprio profilo.
 Una volta richiesta l’eliminazione, l’utente deve poter accedere al proprio profilo per le successive 48 ore, durante le quali può annullare la richiesta.
-
-% ====================================================
-% RF2
-% ====================================================
 
 \section{Gestione delle proposte}
 
-\subsection{Creazione proposta} \label{sec:creazioneproposta}
-Il sistema deve consentire ai cittadini di creare nuove proposte in stato di \textit{bozza}, compilando un modulo composto dai seguenti campi obbligatori:
+\subsection{Pubblicazione proposta} \label{sec:creazioneproposta}
+Il sistema deve consentire ai cittadini di creare nuove proposte, compilando un modulo composto dai seguenti campi obbligatori:
 \begin{itemize}
     \item \textbf{Titolo} — testo breve che identifica la proposta;
     \item \textbf{Descrizione} — testo esteso che illustra il contenuto della proposta;
@@ -68,16 +60,14 @@ Inoltre il sistema deve salvare automaticamente, per ogni proposta, le seguenti 
     \item \textbf{Data} — timestamp di creazione generato dal sistema;
 \end{itemize}
 
-I valori e la presenza di ciascun campo possono variare in base alla categoria selezionata.  
-Il sistema deve utilizzare per ogni categoria il proprio elenco di campi specifici e obbligatori \defref{def:categoria}
+I valori e la presenza di ciascun campo possono variare in base alla categoria selezionata.
+Il sistema deve utilizzare per ogni categoria il proprio elenco di campi specifici e obbligatori \defref{def:categoria}.
 
-\subsection{Pubblicazione proposta} \label{sec:pubblicazioneproposta}
-Il sistema deve consentire al cittadino autore di pubblicare una proposta precedentemente salvata in stato di \textit{bozza}.  
-La pubblicazione è possibile solo se tutti i campi obbligatori previsti risultano compilati.  
-Al momento della pubblicazione il sistema aggiorna lo stato della proposta a \textit{pubblicata}.
+\subsection{Salvare proposta come bozza} \label{sec:salvacomebozza}
+Il sistema deve permettere al cittadino di salvare una proposta nello stato di \textit{bozza}. La proposta verrà contrassegnata con tale stato, che sarà visibile anche nella lista delle proposte. Inoltre, selezionando una tale proposta, il sistema riaprirà il modulo di compilazione per consentirne la modifica e/o la pubblicazione.
 
 \subsection{Pubblicazione proposte collettive} \label{sec:propostacollettiva}
-Il sistema deve consentire ad associazioni e comitati di presentare \textit{proposte collettive} (def.~\ref{def:proposta-collettiva}).  
+Il sistema deve consentire ad associazioni e comitati di presentare \textit{proposte collettive} (def.~\ref{def:proposta-collettiva}).
 Il sistema rende riconoscibili tali proposte etichettandole con il nome dell'associazione autrice.
 
 \subsection{Visualizzazione proposte e sondaggi} \label{sec:visualizzapropsond}
@@ -101,11 +91,7 @@ Il creatore della proposta può accettare o rifiutare una proposta di modifica; 
 Deve essere possibile ripristinare una versione precedente come versione principale.
 
 \subsection{Endorsement} \label{sec:endorsement}
-Il sistema deve consentire alle associazioni di esprimere un \textit{endorsement} digitale (def.~\ref{def:endorsement}) sulle proposte pubblicate.  
-
-% ====================================================
-% RF3
-% ====================================================
+Il sistema deve consentire alle associazioni di esprimere un \textit{endorsement} digitale (def.~\ref{def:endorsement}) sulle proposte pubblicate.
 
 \section{Personalizzazione e preferenze}
 
@@ -122,12 +108,8 @@ Inoltre il sistema invia notifiche per qualsiasi aggiornamento in proposte propr
 Le notifiche vengono inviate solo se il cittadino ha acconsentito alla ricezione di notifiche (\ref{sec:registrazione}).
 
 \subsection{Cambio di lingua} \label{sec:cambiolingua}
-Il sistema deve consentire all’utente di modificare la lingua (definite in \ref{ref:i18n}) dell’interfaccia tramite un menu dedicato accessibile dall’area utente.  
+Il sistema deve consentire all’utente di modificare la lingua (definite in \ref{ref:i18n}) dell’interfaccia tramite un menu dedicato accessibile dall’area utente.
 La preferenza linguistica deve essere registrata nel profilo utente e mantenuta tra le sessioni di accesso.
-
-% ====================================================
-% RF4
-% ====================================================
 
 \section{Votazioni e ordinamento}
 
@@ -148,72 +130,73 @@ Il sistema deve consentire all’utente di ordinare l’elenco delle proposte pu
 \end{itemize}
 L’utente deve poter invertire l’ordine (asc/desc) quando applicabile, sia numerico che alfabetico.
 
-% ====================================================
-% RF5
-% ====================================================
-
 \section{Moderazione e qualità dei contenuti}
 
 \subsection{Segnalazione dei contenuti da parte dei cittadini} \label{sec:segnalazione}
-Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati (proposte, modifiche) selezionando una motivazione da un elenco predefinito 
-(incitamento all’odio, contenuti offensivi o volgari, informazioni false, spam, duplicato, violazione della privacy, altro) e aggiungendo un testo descrittivo.  
+Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati (proposte, modifiche) selezionando una motivazione da un elenco predefinito
+(incitamento all’odio, contenuti offensivi o volgari, informazioni false, spam, duplicato, violazione della privacy, altro) e aggiungendo un testo descrittivo.
 Ogni segnalazione deve generare un elemento nella coda di revisione dei moderatori.
 
 \subsection{Moderazione automatica}
-Il sistema deve analizzare automaticamente i testi generati dagli utenti per rilevare linguaggio inappropriato, spam o duplicati.  
+Il sistema deve analizzare automaticamente i testi generati dagli utenti per rilevare linguaggio inappropriato, spam o duplicati.
 In caso di rilevamento, il sistema deve inserire l’elemento nella coda di revisione o rimuoverlo.
 
 \subsection{Visualizzazione coda di revisione} \label{sec:validazione-contenuti}
 Il sistema deve permettere ai moderatori di visualizzare la coda di revisione, ovvero un elenco di proposte segnalate automaticamente o da utenti.
 
 \subsection{Rimozione dei contenuti} \label{sec:rimozione}
-Il sistema deve consentire ai moderatori di eliminare un contenuto dalla piattaforma.  
+Il sistema deve consentire ai moderatori di eliminare un contenuto dalla piattaforma.
 Ogni rimozione deve essere registrata indicando motivazione, timestamp e moderatore responsabile.
 
 \subsection{Moderazione sugli utenti}
 
 \subsubsection{Limitazioni sui cittadini} \label{sec:modcittadini}
-Il sistema deve consentire ai moderatori di sospendere un cittadino scegliendo una durata tra 1, 7, 30 o 90 giorni, oppure di procedere alla rimozione definitiva del suo account.  
+Il sistema deve consentire ai moderatori di sospendere un cittadino scegliendo una durata tra 1, 7, 30 o 90 giorni, oppure di procedere alla rimozione definitiva del suo account.
 La rimozione definitiva comporta l’impossibilità di autenticarsi con le credenziali associate.
 
 \subsubsection{Limitazioni sulle associazioni} \label{sec:modassociazioni}
 Il sistema deve consentire ai moderatori di richiedere all’amministratore la sospensione o rimozione di un account associazione, bloccandone le interazioni pubbliche per un periodo temporaneo (48 ore) in attesa della decisione amministrativa.
 
-% ====================================================
-% RFPessimo
-% ====================================================
-
 \section{Policy Simulator e modelli statistici}
 
 \subsection{Simulazione di scenari di policy}
-Il sistema deve includere un modulo che consenta all’amministrazione di calcolare indicatori di impatto economico, sociale e ambientale associati alle proposte.  
-Il modulo deve permettere la configurazione di parametri e coefficienti specifici dall’amministrazione.  
+Il sistema deve includere un modulo che consenta all’amministrazione di calcolare indicatori di impatto economico, sociale e ambientale associati alle proposte.
+Il modulo deve permettere la configurazione di parametri e coefficienti specifici dall’amministrazione.
 Gli indicatori generati devono essere visibili esclusivamente all’amministrazione \defref{def:classificazione}.
 
 \subsection{Analisi predittiva e statistica}
-Il sistema deve consentire all’amministrazione di generare stime sugli effetti futuri delle proposte sulla base di dataset caricati.  
+Il sistema deve consentire all’amministrazione di generare stime sugli effetti futuri delle proposte sulla base di dataset caricati.
 Il modulo deve permettere la selezione del modello da utilizzare, la definizione delle variabili di input e la produzione di indicatori quantitativi relativi agli scenari simulati.
 
 \subsection{Visualizzazione dei risultati} \label{sec:vederepolicies}
 Il sistema deve consentire all’amministrazione di visualizzare gli indicatori prodotti dai moduli di simulazione tramite rappresentazioni grafiche e tabelle comparative.
 
-% ====================================================
-% RF6
-% ====================================================
-
 \section{Dashboard amministrativa}
 
-\subsection{Visualizzazione dashboard amministrativa} \label{sec:vederedashboard}
-Il sistema deve fornire all’amministrazione una dashboard contenente indicatori aggregati: numero utenti attivi, proposte per categoria, voti per zona.
+\subsection{Dashboard amministrativa} \label{sec:dashboard}
+Il sistema deve fornire all’amministrazione una dashboard che comprende:
+\begin{itemize}
+  \item I seguenti dati: numero di utenti attivi, proposte per categoria, distribuzione territoriale dei voti, tassi di approvazione.
+
+  \item Strumenti dell'amministrazione: creazione sondaggi \ref{sec:sondaggi}, scaricare report \ref{sec:report-attivita}, registrare account associazioni e moderatori \ref{sec:specialregistrazione}.
+\end{itemize}
+
+\subsection{Report sull’attività del sistema} \label{sec:report-attivita}
+Il sistema deve consentire all’amministrazione di generare e scaricare in locale report contenenti dati aggregati e anonimizzati (\ref{ref:anonimato}) sull’attività della piattaforma.
+I report devono essere disponibili in formato aperto (CSV) e comprendere:
+
+\begin{itemize}
+  \item \textbf{Attività per proposta}: numero totale di votanti, distribuzione territoriale, distribuzione per fasce d’età.
+\end{itemize}
 
 \subsection{Sondaggi} \label{sec:sondaggi}
-Il sistema deve consentire all’amministrazione (tramite dashboard) di creare, pubblicare e gestire sondaggi tematici rivolti ai cittadini.  
-Ogni sondaggio deve comprendere:  
-(a) \textit{Titolo}, 
-(b) \textit{Descrizione}, 
-(c) \textit{Categoria}, 
+Il sistema deve consentire all’amministrazione (tramite dashboard) di creare, pubblicare e gestire sondaggi tematici rivolti ai cittadini.
+Ogni sondaggio deve comprendere:
+(a) \textit{Titolo},
+(b) \textit{Descrizione},
+(c) \textit{Categoria},
 (d) \textit{Periodo di validità} (data di apertura e di chiusura),
-(e) \textit{Domande} (e relative opzioni di risposta).  
+(e) \textit{Domande} (e relative opzioni di risposta).
 
 Il sistema deve inoltre:
 \begin{itemize}
@@ -222,23 +205,7 @@ Il sistema deve inoltre:
 \end{itemize}
 
 \subsection{Modifica dello stato di una proposta} \label{sec:editproposta}
-Il sistema deve consentire all’amministratore di aggiornare lo stato di una proposta \defref{def:statoproposta} secondo il flusso previsto: da \textit{pubblicata} a \textit{in valutazione}, quindi a \textit{accettata} o \textit{rifiutata}.  
-In caso di stato \textit{accettata}, il sistema deve permettere il passaggio agli stati \textit{in attuazione} e \textit{completata}.  
+Il sistema deve consentire all’amministratore di aggiornare lo stato di una proposta \defref{def:statoproposta} secondo il flusso previsto: da \textit{pubblicata} a \textit{in valutazione}, quindi a \textit{accettata} o \textit{rifiutata}.
+In caso di stato \textit{accettata}, il sistema deve permettere il passaggio agli stati \textit{in attuazione} e \textit{completata}.
 In caso di stato \textit{rifiutata}.
 In ogni caso il sistema deve consentire all’amministratore di pubblicare una motivazione associata alla decisione.
-
-% ====================================================
-% RF7
-% ====================================================
-
-\section{Trasparenza e reportistica}
-
-\subsection{Report sull’attività del sistema} \label{sec:report-attivita}
-Il sistema deve consentire all’amministrazione di generare e scaricare in locale report contenenti dati aggregati e anonimizzati (\ref{rnf:anonimato}) sull’attività della piattaforma.  
-I report devono essere disponibili in formato aperto (CSV) e comprendere:
-
-\begin{itemize}
-	\item \textbf{Attività per proposta}: numero totale di votanti, distribuzione territoriale, distribuzione per fasce d’età.
-	
-	\item \textbf{Dati generali del sistema}: numero di utenti attivi, proposte per categoria, distribuzione territoriale dei voti, tassi di approvazione.
-\end{itemize}
