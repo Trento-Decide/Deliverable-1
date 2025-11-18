@@ -18,6 +18,7 @@ Dopo l’autenticazione SPID/CIE, il sistema verifica la residenza dell’utente
 Superata la verifica, il sistema richiede l’inserimento delle credenziali locali (email, password e nome utente).
 
 L’utente può inoltre acconsentire facoltativamente alla ricezione di notifiche via email (abilita/disabilita).  
+Il sistema invia una email di verifica, l'utente ha 10 minuti dalla conferma dei dati per abilitare il proprio account.
 Al termine della procedura, il sistema invia un’email di conferma all’indirizzo fornito.
 
 \subsection{Registrazione di moderatori e associazioni} \label{RF:specialregistrazione}
@@ -25,7 +26,7 @@ Gli account dei moderatori e delle associazioni/comitati vengono creati dall’a
 Il sistema invia ai destinatari le credenziali di accesso tramite email.
 
 \subsection{Login} \label{RF:login}
-Il sistema deve consentire il login tramite credenziali locali (email e password) oppure tramite SPID o CIE. Viene richiesto all'utente se mantenere attiva la sessione ("ricordami"), in tal caso il sistema salva nella macchina locale un cookie di autenticazione.
+Il sistema deve consentire il login tramite email e password oppure tramite SPID o CIE. Viene richiesto all'utente se mantenere attiva la sessione ("ricordami"), in tal caso il sistema salva nella macchina locale un cookie di autenticazione.
 
 \subsection{Logout} \label{RF:logout}
 Il sistema deve consentire ad ogni utente di terminare la propria sessione tramite una funzione di logout.
@@ -37,6 +38,7 @@ L’utente deve poter visualizzare e gestire i propri dati personali, come segue
 \subsubsection{Credenziali}
 Il sistema deve consentire all’utente di aggiornare email, password e username.
 Il sistema deve inoltre mostrare all’utente i valori correnti di email e username.
+Se l'utente modifica email o password il sistema invalida il cookie di autenticazione (se esistente).
 
 \subsubsection{Ricezione notifiche}
 Il sistema deve consentire all’utente di modificare la propria preferenza riguardo alla ricezione delle notifiche via email, scegliendo tra le opzioni abilita/disabilita.

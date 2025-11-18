@@ -5,15 +5,15 @@
 \setlength{\parindent}{0pt}
 
 \section*{Introduzione}
-In questa sezione vengono presentati gli Use Case Diagram del sistema Trento Decide.
-Essi rappresentano, in forma grafica, le interazioni tra gli attori e la piattaforma, illustrando le principali funzionalità e relazioni di inclusione o estensione tra i casi d’uso.
-Questi diagrammi consentono di visualizzare in modo sintetico come i requisiti funzionali (RF) si traducono in comportamenti concreti del sistema, offrendo una visione d’insieme delle dinamiche operative e dei ruoli coinvolti.
+In questa sezione sono riportati gli Use Case Diagram di Trento Decide.
+Questi diagrammi mostrano come gli attori interagiscono con la piattaforma e mettono in evidenza le principali funzionalità e le loro relazioni.
+Gli Use Case Diagram aiutano a concretizzare graficamente i requisiti funzionali, offrendo una visione più chiara e immediata delle dinamiche del sistema rispetto ai capitoli precedenti.
 
 \section{Utente Anonimo}
 \localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
-	\includegraphics[scale=1.0]{img/usecase/utenteanonimo.png}
+	\includegraphics[scale=1.0]{img/usecase/UtenteAnonimo.png}
 \end{center}
 
 \subsection{Login \ref{RF:login}}
@@ -35,13 +35,20 @@ L’utente risulta autenticato e accede alla piattaforma.
         \item \textbf{Credenziali locali:} inserisce email e password nei campi dedicati e conferma l’accesso.
         \item \textbf{SPID/CIE:} seleziona l’opzione SPID o CIE; il sistema reindirizza al relativo servizio di autenticazione.
     \end{enumerate}
-    \item Se l’autenticazione è valida, l'utente accede al sistema \textbf{[eccezione 1][eccezione 2]}.
+	\item L'utente può decidere di far "ricordare" la propria sessione al sistema, salvando così un cookie di autenticazione in locale.
+    \item Se l’autenticazione è valida, l'utente accede al sistema \textbf{[eccezione 1 - 2]}.
 \end{enumerate}
+
+\textbf{Estensioni:}
+\begin{itemize}
+	\item[(0)] Se l'utente possiede un cookie di autenticazione nella propria macchina, l'utente accede senza dover reinserire le credenziali.  \textbf{[eccezione 3]}
+\end{itemize}
 
 \textbf{Eccezioni:}
 \begin{itemize}
     \item[(1)] Se email o password non sono valide, il sistema mostra un messaggio di errore e richiede di reinserire i dati.
     \item[(2)] Se l’autenticazione SPID/CIE fallisce, viene annullata o scade, il sistema mostra un messaggio di errore e ritorna alla schermata di login.
+    \item[(3)] Se il sistema non riconosce il cookie di autenticazione, o il cookie è invalidato, allora l'utente è reindirizzato alla schermata di login.
 \end{itemize}
 
 \subsection{Registrazione del cittadino \ref{RF:registrazionecittadino}}
@@ -57,7 +64,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 
 \textbf{Descrizione:}
 \begin{enumerate}
-    \item L’utente accede alla schermata di registrazione.
+    \item L’utente visualizza la schermata di registrazione.
     \item L’utente seleziona una modalità di identificazione:
     \begin{enumerate}
         \item \textbf{SPID} — reindirizzamento al provider SPID;
@@ -65,22 +72,26 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
     \end{enumerate}
     \item Una volta validata l’identità tramite SPID/CIE \textbf{[eccezione 1]}, il sistema richiede: 
     \begin{enumerate}
-    	\item L'indirizzo di residenza dell'utente tramite ANPR
+    	\item Il comune di residenza dell'utente tramite ANPR
     \end{enumerate}
+    \item Una volta che il sistema verifica la residenza nel comune di Trento \textbf{[eccezione 2]} dell'utente il sistema richiede:
     \begin{enumerate}
         \item inserimento dell’email;
         \item definizione della password;
-        \item scelta del nome utente.
+        \item definizione del nome utente.
         \item \textit{facoltativamente} ricezione delle modifiche via email.
     \end{enumerate}
     \item L’utente conferma i dati inseriti.
-    \item Il sistema crea l’account e invia un’email di conferma all’indirizzo fornito \textbf{[eccezione 2]}.
+    \item Il sistema invia una email di verifica all'indirizzo immesso dall'utente, dove è richiesta la conferma della creazione dell'account \textbf{[eccezione 3 - 4]}.
+    \item Il sistema invia una email di conferma.
 \end{enumerate}
 
 \textbf{Eccezioni:}
 \begin{itemize}
 	\item[(1)] Se l’autenticazione SPID/CIE fallisce o viene annullata, la registrazione non procede.
-    	\item[(2)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato.
+	\item[(2)] Se l'utente che tenta la registrazione non risiede a Trento, la registrazione non procede.
+    \item[(3)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato.
+    \item[(4)] Se non viene confermata la creazione dell'account entro 10 minuti la registrazione non procede.
 \end{itemize}
 
 \section{Utente Autenticato}
@@ -91,6 +102,39 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \end{center}
 
 \subsection{Logout \ref{RF:logout}}
+
+\textbf{Riassunto:}
+Questo use case descrive come un utente autenticato possa eseguire il logout dalla piattaforma, ovvero terminare la propria sessione attuale e, se esistente, invalidare il cookie di autenticazione.
+
+\textbf{Precondizioni:}
+L’utente è autenticato.
+
+\textbf{Postcondizioni:}
+L'utente non è autenticato e non possiede cookie di autenticazione validi.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’utente visualizza la schermata di login.
+	\item L’utente può scegliere una delle seguenti modalità:
+	\begin{enumerate}
+		\item \textbf{Credenziali locali:} inserisce email e password nei campi dedicati e conferma l’accesso.
+		\item \textbf{SPID/CIE:} seleziona l’opzione SPID o CIE; il sistema reindirizza al relativo servizio di autenticazione.
+	\end{enumerate}
+	\item L'utente può decidere di far "ricordare" la propria sessione al sistema, salvando così un cookie di autenticazione in locale.
+	\item Se l’autenticazione è valida, l'utente accede al sistema \textbf{[eccezione 1 - 2]}.
+\end{enumerate}
+
+\textbf{Estensioni:}
+\begin{itemize}
+	\item[(0)] Se l'utente possiede un cookie di autenticazione nella propria macchina, l'utente accede senza dover reinserire le credenziali.  \textbf{[eccezione 3]}
+\end{itemize}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+	\item[(1)] Se email o password non sono valide, il sistema mostra un messaggio di errore e richiede di reinserire i dati.
+	\item[(2)] Se l’autenticazione SPID/CIE fallisce, viene annullata o scade, il sistema mostra un messaggio di errore e ritorna alla schermata di login.
+	\item[(3)] Se il sistema non riconosce il cookie di autenticazione, o il cookie è invalidato, allora l'utente è reindirizzato alla schermata di login.
+\end{itemize}
 
 \subsection{Gestione profilo e dati personali \ref{RF:profilehandling}}
 
