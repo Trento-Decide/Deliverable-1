@@ -13,11 +13,11 @@ Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal
 \section{Autenticazione e gestione credenziali}
 
 \subsection{Registrazione del cittadino} \label{RF:registrazionecittadino}
-L’utente che intende registrarsi come cittadino deve accedere tramite SPID o CIE.  
-Dopo l’autenticazione SPID/CIE, il sistema verifica la residenza dell’utente nel Comune attraverso ANPR.  
+L’utente che intende registrarsi come cittadino deve accedere tramite SPID o CIE.
+Dopo l’autenticazione SPID/CIE, il sistema verifica la residenza dell’utente nel Comune attraverso ANPR.
 Superata la verifica, il sistema richiede l’inserimento delle credenziali locali (email, password e nome utente).
 
-L’utente può inoltre acconsentire facoltativamente alla ricezione di notifiche via email (abilita/disabilita).  
+L’utente può inoltre acconsentire facoltativamente alla ricezione di notifiche via email (abilita/disabilita).
 Al termine della procedura, il sistema invia un’email di conferma all’indirizzo fornito.
 
 \subsection{Registrazione di moderatori e associazioni} \label{RF:specialregistrazione}
@@ -74,8 +74,7 @@ In fase di creazione il cittadino può in ogni momento decidere di scartare la p
 \subsubsection{Salvare proposta come bozza} \label{RF:salvacomebozza}
 In fase di creazione il cittadino può salvare la proposta in stato di \textit{bozza}. Tale proposta è visualizzabile nell'elenco delle proprie proposte e selezionandola il sistema riaprirà il modulo di compilazione per consentirne la modifica.
 
-\subsection{Pubblicazione proposta} \label{RF:pubblicaproposta}
-Il sistema deve consentire al cittadino autore di pubblicare una proposta precedentemente creata o salvata in stato di \textit{bozza}.  
+\subsubsection{Pubblicazione proposta} \label{RF:pubblicaproposta}
 La pubblicazione è possibile solo se tutti i campi obbligatori e quelli previsti per la categoria risultano compilati; una volta pubblicata, la proposta assume lo stato \textit{pubblicata}.
 
 \subsection{Eliminazione proposta} \label{RF:eliminaproposta}
@@ -158,7 +157,7 @@ Il sistema deve consentire al cittadino di:
 	\item visualizzare l’elenco dei propri elementi preferiti;
 \end{itemize}
 
-\subsection{Notifiche e avvisi}
+\subsection{Notifiche e avvisi} \label{RF:notifichepreferiti}
 Il sistema deve inviare notifiche automatiche per variazioni di stato riguardo elementi posti nei propri preferiti.
 Inoltre il sistema invia notifiche per qualsiasi aggiornamento in proposte proprie (variazioni di stato e richieste di modifica).
 Le notifiche vengono inviate solo se il cittadino ha acconsentito alla ricezione di notifiche (\ref{sec:registrazione}).
