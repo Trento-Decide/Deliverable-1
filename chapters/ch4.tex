@@ -84,6 +84,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
     \end{enumerate}
     \item L’utente conferma i dati inseriti.
     \item Il sistema invia una email di verifica all'indirizzo immesso dall'utente, dove è richiesta la conferma della creazione dell'account \textbf{[eccezione 3 - 4]}.
+    \item Il sistema invia una email di conferma.
 \end{enumerate}
 
 \textbf{Eccezioni:}
@@ -229,20 +230,22 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 \localtableofcontentswithrelativedepth{+1}
 
 \begin{enumerate}
-	\item Registrazione di moderatori e associazioni (\ref{rf:registrazionemodass})
-	\item Pubblicazione sondaggi (\ref{rf:sondaggi})
+	\item Creare account moderatore o associazione (\ref{rf:registrazionemodass})
+	\item Pubblicare un sondaggio (\ref{rf:sondaggi})
+	\item Consultare ed esportare dati dalla dashboard amministrativa (\ref{rf:report})
+	\item Approvare/rifiutare una proposta (\ref{rf:modificastatoproposta})
+	\item Pubblicare un report di valutazione su una proposta (\ref{rf:pubblicaportvalutazione})
 	\item Visualizzare policy simulation (\ref{rf:visualizzazionesimulazione})
-	\item Download report sull’attività del sistema (\ref{rf:report})
-	\item Gestione avanzamento stato proposta (\ref{rf:modificastatoproposta})
 \end{enumerate}
 
 \begin{center}
-	\includegraphics[scale=0.53]{img/usecase/Amministratore.png}
+	\includegraphics[scale=0.53]{img/usecase/Amministratore1.png}
+	\includegraphics[scale=0.53]{img/usecase/Amministratore2.png}
 \end{center}
 
-\subsection{Creare account moderatore o associazione/comitato \ref{rf:registrazionemodass}}
+\subsection{Creare account moderatore o associazione \ref{rf:registrazionemodass}}
 \textbf{Riassunto:}
-Questo caso d’uso descrive la procedura di creazione di un nuovo account di tipo moderatore o associazione/comitato tramite l’interfaccia amministrativa.
+Questo caso d’uso descrive la procedura di creazione di un nuovo account di tipo moderatore o associazione tramite l’interfaccia amministrativa.
 
 \textbf{Precondizioni:}
 L’amministratore è autenticato e ha i permessi di gestione utenti.
@@ -253,11 +256,11 @@ L’account risulta creato, registrato e notificato via email.
 \textbf{Descrizione:}
 \begin{enumerate}
   \item L’amministratore accede alla sezione di gestione utenti.
-  \item Seleziona il tipo di account da creare (moderatore o associazione/comitato).
+  \item Seleziona il tipo di account da creare (moderatore o associazione).
   \item Inserisce i dati richiesti e conferma l’operazione.
   \item Il sistema verifica la correttezza e completezza dei dati inseriti.
   \item In caso di esito positivo, il sistema crea il nuovo account.
-  \item Il sistema invia una comunicazione email all’utente interessato.
+  \item Il sistema invia credenziali email all’utente interessato.
 \end{enumerate}
 
 \textbf{Eccezioni:}
@@ -267,7 +270,7 @@ L’account risulta creato, registrato e notificato via email.
   \item [E3.] Errore nell’invio dell’email: il sistema registra l’errore e notifica l’amministratore.
 \end{itemize}
 
-\subsection{Gestire sondaggi \ref{rf:sondaggi}}
+\subsection{Pubblicare un sondaggio \ref{rf:sondaggi}}
 \textbf{Riassunto:}
 Questo caso d’uso descrive la pubblicazione di un sondaggio rivolto ai cittadini.
 
@@ -293,7 +296,7 @@ Il sondaggio viene pubblicato.
   \item [E3.] Errore durante l’invio delle notifiche: il sistema completa la pubblicazione ma registra l’errore di comunicazione.
 \end{itemize}
 
-\subsection{Consultare e scaricare report\ref{rf:dashboard}}
+\subsection{Consultare ed esportare dati dalla dashboard amministrativa\ref{rf:dashboard}}
 \textbf{Riassunto:}
 Questo caso d’uso descrive l’utilizzo della dashboard amministrativa per consultare, filtrare ed esportare i dati aggregati del sistema.
 
@@ -328,6 +331,7 @@ La proposta è in stato \textit{in valutazione}.
 
 \textbf{Postcondizioni:}
 La proposta risulta \textit{accettata} oppure \textit{rifiutata}.
+La motivazione viene resa visibile al pubblico.
 
 \textbf{Descrizione:}
 \begin{enumerate}
@@ -345,7 +349,7 @@ La proposta risulta \textit{accettata} oppure \textit{rifiutata}.
   \item La proposta risulta già valutata da un altro amministratore: il sistema impedisce l’operazione.
 \end{enumerate}
 
-\subsection{Pubblicare o aggiornare un report amministrativo}
+\subsection{Pubblicare un report di valutazione su una proposta}
 
 \textbf{Riassunto:}
 Questo caso d’uso descrive come l’amministratore redige o aggiorna un report relativo a una proposta, eventualmente modificandone lo stato.
@@ -370,38 +374,6 @@ Lo stato della proposta può essere modificato.
   \item Il report è in modifica da parte di un altro amministratore: l’operazione viene bloccata.
 \end{enumerate}
 
-\section{Cittadino}
-\localtableofcontentswithrelativedepth{+1}
-
-\begin{center}
-  \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
-\end{center}
-
-\subsection{Eseguire una simulazione di policy} \ref{rf:policysimulator}
-
-\textbf{Riassunto:}
-Questo use case descrive come un amministratore configura ed esegue un modello di simulazione sui dati relativi alle proposte.
-
-\textbf{Precondizioni}
-Dataset e parametri sono disponibili nel sistema.
-
-\textbf{Postcondizioni}
-Gli indicatori di simulazione vengono generati.
-
-\textbf{Descrizione}
-\begin{enumerate}
-  \item L’amministratore apre il modulo “Policy Simulator”.
-  \item Configura parametri, coefficienti e modello da utilizzare.
-  \item Avvia la simulazione.
-  \item Il sistema calcola gli indicatori di simulazione.
-\end{enumerate}
-
-\textbf{Eccezioni:}
-\begin{enumerate}
-  \item I parametri sono incompleti o non validi, viene richiesta una correzione.
-  \item Dataset mancante: la simulazione non è avviabile.
-\end{enumerate}
-
 \subsection{Visualizzare il risultato di una simulazione}
 
 \textbf{Riassunto:}
@@ -424,6 +396,13 @@ I risultati della simulazione sono visualizzati.
 \begin{enumerate}
   \item Nessuna simulazione disponibile: viene mostrato messaggio di avviso.
 \end{enumerate}
+
+\section{Cittadino}
+\localtableofcontentswithrelativedepth{+1}
+
+\begin{center}
+  \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
+\end{center}
 
 \subsection{Creazione proposta \ref{rf:creazioneproposta}
 
@@ -476,9 +455,9 @@ I risultati della simulazione sono visualizzati.
 
 
 
-\subsection{Pubblicazione proposta \ref{rf:creazioneproposta}}
+\subsection{Pubblicazione proposta \ref{rf:pubblicazioneproposta}}
 
-\subsection{Eliminazione proposta \ref{rf: ?}}
+\subsection{Eliminazione proposta \ref{rf:scartareproposta}}
 
 \subsection{Modifiche ad una proposta \ref{rf:modificacollaborativa}}
 
@@ -621,12 +600,14 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
 \section{Moderatore}
 \localtableofcontentswithrelativedepth{+1}
 
+\begin{enumerate}
+	\item Moderazione tramite coda di revisione (\ref{rf:modcoda})
+	\item Moderazione spontanea dei contenuti (\ref{rf:moderazioneutenti})
+\end{enumerate}
+
 \begin{center}
 	\includegraphics[scale=0.9]{img/usecase/Moderatore.png}
 \end{center}
-
-\section{Moderatore}
-\localtableofcontentswithrelativedepth{+1}
 
 \subsection{Moderazione tramite coda di revisione} \label{UC:modcoda}
 

@@ -41,7 +41,8 @@ Il sistema deve consentire all’utente di visualizzare e aggiornare le proprie 
 
 \subsubsection{Dati personali e credenziali} \label{rf:datiecred}
 Il sistema deve consentire all’utente di modificare il proprio indirizzo email, la password e il nome utente.  
-Il sistema deve mostrare all’utente i dati attualmente associati al profilo.
+Il sistema deve mostrare all’utente i dati attualmente associati al profilo, ad eccezione della password, che non è mai visualizzata né recuperabile. 
+L’aggiornamento della password avviene tramite inserimento di una nuova password.
 Se l'utente modifica email o password il sistema invalida il cookie di autenticazione (se esistente).
 
 \subsubsection{Eliminazione del profilo} \label{rf:eliminazioneprofilo}
@@ -52,7 +53,7 @@ Trascorso tale periodo, il sistema deve procedere alla cancellazione definitiva 
 \section{Gestione delle proposte}
 
 \subsection{Creazione di una proposta} \label{rf:creazioneproposta}
-Il sistema deve consentire ai cittadini di creare una nuova proposta compilando un modulo che include i seguenti campi obbligatori:
+Il sistema deve consentire agli utenti di creare una nuova proposta compilando un modulo che include i seguenti campi obbligatori:
 
 \begin{itemize}
     \item \textbf{Titolo} — breve testo che sintetizza l’obiettivo principale della proposta;
@@ -64,15 +65,25 @@ Il sistema deve consentire ai cittadini di creare una nuova proposta compilando 
 Per ogni proposta il sistema deve inoltre registrare automaticamente:
 
 \begin{itemize}
-    \item \textbf{Autore} — nome utente del cittadino che ha creato la proposta;
+    \item \textbf{Autore} — nome utente dell'autore della proposta;
     \item \textbf{Data} — timestamp di creazione generato dal sistema.
 \end{itemize}
 
 La presenza e la struttura dei campi aggiuntivi dipendono dalla categoria selezionata.
 Il sistema deve quindi applicare, per ciascuna categoria, l’insieme dei campi specifici e obbligatori definiti in \defref{def:categoria}.
 
+\subsubsection{Scartare proposta} \lavel{rf:scartarebozza}
+Il sistema deve consentire all'utente, in fase di creazione di una proposta, di scartare la bozza. Il sistema non registra nessun dato.
+
 \subsection{Salvataggio come bozza} \label{rf:salvataggiobozza}
-Il sistema deve consentire al cittadino di salvare una proposta nello stato di \textit{bozza}. La bozza verrà contrassegnata con tale stato e sarà visibile (assieme alle altre bozze) solo all’autore all’interno della lista personale delle proposte. Inoltre, selezionando una bozza, il sistema riaprirà il modulo di compilazione per consentirne la modifica e/o la pubblicazione.
+Il sistema deve consentire all'utente di salvare una proposta nello stato di \textit{bozza}. La bozza verrà contrassegnata con tale stato e sarà visibile (assieme alle altre bozze) solo all’autore all’interno della lista personale delle proposte. Inoltre, selezionando una bozza, il sistema riaprirà il modulo di compilazione per consentirne la modifica e/o la pubblicazione.
+
+\subsection{Pubblicazione proposta} \label{rf:pubblicazioneproposta}
+Il sistema deve consentire all'utente di pubblicare una proposta precedentemente creata o salvata in stato di \textit{bozza}.  
+La pubblicazione è possibile solo se tutti i campi obbligatori e quelli previsti per la categoria risultano compilati; una volta pubblicata, la proposta assume lo stato \textit{pubblicata}.
+
+\subsection{Eliminazione proposta} \label{rf:eliminazioneproposta}
+Il sistema deve consentire l'eliminazione di una proposta pubblicata da parte del suo autore.
 
 \subsection{Proposte collettive} \label{rf:propostecollettive}
 Il sistema deve consentire ad associazioni e comitati di presentare \textit{proposte collettive} \defref{def:propostacollettiva}, etichettate come tali.
@@ -159,8 +170,15 @@ Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati selezi
 Ogni segnalazione deve generare un elemento nella coda di revisione dei moderatori.
 
 \subsection{Moderazione automatica} \label{rf:moderazioneautomatica}
-Il sistema deve analizzare automaticamente i testi generati dagli utenti per rilevare linguaggio inappropriato, spam o duplicati.
-In caso di rilevamento, il sistema deve inserire l’elemento nella coda di revisione o rimuoverlo.
+Il sistema deve analizzare automaticamente i contenuti generati dagli utenti per individuare linguaggio inappropriato, spam o duplicati.
+
+In caso di rilevamento, il sistema deve:
+\begin{itemize}
+    \item impedire temporaneamente la pubblicazione del contenuto oppure nasconderlo dalla visualizzazione pubblica;
+    \item inserire il contenuto nella coda di revisione dei moderatori (\ref{rf:validazionecontenuti});
+\end{itemize}
+
+La moderazione automatica non deve effettuare rimozioni definitive né applicare limitazioni agli account. Le decisioni con effetto permanente devono essere convalidate da un moderatore o dall’amministrazione secondo le procedure previste.
 
 \subsection{Coda di revisione} \label{rf:validazionecontenuti}
 Il sistema deve permettere ai moderatori di visualizzare l’elenco dei contenuti segnalati o rilevati automaticamente. Il sistema deve permettere di approvare una segnalazione o di procedere con limitazione e rimozione (\ref{rf:rimozionecontenuti}, \ref{rf:moderazioneutenti}); dunque eliminando la segnalazione dalla coda di revisione.
@@ -254,5 +272,7 @@ Il sistema deve inoltre:
 \subsection{Modifica dello stato di una proposta} \label{rf:modificastatoproposta}
 Il sistema deve consentire all’amministratore di aggiornare lo stato di una proposta \defref{def:statoproposta} secondo il flusso previsto: da \textit{pubblicata} a \textit{in valutazione}, quindi a \textit{accettata} o \textit{rifiutata}.
 In caso di stato \textit{accettata}, il sistema deve permettere il passaggio agli stati \textit{in attuazione} e \textit{completata}.
-In caso di stato \textit{rifiutata}.
 In ogni caso il sistema deve consentire all’amministratore di pubblicare una motivazione associata alla decisione.
+
+\subsection{Pubblicare un report di valutazione} \label{rf:pubblicaportvalutazione}
+Il sistema deve consentire all’amministratore di redigere, aggiornare e pubblicare il report di valutazione associato a una proposta, includendo testo descrittivo, allegati e indicatori quantitativi/qualitativi. Al momento della pubblicazione, il sistema deve permettere opzionalmente la modifica dello stato della proposta.
