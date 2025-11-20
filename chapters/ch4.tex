@@ -234,7 +234,7 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 	\item Pubblicare un sondaggio (\ref{rf:sondaggi})
 	\item Consultare ed esportare dati dalla dashboard amministrativa (\ref{rf:report})
 	\item Approvare/rifiutare una proposta (\ref{rf:modificastatoproposta})
-	\item Pubblicare un report di valutazione su una proposta (\ref{rf:pubblicaportvalutazione})
+	\item Pubblicare un report di valutazione su una proposta (\ref{rf:report})
 	\item Visualizzare policy simulation (\ref{rf:visualizzazionesimulazione})
 \end{enumerate}
 
@@ -404,7 +404,7 @@ I risultati della simulazione sono visualizzati.
   \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
 \end{center}
 
-\subsection{Creazione proposta \ref{rf:creazioneproposta}
+\subsection{Creazione proposta \ref{rf:creazioneproposta}}
 
 \textbf{Riassunto:} Questo use case descrive come un cittadino autenticato crea una nuova proposta.
 
@@ -457,7 +457,7 @@ I risultati della simulazione sono visualizzati.
 
 \subsection{Pubblicazione proposta \ref{rf:pubblicazioneproposta}}
 
-\subsection{Eliminazione proposta \ref{rf:scartareproposta}}
+\subsection{Eliminazione proposta \ref{rf:eliminazioneproposta}}
 
 \subsection{Modifiche ad una proposta \ref{rf:modificacollaborativa}}
 
@@ -601,7 +601,7 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
 \localtableofcontentswithrelativedepth{+1}
 
 \begin{enumerate}
-	\item Moderazione tramite coda di revisione (\ref{rf:modcoda})
+	\item Moderazione tramite coda di revisione (\ref{rf:moderazioneutenti})
 	\item Moderazione spontanea dei contenuti (\ref{rf:moderazioneutenti})
 \end{enumerate}
 
@@ -609,7 +609,7 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
 	\includegraphics[scale=0.9]{img/usecase/Moderatore.png}
 \end{center}
 
-\subsection{Moderazione tramite coda di revisione} \label{UC:modcoda}
+\subsection{Moderazione tramite coda di revisione} \label{uc:modcoda}
 
 \textbf{Riassunto:}  
 Questo use case descrive come il moderatore analizza contenuti segnalati dai cittadini o rilevati automaticamente dal sistema e decide l’esito della revisione.
@@ -619,7 +619,7 @@ Esistono contenuti presenti nella coda di revisione.
 
 \textbf{Postcondizioni:}  
 Il contenuto risulta confermato oppure rimosso.  
-Eventuali limitazioni all’autore possono essere applicate (\textit{estensione} \ref{UC:modlimitazioni}).
+Eventuali limitazioni all’autore possono essere applicate (\textit{estensione} \ref{uc:modlimitazioni}).
 
 \textbf{Descrizione:}
 \begin{enumerate}
@@ -629,8 +629,8 @@ Eventuali limitazioni all’autore possono essere applicate (\textit{estensione}
   \item Valuta la conformità rispetto alle policy della piattaforma e decide tra:
   \begin{itemize}
     \item confermare il contenuto;
-    \item rimuovere il contenuto (include \ref{UC:rimozione});
-    \item applicare una limitazione all’autore (estende \ref{UC:modlimitazioni}).
+    \item rimuovere il contenuto (include \ref{uc:rimozione});
+    \item applicare una limitazione all’autore (estende \ref{uc:modlimitazioni}).
   \end{itemize}
   \item Il sistema aggiorna lo stato della segnalazione e registra l’esito.
 \end{enumerate}
@@ -642,7 +642,7 @@ Eventuali limitazioni all’autore possono essere applicate (\textit{estensione}
 \end{itemize}
 
 
-\subsection{Moderazione spontanea dei contenuti} \label{UC:modspontanea}
+\subsection{Moderazione spontanea dei contenuti} \label{uc:modspontanea}
 
 \textbf{Riassunto:}  
 Questo use case descrive come il moderatore interviene autonomamente su contenuti pubblicati senza passare dalla coda di revisione.
@@ -652,7 +652,7 @@ Il moderatore è autenticato e ha accesso ai contenuti pubblici.
 
 \textbf{Postcondizioni:}  
 Il contenuto risulta confermato o rimosso.  
-Eventuali limitazioni possono essere applicate (\textit{estensione} \ref{UC:modlimitazioni}).
+Eventuali limitazioni possono essere applicate (\textit{estensione} \ref{uc:modlimitazioni}).
 
 \textbf{Descrizione:}
 \begin{enumerate}
@@ -662,8 +662,8 @@ Eventuali limitazioni possono essere applicate (\textit{estensione} \ref{UC:modl
   \item Valuta la conformità rispetto alle policy della piattaforma e decide tra:
   \begin{itemize}
     \item non intervenire;
-    \item rimuovere il contenuto (include \ref{UC:rimozione});
-    \item applicare una limitazione (estende \ref{UC:mod-limitazioni}).
+    \item rimuovere il contenuto (include \ref{uc:rimozione});
+    \item applicare una limitazione (estende \ref{uc:modlimitazioni}).
   \end{itemize}
   \item Il sistema registra l’azione eventualmente intrapresa.
 \end{enumerate}
@@ -676,7 +676,7 @@ Eventuali limitazioni possono essere applicate (\textit{estensione} \ref{UC:modl
 
 
 
-\subsection{Rimozione di un contenuto} \label{UC:rimozione}
+\subsection{Rimozione di un contenuto} \label{uc:rimozione}
 
 \textbf{Riassunto:}  
 Questo use case descrive come il moderatore elimina un contenuto che viola le policy.
@@ -687,12 +687,12 @@ Questo use case descrive come il moderatore elimina un contenuto che viola le po
   \item Inserisce la motivazione dell’intervento.
   \item Il sistema elimina il contenuto dalla piattaforma.
   \item Il sistema registra: motivazione, timestamp e identificativo del moderatore.
-  \item Il sistema offre la possibilità di applicare una limitazione all’autore (estensione \ref{UC:modlimitazioni}).
+  \item Il sistema offre la possibilità di applicare una limitazione all’autore (estensione \ref{uc:modlimitazioni}).
 \end{enumerate}
 
 
 
-\subsection{Applicazione limitazioni all’autore} \label{UC:modlimitazioni}
+\subsection{Applicazione limitazioni all’autore} \label{uc:modlimitazioni}
 
 \textbf{Attore principale:} Moderatore  
 \textbf{Attore secondario:} Amministrazione
@@ -731,5 +731,5 @@ Questo use case descrive come il moderatore gestisce eventuali limitazioni all�
     \item la contestazione,
     \item che la decisione finale è in carico all’amministrazione.
   \end{itemize}
-  \item L’amministrazione valuterà il provvedimento secondo il processo definito nel Requito Funzionale \ref{rf:modoerazioneprocamm}.
+  \item L’amministrazione valuterà il provvedimento secondo il processo definito nel Requito Funzionale \ref{rf:moderazioneassociazioni}.
 \end{enumerate}
