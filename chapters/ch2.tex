@@ -41,7 +41,7 @@ Il sistema deve mostrare all’utente i dati attualmente associati al profilo, a
 L’aggiornamento della password avviene tramite inserimento di una nuova password.
 Se l'utente modifica email o password il sistema: invalida il cookie di autenticazione (se esistente) ed invia un'email di verifica all'utente.
 
-\subsubsection{Ricezione notifiche}
+\subsubsection{Ricezione notifiche} \label{rf:prefnotifiche}
 Il sistema deve consentire all’utente di modificare la propria preferenza riguardo alla ricezione delle notifiche via email, scegliendo tra le opzioni abilita/disabilita.
 
 \subsubsection{Eliminazione del profilo} \label{rf:eliminazioneprofilo}
@@ -92,7 +92,7 @@ Il sistema deve consentire:
 \begin{itemize}
   \item ai cittadini e alle associazioni di visualizzare le proprie proposte, pubblicate o in bozza;
   \item a qualunque utente di visualizzare le proposte pubblicate da altri;
-  \item di visualizzare i sondaggi pubblicati dall’amministrazione (\ref{rf:sondaggi}).
+  \item a qualunque utente di visualizzare i sondaggi pubblicati dall’amministrazione (\ref{rf:sondaggi}).
 \end{itemize}
 
 \subsection{Modifica collaborativa} \label{rf:modificacollaborativa}
@@ -119,7 +119,7 @@ Il sistema deve consentire alle associazioni autrici di \textit{endorsement} di 
 Il sistema deve consentire agli utenti autenticati di esprimere un voto su:
 
 \begin{itemize}
-    \item \textbf{Proposte} — il voto (positivo / negativo) può essere modificato fino alla definizione dell’esito (\textit{accettata} o \textit{rifiutata});
+    \item \textbf{Proposte} — il voto (positivo/negativo) può essere modificato fino alla definizione dell’esito (\textit{accettata} o \textit{rifiutata});
     \item \textbf{Sondaggi} — il voto può essere modificato fino alla chiusura del periodo di validità del sondaggio.
 \end{itemize}
 
@@ -169,15 +169,13 @@ Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati selezi
 Ogni segnalazione deve generare un elemento nella coda di revisione dei moderatori.
 
 \subsection{Moderazione automatica} \label{rf:moderazioneautomatica}
-Il sistema deve analizzare automaticamente i contenuti generati dagli utenti per individuare linguaggio inappropriato, spam o duplicati.
+Il sistema deve analizzare automaticamente i contenuti generati dagli utenti per individuare linguaggio inappropriato, spam o duplicati (\ref{rnf:moderazioneautomatica}).
 
 In caso di rilevamento, il sistema deve:
 \begin{itemize}
-    \item impedire temporaneamente la pubblicazione del contenuto oppure nasconderlo dalla visualizzazione pubblica;
+    \item nascondere temporaneamente il contenuto dalla visualizzazione pubblica;
     \item inserire il contenuto nella coda di revisione dei moderatori (\ref{rf:validazionecontenuti});
 \end{itemize}
-
-La moderazione automatica non deve effettuare rimozioni definitive né applicare limitazioni agli account. Le decisioni con effetto permanente devono essere convalidate da un moderatore o dall’amministrazione secondo le procedure previste.
 
 \subsection{Coda di revisione} \label{rf:validazionecontenuti}
 Il sistema deve permettere ai moderatori di visualizzare l’elenco dei contenuti segnalati o rilevati automaticamente. Il sistema deve permettere di approvare una segnalazione o di procedere con limitazione e rimozione (\ref{rf:rimozionecontenuti}, \ref{rf:moderazioneutenti}); dunque eliminando la segnalazione dalla coda di revisione.
@@ -271,7 +269,7 @@ Il sistema deve inoltre:
 \subsection{Modifica dello stato di una proposta} \label{rf:modificastatoproposta}
 Il sistema deve consentire all’amministratore di aggiornare lo stato di una proposta \defref{def:statoproposta} secondo il flusso previsto: da \textit{pubblicata} a \textit{in valutazione}, quindi a \textit{accettata} o \textit{rifiutata}.
 In caso di stato \textit{accettata}, il sistema deve permettere il passaggio agli stati \textit{in attuazione} e \textit{completata}.
-In ogni caso il sistema deve consentire all’amministratore di pubblicare una motivazione associata alla decisione.
+In ogni caso il sistema deve consentire all’amministratore di pubblicare un report di valutazione associato alla decisione (\ref{rf:pubblicaportvalutazione}).
 
 \subsection{Pubblicare un report di valutazione} \label{rf:pubblicaportvalutazione}
-Il sistema deve consentire all’amministratore di redigere, aggiornare e pubblicare il report di valutazione associato a una proposta, includendo testo descrittivo, allegati e indicatori quantitativi/qualitativi. Al momento della pubblicazione, il sistema deve permettere opzionalmente la modifica dello stato della proposta.
+Il sistema deve consentire all’amministratore di redigere, aggiornare e pubblicare il report di valutazione associato a una proposta, includendo testo descrittivo e indicatori quantitativi/qualitativi.
