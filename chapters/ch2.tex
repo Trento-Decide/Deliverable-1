@@ -6,84 +6,256 @@
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{0pt}
 
-\section*{Introduzione}
+\section{Introduzione}
 I requisiti funzionali definiscono le funzioni che il sistema \textit{Trento Decide} deve offrire per supportare la partecipazione civica, la collaborazione tra cittadini e amministrazione comunale e la trasparenza del processo decisionale.
 Ogni requisito è formulato in modo chiaro e verificabile ed è identificato dal prefisso \textbf{RF}, seguito da un numero progressivo e, ove necessario, da sottosezioni tematiche.
 
-\section{Autenticazione e gestione credenziali}
+\section{Autenticazione e gestione credenziali} \label{rf:autecred}
 
-\subsection{Registrazione del cittadino} \label{RF:registrazionecittadino}
-L’utente che intende registrarsi come cittadino deve accedere tramite SPID o CIE.
-Dopo l’autenticazione SPID/CIE, il sistema verifica la residenza dell’utente nel Comune attraverso ANPR.
+\subsection{Registrazione del cittadino} \label{rf:registrazionecittadini}
+L’utente che intende registrarsi come cittadino deve accedere tramite SPID o CIE.  
+Dopo l’autenticazione SPID/CIE, il sistema verifica la residenza dell’utente nel Comune attraverso ANPR.  
 Superata la verifica, il sistema richiede l’inserimento delle credenziali locali (email, password e nome utente).
 
-L’utente può inoltre acconsentire facoltativamente alla ricezione di notifiche via email (abilita/disabilita).
+L’utente può inoltre acconsentire facoltativamente alla ricezione di notifiche via email (abilita/disabilita).  
+Il sistema invia un'email di verifica, l'utente ha 10 minuti dalla conferma dei dati per abilitare il proprio account.
 Al termine della procedura, il sistema invia un’email di conferma all’indirizzo fornito.
 
-\subsection{Registrazione di moderatori e associazioni} \label{RF:specialregistrazione}
-Gli account dei moderatori e delle associazioni/comitati vengono creati dall’amministratore tramite l’interfaccia di gestione.
-Il sistema invia ai destinatari le credenziali di accesso tramite email.
+\subsection{Registrazione di moderatori e associazioni} \label{rf:registrazionemodass}
+Gli account dei moderatori e delle associazioni/comitati vengono creati dall’amministratore tramite l’interfaccia di gestione dedicata.
+Il sistema invia automaticamente ai destinatari le credenziali di accesso tramite email.
 
-\subsection{Login} \label{RF:login}
-Il sistema deve consentire il login tramite credenziali locali (email e password) oppure tramite SPID o CIE. Viene richiesto all'utente se mantenere attiva la sessione ("ricordami"), in tal caso il sistema salva nella macchina locale un cookie di autenticazione.
+\subsection{Login} \label{rf:login}
+Il sistema deve consentire il login tramite email e password oppure tramite SPID o CIE. Viene richiesto all'utente se mantenere attiva la sessione ("ricordami"), in tal caso il sistema salva nella macchina locale un cookie di autenticazione.
 
-\subsection{Logout} \label{RF:logout}
-Il sistema deve consentire ad ogni utente di terminare la propria sessione tramite una funzione di logout.
-Il sistema dunque invalida il cookie di autenticazione (se esistente) e reindirizza l’utente alla schermata di login.
+\subsection{Logout} \label{rf:logout}
+Il sistema deve consentire all’utente autenticato di terminare la propria sessione tramite una funzione di logout.
+A logout avvenuto, il sistema invalida il cookie di autenticazione (se esistente) e reindirizza l’utente alla schermata di login.
 
-\subsection{Gestione profilo e dati personali} \label{RF:profilehandling}
-L’utente deve poter visualizzare e gestire i propri dati personali, come segue:
+\subsection{Gestione del profilo e dei dati personali} \label{rf:gestioneprofiloedati}
+Il sistema deve consentire all’utente di visualizzare e aggiornare le proprie informazioni personali e le credenziali di accesso, come segue:
 
-\subsubsection{Credenziali}
-Il sistema deve consentire all’utente di aggiornare email, password e username.
-Il sistema deve inoltre mostrare all’utente i valori correnti di email e username.
+\subsubsection{Dati personali e credenziali} \label{rf:datiecred}
+Il sistema deve consentire all’utente di modificare il proprio indirizzo email, la password e il nome utente.  
+Il sistema deve mostrare all’utente i dati attualmente associati al profilo, ad eccezione della password, che non è mai visualizzata né recuperabile. 
+L’aggiornamento della password avviene tramite inserimento di una nuova password.
+Se l'utente modifica email o password il sistema: invalida il cookie di autenticazione (se esistente) ed invia un'email di verifica all'utente.
 
 \subsubsection{Ricezione notifiche}
 Il sistema deve consentire all’utente di modificare la propria preferenza riguardo alla ricezione delle notifiche via email, scegliendo tra le opzioni abilita/disabilita.
 
-\subsubsection{Storico modifiche}
-Il sistema deve mostrare all’utente lo storico delle modifiche effettuate alle proprie credenziali, includendo data e tipo di modifica.
-
-\subsubsection{Eliminazione profilo}
-Il sistema deve consentire all’utente di richiedere la cancellazione del proprio profilo.
-Una volta richiesta l’eliminazione, l’utente deve poter accedere al proprio profilo per le successive 48 ore, durante le quali può annullare la richiesta.
+\subsubsection{Eliminazione del profilo} \label{rf:eliminazioneprofilo}
+Il sistema deve consentire all’utente di richiedere la cancellazione del proprio profilo.  
+Dopo la richiesta, l’account rimane accessibile per 48 ore, durante le quali l’utente può annullare l’eliminazione.
+Trascorso tale periodo, il sistema deve procedere alla cancellazione definitiva dell’account e dei relativi dati.
 
 \section{Gestione delle proposte}
 
-\subsection{Creazione proposta} \label{RF:creazioneproposta}
-Il sistema deve consentire ai cittadini di creare nuove proposte, compilando un modulo composto dai seguenti campi obbligatori:
+\subsection{Creazione di una proposta} \label{rf:creazioneproposta}
+Il sistema deve consentire agli utenti di creare una nuova proposta compilando un modulo che include i seguenti campi obbligatori:
+
 \begin{itemize}
-    \item \textbf{Titolo} — testo breve che identifica la proposta;
-    \item \textbf{Descrizione} — testo esteso che illustra il contenuto della proposta;
-    \item \textbf{Luogo} — indicazione dell’area geografica interessata, selezionabile tramite indirizzo;
-    \item \textbf{Categoria} — \defref{def:categoria};
+    \item \textbf{Titolo} — breve testo che sintetizza l’obiettivo principale della proposta;
+    \item \textbf{Descrizione} — testo che illustra in modo completo il contenuto, le finalità e le motivazioni della proposta;
+    \item \textbf{Luogo} — indicazione dell’area interessata, obbligatoria solo per le categorie che lo prevedono, selezionabile tramite indirizzo validato o altro meccanismo definito dalla categoria;
+    \item \textbf{Categoria} — ambito tematico della proposta, come definito in \defref{def:categoria};
 \end{itemize}
 
-Inoltre il sistema deve salvare automaticamente, per ogni proposta, le seguenti informazioni:
+Per ogni proposta il sistema deve inoltre registrare automaticamente:
+
 \begin{itemize}
-    \item \textbf{Autore} — nome utente del cittadino che ha creato la proposta;
-    \item \textbf{Data} — timestamp di creazione generato dal sistema;
+    \item \textbf{Autore} — nome utente dell'autore della proposta;
+    \item \textbf{Data} — timestamp di creazione generato dal sistema.
 \end{itemize}
 
-I valori e la presenza di ciascun campo possono variare in base alla categoria selezionata.
-Il sistema deve utilizzare per ogni categoria il proprio elenco di campi specifici e obbligatori \defref{def:categoria}.
+La presenza e la struttura dei campi aggiuntivi dipendono dalla categoria selezionata.
+Il sistema deve quindi applicare, per ciascuna categoria, l’insieme dei campi specifici e obbligatori definiti in \defref{def:categoria}.
 
-\subsubsection{Scartare proposta}
-In fase di creazione il cittadino può in ogni momento decidere di scartare la proposta. Il sistema non registra nessun dato.
+\subsubsection{Scartare proposta} \label{rf:scartarebozza}
+Il sistema deve consentire all'utente, in fase di creazione di una proposta, di scartare la bozza. Il sistema non registra nessun dato.
 
-\subsubsection{Salvare proposta come bozza} \label{RF:salvacomebozza}
-In fase di creazione il cittadino può salvare la proposta in stato di \textit{bozza}. Tale proposta è visualizzabile nell'elenco delle proprie proposte e selezionandola il sistema riaprirà il modulo di compilazione per consentirne la modifica.
+\subsection{Salvataggio come bozza} \label{rf:salvataggiobozza}
+Il sistema deve consentire all'utente di salvare una proposta nello stato di \textit{bozza}. La bozza verrà contrassegnata con tale stato e sarà visibile (assieme alle altre bozze) solo all’autore all’interno della lista personale delle proposte. Inoltre, selezionando una bozza, il sistema riaprirà il modulo di compilazione per consentirne la modifica e/o la pubblicazione.
 
-\subsubsection{Pubblicazione proposta} \label{RF:pubblicaproposta}
+\subsection{Pubblicazione proposta} \label{rf:pubblicazioneproposta}
+Il sistema deve consentire all'utente di pubblicare una proposta precedentemente creata o salvata in stato di \textit{bozza}.  
 La pubblicazione è possibile solo se tutti i campi obbligatori e quelli previsti per la categoria risultano compilati; una volta pubblicata, la proposta assume lo stato \textit{pubblicata}.
 
-\subsection{Eliminazione proposta} \label{RF:eliminaproposta}
-Il sistema deve consentire al cittadino autore di una proposta pubblicata di eliminarla, a seguito dell'eliminazione il sistema rimuove dalla pubblicazione tutti i dati e le modifiche relative.
-Una proposta pubblica è eliminabile solamente se in stato di \textit{pubblicata}.
+\subsection{Eliminazione proposta} \label{rf:eliminazioneproposta}
+Il sistema deve consentire l'eliminazione di una proposta pubblicata da parte del suo autore.
 
-\subsection{Pubblicazione sondaggi} \label{RF:sondaggi}
-Il sistema deve consentire all’amministrazione di creare, pubblicare e gestire sondaggi tematici rivolti ai cittadini.
-Ogni sondaggio deve comprendere:
+\subsection{Proposte collettive} \label{rf:propostecollettive}
+Il sistema deve consentire ad associazioni e comitati di presentare \textit{proposte collettive} \defref{def:propostacollettiva}, etichettate come tali.
+
+\subsection{Visualizzazione proposte e sondaggi}
+Il sistema deve consentire:
+\begin{itemize}
+  \item ai cittadini e alle associazioni di visualizzare le proprie proposte, pubblicate o in bozza;
+  \item a qualunque utente di visualizzare le proposte pubblicate da altri;
+  \item di visualizzare i sondaggi pubblicati dall’amministrazione (\ref{rf:sondaggi}).
+\end{itemize}
+
+\subsection{Modifica collaborativa} \label{rf:modificacollaborativa}
+Il sistema deve consentire la modifica collaborativa delle proposte, come segue:
+
+\subsubsection{Versionamento} \label{rf:versionamento}
+Ogni modifica a una proposta deve registrare autore, data/ora, descrizione e differenze rispetto alla versione precedente; tutte le versioni restano consultabili. Tutti i voti precedentemente assegnati alla proposta di versione precedente vengono azzerati (e salvati nella versione precedente).
+\subsubsection{Proposte di modifica da terzi} \label{rf:modificadaterzi}
+Un utente diverso dal creatore può proporre una modifica; la proposta entra in uno stato di revisione non pubblica fino a decisione.
+\subsubsection{Approvazione delle modifiche} \label{rf:approvazionemodifiche}
+Il creatore della proposta può accettare o rifiutare una proposta di modifica; l’esito è tracciato.
+\subsubsection{Ripristino} \label{rf:ripristinoproposta}
+Deve essere possibile ripristinare una versione precedente come versione principale. Vengono ripristinati anche i voti.
+
+Il sistema di modifica non è utilizzabile se una proposta è in stato diverso da \textit{pubblicata}.
+
+\subsection{Endorsement} \label{rf:endorsement}
+Il sistema deve consentire alle associazioni di esprimere un singolo \textit{endorsement} digitale (def.~\ref{def:endorsement}) per proposta pubblicata.
+
+\subsubsection{Rimozione Endorsement} \label{rf:rimozioneendoresement}
+Il sistema deve consentire alle associazioni autrici di \textit{endorsement} di rimuoverlo.
+
+\subsection{Votazione} \label{rf:voto}
+Il sistema deve consentire agli utenti autenticati di esprimere un voto su:
+
+\begin{itemize}
+    \item \textbf{Proposte} — il voto (positivo / negativo) può essere modificato fino alla definizione dell’esito (\textit{accettata} o \textit{rifiutata});
+    \item \textbf{Sondaggi} — il voto può essere modificato fino alla chiusura del periodo di validità del sondaggio.
+\end{itemize}
+
+Ogni elettore può esprimere un solo voto per ciascuna proposta o per ciascun quesito presente nei sondaggi.
+
+\section{Personalizzazione e preferenze} \label{rf:personalizzazioneepreferenze}
+
+\subsection{Gestione dei preferiti} \label{rf:preferiti}
+Il sistema deve consentire al cittadino di:
+\begin{itemize}
+	\item aggiungere o rimuovere proposte e sondaggi dai \textit{preferiti};
+	\item visualizzare l’elenco dei propri elementi preferiti;
+\end{itemize}
+
+\subsection{Notifiche e avvisi} \label{rf:notifiche}
+Il sistema deve inviare notifiche automatiche per variazioni di stato riguardo elementi posti nei propri preferiti.
+Inoltre il sistema invia notifiche per qualsiasi aggiornamento in proposte proprie (variazioni di stato e richieste di modifica).
+Le notifiche vengono inviate solo se il cittadino ha espresso il consenso alla ricezione di notifiche durante il processo di registrazione (\ref{rf:registrazionecittadini}).
+
+\subsection{Cambio di lingua} \label{rf:cambiolingua}
+Il sistema deve consentire all’utente di modificare la lingua (definite in \ref{rnf:lingua}) dell’interfaccia tramite un menu dedicato accessibile dall’area utente.
+La preferenza linguistica deve essere registrata nel profilo utente e mantenuta tra le sessioni di accesso.
+
+\subsection{Ordinamento delle proposte}  \label{rf:ordinamentoproposte}
+Il sistema deve consentire all’utente di ordinare l’elenco delle proposte pubbliche in base ai seguenti criteri:
+\begin{itemize}
+  \item data di pubblicazione;
+  \item numero totale di voti;
+\end{itemize}
+
+L’utente deve poter invertire l’ordine (crescente/decrescente) per ciascun criterio, quando applicabile.
+
+
+\subsection{Filtraggio delle proposte} \label{rf:filtroproposte}
+Il sistema deve consentire di filtrare l’elenco delle proposte per:
+\begin{itemize}
+  \item categoria;
+  \item stato della proposta;
+  \item area geografica.
+\end{itemize}
+
+\section{Moderazione e qualità dei contenuti}
+
+\subsection{Segnalazione dei contenuti da parte dei cittadini} \label{rf:segnalazione}
+Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati selezionando una motivazione da un elenco predefinito
+(incitamento all’odio, contenuti offensivi o volgari, informazioni false, spam, duplicato, violazione della privacy, altro) e aggiungendo un testo descrittivo.
+Ogni segnalazione deve generare un elemento nella coda di revisione dei moderatori.
+
+\subsection{Moderazione automatica} \label{rf:moderazioneautomatica}
+Il sistema deve analizzare automaticamente i contenuti generati dagli utenti per individuare linguaggio inappropriato, spam o duplicati.
+
+In caso di rilevamento, il sistema deve:
+\begin{itemize}
+    \item impedire temporaneamente la pubblicazione del contenuto oppure nasconderlo dalla visualizzazione pubblica;
+    \item inserire il contenuto nella coda di revisione dei moderatori (\ref{rf:validazionecontenuti});
+\end{itemize}
+
+La moderazione automatica non deve effettuare rimozioni definitive né applicare limitazioni agli account. Le decisioni con effetto permanente devono essere convalidate da un moderatore o dall’amministrazione secondo le procedure previste.
+
+\subsection{Coda di revisione} \label{rf:validazionecontenuti}
+Il sistema deve permettere ai moderatori di visualizzare l’elenco dei contenuti segnalati o rilevati automaticamente. Il sistema deve permettere di approvare una segnalazione o di procedere con limitazione e rimozione (\ref{rf:rimozionecontenuti}, \ref{rf:moderazioneutenti}); dunque eliminando la segnalazione dalla coda di revisione.
+
+\subsection{Rimozione dei contenuti} \label{rf:rimozionecontenuti}
+Il sistema deve consentire ai moderatori di eliminare un contenuto dalla piattaforma.
+Ogni rimozione deve essere registrata indicando motivazione, timestamp e moderatore responsabile.
+
+\subsection{Moderazione sugli utenti} \label{rf:moderazioneutenti}
+
+\subsubsection{Limitazioni sui cittadini} \label{rf:moderazionecittadini}
+Il sistema deve consentire ai moderatori di applicare limitazioni temporanee agli account dei cittadini in caso di violazione dei termini di condotta, selezionando il tipo e la durata della limitazione tra le opzioni (sospensione parziale o totale delle interazioni pubbliche).
+
+Durante il periodo di sospensione, il cittadino non deve poter effettuare le azioni pubbliche corrispondenti al tipo di limitazione applicata, ma deve poter continuare ad autenticarsi e consultare i contenuti pubblici.
+
+L’applicazione di una limitazione deve generare l’invio automatico di una comunicazione via email all’utente, contenente almeno: il riferimento ai termini di condotta violati, la durata prevista e le modalità per presentare un eventuale ricorso.
+
+Il sistema non deve consentire ai moderatori di sospendere definitivamente un account cittadino.
+
+\subsubsection{Limitazioni sulle associazioni} \label{rf:moderazioneassociazioni}
+Il sistema deve consentire ai moderatori di proporre all’amministrazione l’applicazione di limitazioni temporanee agli account associazione in caso di violazione dei termini di condotta, selezionando il tipo di limitazione tra le opzioni.
+
+A seguito della proposta del moderatore, il sistema deve:
+\begin{itemize}
+  \item applicare eventualmente un blocco temporaneo delle interazioni pubbliche dell’account associazione in attesa della decisione dell’amministrazione;
+  \item notificare tramite mail l’amministrazione della richiesta di intervento;
+  \item inviare una comunicazione via email all’associazione, contenente il riferimento ai termini di condotta presumibilmente violati e l’indicazione che il caso è in valutazione.
+\end{itemize}
+
+Il sistema non deve consentire ai moderatori di eliminare definitivamente un account associazione. L’adozione di provvedimenti permanenti o particolarmente gravosi sugli account associazione è di esclusiva competenza dell’amministrazione.
+
+\subsubsection{Processo amministrativo per i provvedimenti gravi} \label{red:modoerazioneprocamm}
+Il sistema deve consentire all’amministrazione di:
+\begin{itemize}
+  \item configurare i tipi di limitazione applicabili ai cittadini e alle associazioni (ad esempio: sospensione parziale/totale delle interazioni, durata massima, eventuale blocco dell’accesso);
+  \item ricevere e gestire le richieste di intervento inviate dai moderatori;
+  \item deliberare provvedimenti di maggiore gravità o durata, inclusa l’eventuale disattivazione a lungo termine di un account.
+\end{itemize}
+
+L’adozione di un provvedimento grave da parte dell’amministrazione deve generare l’invio di una comunicazione via email all’utente interessato, contenente la motivazione, la durata (se applicabile) e le modalità per presentare un eventuale ricorso.
+
+\section{Policy Simulator e modelli statistici} \label{rf:polsimemodstat}
+
+\subsection{Simulazione di scenari di policy} \label{rf:policysimulator}
+Il sistema deve includere un modulo che consenta all’amministrazione di calcolare indicatori di impatto economico, sociale e ambientale associati alle proposte.
+Il modulo deve permettere la configurazione di parametri e coefficienti specifici dall’amministrazione.
+
+\subsection{Analisi predittiva e statistica} \label{rf:analpredestat}
+Il sistema deve consentire all’amministrazione di generare stime sugli effetti futuri delle proposte sulla base di dataset caricati nel sistema.
+Il modulo deve permettere la selezione del modello da utilizzare, la definizione delle variabili di input e la produzione di indicatori quantitativi relativi agli scenari simulati.
+
+\subsection{Visualizzare policy simulation} \label{rf:visualizzazionesimulazione}
+Il sistema deve consentire all’amministrazione di visualizzare gli indicatori prodotti dai moduli di simulazione tramite rappresentazioni grafiche e tabelle comparative.
+
+\section{Dashboard amministrativa}
+
+\subsection{Dashboard amministrativa} \label{rf:dashboard}
+Il sistema deve fornire all’amministrazione una dashboard che comprende:
+\begin{itemize}
+  \item I seguenti dati: numero di utenti attivi, proposte per categoria, distribuzione territoriale dei voti, tassi di approvazione.
+
+  \item Strumenti dell’amministrazione: creazione sondaggi \ref{rf:sondaggi}, scaricare report \ref{rf:report}, registrare account associazioni e moderatori \ref{rf:registrazionemodass}.
+\end{itemize}
+
+\subsection{Report sull’attività del sistema} \label{rf:report}
+Il sistema deve consentire all’amministrazione di generare e scaricare in locale report contenenti dati aggregati e anonimizzati (\ref{rnf:anonimato}) sull’attività della piattaforma.
+I report devono essere disponibili in almeno un formato aperto (ad esempio CSV).
+
+Il sistema deve mettere a disposizione almeno le seguenti tipologie di report:
+\begin{itemize}
+  \item \textbf{Attività per proposta}: numero totale di votanti, distribuzione territoriale, distribuzione per fasce d’età (ove disponibile in forma aggregata);
+  \item \textbf{Attività per quesito}: per ciascun quesito di consultazione o sondaggio, numero di partecipanti, distribuzione delle risposte, eventuale distribuzione territoriale;
+  \item \textbf{Attività complessiva}: indicatori sintetici sull’utilizzo della piattaforma (ad esempio numero di proposte pubblicate in un intervallo temporale, numero di voti espressi, numero di quesiti somministrati).
+\end{itemize}
+
+\subsection{Sondaggi} \label{rf:sondaggi}
+Il sistema deve consentire all’amministrazione, tramite dashboard, di creare, pubblicare e gestire sondaggi tematici rivolti ai cittadini.
+Ogni sondaggio deve includere almeno:
 (a) \textit{Titolo},
 (b) \textit{Descrizione},
 (c) \textit{Categoria},
@@ -93,140 +265,13 @@ Ogni sondaggio deve comprendere:
 Il sistema deve inoltre:
 \begin{itemize}
 	\item chiudere automaticamente i sondaggi alla data di scadenza;
-	\item raccogliere le risposte dei cittadini in osservanza del \ref{ref:anonimato}
+	\item raccogliere in modo anonimo le risposte dei cittadini, rendendole disponibili all’amministrazione;
 \end{itemize}
 
-\subsection{Pubblicazione proposte collettive} \label{RF:propostecollettive}
-Il sistema deve consentire ad associazioni e comitati di presentare \textit{proposte collettive} (def.~\ref{def:proposta-collettiva}).
-Il sistema rende riconoscibili tali proposte etichettandole con il nome dell'associazione autrice.
-
-\subsection{Visualizzazione proposte e sondaggi} \label{RF:visualizzazione}
-Il sistema deve consentire ad ogni utente di:
-\begin{itemize}
-  	\item (solo cittadini) visualizzare un elenco personale contenente le proprie proposte, sia pubblicate che in stato di bozza che eliminate;
-  	\item visualizzare le proposte pubblicate da altri utenti, applicando i criteri definiti in \ref{sec:sorting}.
-	  \item visualizzare i sondaggi pubblicati dall'amministrazione \ref{sec:sondaggi}.
-\end{itemize}
-
-\subsubsection{Ordinamento delle proposte}  \label{sec:sorting}
-Il sistema deve consentire all’utente di ordinare l’elenco delle proposte pubbliche attraverso le seguenti chiavi:
-\begin{itemize}
-	\item numero totale di voti;
-	\item data di pubblicazione;
-	\item categoria;
-\end{itemize}
-L’utente deve poter invertire l’ordine (asc/desc) quando applicabile, sia numerico che alfabetico.
-
-\subsection{Proporre una modifica} \label{RF:modifica}
-Il sistema deve consentire la modifica collaborativa delle proposte, come segue:
-
-\subsubsection{Versionamento}
-Ogni modifica a una proposta deve registrare autore, data/ora, descrizione e differenze rispetto alla versione precedente; tutte le versioni restano consultabili. Tutti i voti precedentemente assegnati alla proposta di versione precedente vengono azzerati (e salvati nella versione precedente).
-
-\subsubsection{Proposte di modifica da terzi}
-Un utente diverso dal creatore può proporre una modifica; la proposta entra in uno stato di revisione non pubblica fino a decisione.
-
-\subsubsection{Approvazione delle modifiche}
-Il creatore della proposta può accettare o rifiutare una proposta di modifica; l’esito è tracciato.
-
-\subsubsection{Ripristino}
-Deve essere possibile ripristinare una versione precedente come versione principale. Vengono ripristinati anche i voti.
-
-Il sistema di modifica non è utilizzabile se una proposta è in stato diverso da \textit{pubblicata}.
-
-\subsection{Endorsement} \label{RF:endorsement}
-Il sistema deve consentire alle associazioni di esprimere un singolo \textit{endorsement} digitale (def.~\ref{def:endorsement}) per proposta pubblicata.
-
-\subsubsection{Rimozione Endorsement}
-Il sistema deve consentire alle associazioni autrici di \textit{endorsement} di rimuoverlo.
-
-\subsection{Espressione del voto} \label{RF:voto}
-Il sistema deve consentire agli utenti eleggibili al voto (cfr.~Definizioni) di esprimere un voto positivo o negativo su:
-\begin{itemize}
-	\item \textbf{Proposte}: voto modificabile fino allo stato di \textit{accettata} o \textit{rifiutata};
-	\item \textbf{Sondaggi}: voto modificabile fino a chiusura dello stesso;
-\end{itemize}
-Ogni elettore può esprimere un solo voto per proposta o quesito di ogni sondaggio.
-
-\section{Personalizzazione e preferenze}
-
-\subsection{Gestione dei preferiti} \label{RF:preferiti}
-Il sistema deve consentire al cittadino di:
-\begin{itemize}
-	\item contrassegnare e rimuovere dai \textit{preferiti} proposte e sondaggi;
-	\item visualizzare l’elenco dei propri elementi preferiti;
-\end{itemize}
-
-\subsection{Notifiche e avvisi} \label{RF:notifichepreferiti}
-Il sistema deve inviare notifiche automatiche per variazioni di stato riguardo elementi posti nei propri preferiti.
-Inoltre il sistema invia notifiche per qualsiasi aggiornamento in proposte proprie (variazioni di stato e richieste di modifica).
-Le notifiche vengono inviate solo se il cittadino ha acconsentito alla ricezione di notifiche (\ref{sec:registrazione}).
-
-\subsection{Cambio di lingua} \label{RF:cambiolingua}
-Il sistema deve consentire all’utente di modificare la lingua (definite in \ref{ref:i18n}) dell’interfaccia tramite un menu dedicato accessibile dall’area utente.
-La preferenza linguistica deve essere registrata nel profilo utente e mantenuta tra le sessioni di accesso.
-
-\section{Moderazione e qualità dei contenuti}
-
-\subsection{Segnalazione dei contenuti da parte dei cittadini} \label{RF:segnalazione}
-Il sistema deve consentire ai cittadini di segnalare contenuti pubblicati (proposte, modifiche) selezionando una motivazione da un elenco predefinito
-(incitamento all’odio, contenuti offensivi o volgari, informazioni false, spam, duplicato, violazione della privacy, altro) e aggiungendo un testo descrittivo.
-Ogni segnalazione deve generare un elemento nella coda di revisione dei moderatori.
-
-\subsection{Analisi automatica}
-Il sistema deve analizzare automaticamente i testi generati dagli utenti per rilevare linguaggio inappropriato, spam o duplicati.
-In caso di rilevamento, il sistema deve inserire l’elemento nella coda di revisione.
-
-\subsection{Interazione coda di revisione} \label{RF:codarevisione}
-Il sistema deve permettere ai moderatori di visualizzare la coda di revisione, ovvero un elenco di proposte segnalate automaticamente o da utenti. Il sistema deve permettere di approvare una segnalazione o di procedere con limitazione e rimozione (\ref{RF:rimozione}, \ref{RF:moderazioneutenti}); dunque eliminando la segnalazione dalla coda di revisione.
-
-\subsection{Rimozione dei contenuti} \label{RF:rimozionecontenuti}
-Il sistema deve consentire ai moderatori di eliminare un contenuto dalla piattaforma.
-Ogni rimozione deve essere registrata indicando motivazione, timestamp e moderatore responsabile.
-
-\subsection{Moderazione sugli utenti} \label{RF:moderazioneutenti}
-
-\subsubsection{Limitazioni sui cittadini} \label{sec:modcittadini}
-Il sistema deve consentire ai moderatori di sospendere un cittadino scegliendo una durata tra 1, 7, 30 o 90 giorni, oppure di procedere alla rimozione definitiva del suo account.
-La rimozione definitiva comporta l’impossibilità di autenticarsi con le credenziali associate.
-
-\subsubsection{Limitazioni sulle associazioni} \label{sec:modassociazioni}
-Il sistema deve consentire ai moderatori di richiedere all’amministratore la sospensione o rimozione di un account associazione, bloccandone le interazioni pubbliche per un periodo temporaneo (48 ore) in attesa della decisione amministrativa.
-
-\section{Policy Simulator e modelli statistici}
-
-\subsection{Simulazione di scenari di policy}
-Il sistema deve includere un modulo che consenta all’amministrazione di calcolare indicatori di impatto economico, sociale e ambientale associati alle proposte.
-Il modulo deve permettere la configurazione di parametri e coefficienti specifici dall’amministrazione.
-Gli indicatori generati devono essere visibili esclusivamente all’amministrazione \defref{def:classificazione}.
-
-\subsection{Analisi predittiva e statistica}
-Il sistema deve consentire all’amministrazione di generare stime sugli effetti futuri delle proposte sulla base di dataset caricati.
-Il modulo deve permettere la selezione del modello da utilizzare, la definizione delle variabili di input e la produzione di indicatori quantitativi relativi agli scenari simulati.
-
-\subsection{Visualizzare policy simulation} \label{RF:visualizzazionesimulation}
-Il sistema deve consentire all’amministrazione di visualizzare gli indicatori prodotti dai moduli di simulazione tramite rappresentazioni grafiche e tabelle comparative.
-
-\section{Dashboard amministrativa}
-
-\subsection{Funzionalità dashboard amministrativa} \label{sec:dashboard}
-Il sistema deve fornire all’amministrazione una dashboard che comprende:
-\begin{itemize}
-  \item I seguenti dati: numero di utenti attivi, proposte per categoria, distribuzione territoriale dei voti, tassi di approvazione.
-
-  \item Strumenti dell'amministrazione: creazione sondaggi \ref{sec:sondaggi}, scaricare report \ref{sec:report-attivita}, registrare account associazioni e moderatori \ref{sec:specialregistrazione}.
-\end{itemize}
-
-\subsection{Download report sull’attività del sistema} \label{RF:downloadreport}
-Il sistema deve consentire all’amministrazione di generare e scaricare in locale report contenenti dati aggregati e anonimizzati (\ref{ref:anonimato}) sull’attività della piattaforma.
-I report devono essere disponibili in formato aperto (CSV) e comprendere:
-
-\begin{itemize}
-  \item \textbf{Attività per proposta}: numero totale di votanti, distribuzione territoriale, distribuzione per fasce d’età.
-\end{itemize}
-
-\subsection{Gestione avanzamento stato proposta} \label{RF:statoproposta}
+\subsection{Modifica dello stato di una proposta} \label{rf:modificastatoproposta}
 Il sistema deve consentire all’amministratore di aggiornare lo stato di una proposta \defref{def:statoproposta} secondo il flusso previsto: da \textit{pubblicata} a \textit{in valutazione}, quindi a \textit{accettata} o \textit{rifiutata}.
 In caso di stato \textit{accettata}, il sistema deve permettere il passaggio agli stati \textit{in attuazione} e \textit{completata}.
-In caso di stato \textit{rifiutata}.
 In ogni caso il sistema deve consentire all’amministratore di pubblicare una motivazione associata alla decisione.
+
+\subsection{Pubblicare un report di valutazione} \label{rf:pubblicaportvalutazione}
+Il sistema deve consentire all’amministratore di redigere, aggiornare e pubblicare il report di valutazione associato a una proposta, includendo testo descrittivo, allegati e indicatori quantitativi/qualitativi. Al momento della pubblicazione, il sistema deve permettere opzionalmente la modifica dello stato della proposta.

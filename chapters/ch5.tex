@@ -2,18 +2,28 @@
 
 \renewcommand{\thesection}{US\arabic{section}}
 
-\section{Titolo breve \ref{sec:login}}
+\newcommand{\userstory}[3]{
+  #1
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia ante sed enim cursus consequat. Nam eros nisl, maximus condimentum urna non, aliquam ultricies purus. Sed id nisl sed nunc.
+  \begin{description}
+    \item[Descrizione:]~
+    \begin{itemize}
+      #2
+    \end{itemize}
 
-\begin{description}
-  \item[Descrizione:]~
-  \begin{itemize}
-    \item Creare tua madre
-  \end{itemize}
+    \item[Tasks:]~
+    \begin{itemize}
+      #3
+    \end{itemize}
+  \end{description}
+}
 
-  \item[Tasks:]~
-  \begin{itemize}
-    \item Creare tuo padre
-  \end{itemize}
-\end{description}
+\section{Titolo \ref{rf:logout}} \label{us:esempio}
+\userstory
+{Statement}
+{
+  \item Descrizione
+}
+{
+  \item Task
+}
