@@ -19,12 +19,104 @@
   \end{description}
 }
 
-\section{Titolo \ref{rf:logout}} \label{us:esempio}
+\section{Registrazione del cittadino \ref{rf:registrazionecittadini}}
 \userstory
-{Statement}
 {
-  \item Criterio
+  Come utente anonimo, voglio registrarmi alla piattaforma verificando la mia identità tramite SPID o CIE e configurando le mie credenziali locali.
 }
 {
-  \item Task
+  \item Il sistema deve richiedere l'autenticazione iniziale tramite SPID o CIE.
+  \item Il sistema deve verificare automaticamente la residenza nel Comune di Trento tramite ANPR; se l'utente non è residente, la registrazione deve essere bloccata.
+  \item L'utente deve poter inserire un indirizzo email, una password e un nome utente per i futuri accessi.
+  \item L'utente deve poter selezionare la preferenza per la ricezione delle notifiche email (abilita/disabilita).
+  \item Il sistema deve inviare una email di verifica contenente un link per l'attivazione dell'account.
+  \item L'attivazione dell'account deve essere completata entro 10 minuti dalla ricezione dell'email, pena l'invalidazione della richiesta.
+}
+{
+  \item Integrazione dei servizi di autenticazione SPID e CIE.
+  \item Implementazione del connettore ANPR per la verifica della residenza.
+  \item Sviluppo del modulo frontend per l'inserimento di email, password, username e preferenze notifiche.
+  \item Implementazione controlli di unicità per email e username nel database.
+  \item Configurazione del servizio SMTP per l'invio delle email transazionali.
+  \item Implementazione della logica di scadenza del token di verifica (10 minuti).
+}
+
+\section{Espressione del voto \ref{rf:voto}}
+\userstory
+{
+  Come cittadino, voglio esprimere un voto (favorevole o contrario) sulle proposte e partecipare ai sondaggi attivi, per contribuire alla definizione delle priorità comunali.
+}
+{
+  \item Il sistema deve consentire di esprimere un voto positivo o negativo sulle proposte in stato "pubblicata" o "in valutazione".
+  \item Il sistema deve consentire di rispondere ai quesiti presenti nei sondaggi attivi.
+  \item Ogni utente può esprimere un solo voto per ciascuna proposta o per ciascun quesito dei sondaggi.
+  \item Il voto deve poter essere modificato dall'utente fino alla chiusura del sondaggio o alla definizione dell'esito della proposta.
+  \item Il sistema deve registrare il voto in forma anonima, rendendo impossibile risalire all'identità del votante tramite i report pubblici.
+  \item Il sistema deve aggiornare il conteggio dei voti e visualizzare l'eventuale feedback all'utente.
+}
+{
+  \item Implementazione componenti UI per la votazione (bottoni favorevole/contrario e opzioni sondaggio).
+  \item Sviluppo API backend per la ricezione e validazione del voto (controllo stato proposta).
+  \item Progettazione dello schema database per garantire l'unicità del voto per utente mantenendo l'anonimato (separazione identità/preferenza).
+  \item Implementazione logica per la modifica del voto.
+  \item Aggiornamento real-time dei contatori visibili sulla proposta.
+}
+
+\section{Gestione dei preferiti \ref{rf:preferiti}}
+\userstory
+{
+  Come cittadino, voglio aggiungere o rimuovere proposte e sondaggi dai miei preferiti, per poter accedere rapidamente ai contenuti di mio interesse e ricevere notifiche automatiche sui loro aggiornamenti di stato.
+}
+{
+  \item Il sistema deve consentire di aggiungere o rimuovere una proposta o un sondaggio dai preferiti agendo su un apposito indicatore visivo.
+  \item L'azione di aggiunta/rimozione deve essere disponibile sia dalla lista generale delle proposte/sondaggi che dalla pagina di dettaglio del singolo elemento.
+  \item Il sistema deve fornire una sezione dedicata "Preferiti" dove l'utente può consultare l'elenco aggiornato di tutti gli elementi salvati.
+  \item Se un elemento nei preferiti viene rimosso o archiviato dal sistema, esso deve essere automaticamente rimosso dalla lista dei preferiti dell'utente, eventualmente con una notifica informativa.
+  \item L'aggiornamento dello stato "preferito" deve essere immediato e persistente tra le sessioni.
+}
+{
+  \item Implementazione del componente UI (attivo/disattivo) sulle card e nelle pagine di dettaglio.
+  \item Sviluppo API backend per il toggle dello stato di preferito (add/remove).
+  \item Sviluppo della pagina frontend "I miei Preferiti".
+  \item Implementazione della logica di pulizia dei preferiti in caso di cancellazione della proposta originale.
+}
+
+\section{Segnalazione contenuti \ref{rf:segnalazione}}
+\userstory
+{
+  Come \textbf{cittadino}, voglio poter segnalare i contenuti pubblicati (proposte o modifiche) ritenuti inappropriati specificandone la motivazione, affinché i moderatori possano verificarli e garantire un ambiente di discussione sicuro e rispettoso.
+}
+{
+  \item Il sistema deve mostrare un comando "Segnala contenuto" su ogni proposta o modifica pubblicata.
+  \item Il sistema deve presentare un modulo che richiede obbligatoriamente la selezione di una motivazione da un elenco predefinito (es. incitamento all'odio, informazioni false, spam, violazione privacy).
+  \item L'utente deve poter inserire facoltativamente un testo descrittivo aggiuntivo per chiarire il motivo della segnalazione.
+  \item Il sistema deve verificare che il contenuto segnalato sia ancora disponibile prima di registrare l'operazione.
+  \item Una volta confermata, la segnalazione deve essere inserita automaticamente nella coda di revisione dei moderatori.
+  \item L'utente deve ricevere un feedback visivo di conferma dell'avvenuto invio della segnalazione.
+}
+{
+  \item Implementazione del bottone "Segnala" nell'interfaccia delle proposte.
+  \item Creazione della modale con form contenente la lista predefinita di motivazioni (enum) e campo testo libero.
+  \item Sviluppo API backend per la creazione dell'oggetto "Report" collegato a User e Content.
+  \item Implementazione della logica di inserimento nella coda di revisione.
+  \item Gestione degli errori nel caso in cui il contenuto sia stato rimosso concorrentemente.
+}
+
+\section{Espressione Endorsement \ref{rf:endorsement}}
+\userstory
+{
+  Come rappresentante di un'associazione, voglio poter esprimere o rimuovere un endorsement ufficiale sulle proposte pubblicate, per manifestare pubblicamente il sostegno della mia organizzazione accrescendone la rilevanza agli occhi della cittadinanza.
+}
+{
+  \item Il sistema deve consentire alle sole utenze di tipo "Associazione" di esprimere un endorsement sulle proposte in stato "pubblicata".
+  \item Ogni associazione può esprimere un solo endorsement per ciascuna proposta.
+  \item L'azione di endorsement deve generare visibilmente un'etichetta sulla proposta riportante il nome dell'associazione.
+  \item L'associazione deve poter rimuovere un endorsement precedentemente assegnato; la rimozione deve comportare la cancellazione immediata dell'etichetta visuale.
+}
+{
+  \item Implementazione verifica permessi (solo ruolo Associazione).
+  \item Sviluppo API backend per gestione endorsement.
+  \item Aggiornamento modello dati Proposta per collegare la lista degli endorser.
+  \item Sviluppo componente UI "Etichetta Endorsement" nella visualizzazione proposta.
+  \item Implementazione pulsante toggle "Esprimi/Rimuovi Endorsement".
 }
