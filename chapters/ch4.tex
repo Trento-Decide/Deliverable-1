@@ -100,7 +100,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
-	 \includegraphics[scale=1.25]{img/usecase/utenteautenticato.png}
+	 \includegraphics[scale=1.25]{img/usecase/UtenteAutenticato2.png}
 \end{center}
 
 \subsection{Logout \ref{rf:logout}}
@@ -116,59 +116,11 @@ L'utente non è autenticato e non possiede cookie di autenticazione validi.
 
 \textbf{Descrizione:}
 \begin{enumerate}
-	\item L’utente visualizza la schermata di login.
-	\item L’utente può scegliere una delle seguenti modalità:
-	\begin{enumerate}
-		\item \textbf{Credenziali locali:} inserisce email e password nei campi dedicati e conferma l’accesso.
-		\item \textbf{SPID/CIE:} seleziona l’opzione SPID o CIE; il sistema reindirizza al relativo servizio di autenticazione.
-	\end{enumerate}
-	\item L'utente può decidere di far "ricordare" la propria sessione al sistema, salvando così un cookie di autenticazione in locale.
-	\item Se l’autenticazione è valida, l'utente accede al sistema \textbf{[eccezione 1 - 2]}.
+	\item L’utente visualizza la funzione di logout attraverso il menu utente.
+	\item L'utente conferma il logout e il sistema invalida la sessione attuale ed eventuale cookie di autenticazione.
 \end{enumerate}
 
-\textbf{Estensioni:}
-\begin{itemize}
-	\item[(0)] Se l'utente possiede un cookie di autenticazione nella propria macchina, l'utente accede senza dover reinserire le credenziali.  \textbf{[eccezione 3]}
-\end{itemize}
 
-\textbf{Eccezioni:}
-\begin{itemize}
-	\item[(1)] Se email o password non sono valide, il sistema mostra un messaggio di errore e richiede di reinserire i dati.
-	\item[(2)] Se l’autenticazione SPID/CIE fallisce, viene annullata o scade, il sistema mostra un messaggio di errore e ritorna alla schermata di login.
-	\item[(3)] Se il sistema non riconosce il cookie di autenticazione, o il cookie è invalidato, allora l'utente è reindirizzato alla schermata di login.
-\end{itemize}
-
-\subsection{Gestione profilo e dati personali \ref{rf:gestioneprofiloedati}}
-
-\textbf{Riassunto:}
-Questo use case descrive come un utente autenticato gestisce le proprie credenziali di accesso e preferenze personali tramite l’area profilo.
-
-\textbf{Precondizioni:}
-L’utente è autenticato nella piattaforma.
-
-\textbf{Postcondizioni:}
-Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effettive per le successive sessioni di accesso.
-
-\textbf{Descrizione:}
-\begin{enumerate}
-	\item L’utente accede alla sezione “Profilo”.
-	\item Il sistema mostra i dati attuali: email, username, password mascherata e stato della preferenza notifiche.
-	\item L’utente può:
-	\begin{enumerate}
-		\item modificare l’\textbf{email}, il sistema invia un messaggio di verifica al vecchio e al nuovo indirizzo email \textbf{[eccezione 1]};
-		\item modificare l’\textbf{username};
-		\item modificare la \textbf{password};
-		\item aggiornare la preferenza di \textbf{ricezione notifiche}.
-	\end{enumerate}
-	\item Se le modifiche sono valide il sistema le salva. \textbf{[eccezione 2]}, \textbf{[eccezione 3]}.
-\end{enumerate}
-
-\textbf{Eccezioni:}
-\begin{itemize}
-		\item[(1)] Se da parte dei due indirizzi email coinvolti il sistema non riceve da entrambi conferma della modifica, il processo di cambio email viene annullato.
-	\item[(2)] Se l’email inserita non è valida o già associata a un altro account, il sistema notifica l’errore e annulla la modifica.
-		\item[(3)] Se il nome utente inserito non è valido o già associato a un altro account, il sistema notifica l’errore e annulla la modifica.
-\end{itemize}
 
 \subsection{Visualizzazione proposte e sondaggi \ref{rf:ordinamentoproposte}, \ref{rf:filtroproposte}}
 
@@ -176,18 +128,18 @@ Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effe
 Questo use case descrive come un utente autenticato consulta le proposte pubblicate e i sondaggi disponibili, applicando criteri di ordinamento e filtraggio.
 
 \textbf{Precondizioni:}
-L’utente è autenticato nella piattaforma e sono presenti proposte o sondaggi pubblicati.
+L’utente è autenticato nella piattaforma.
 
 \textbf{Postcondizioni:}
 Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o filtro selezionati.
 
 \textbf{Descrizione:}
 \begin{enumerate}
-	\item L’utente accede alla sezione “Proposte e Sondaggi”.
+	\item L’utente accede alla sezione “Proposte" o "Sondaggi”.
 	\item Il sistema mostra:
 	\begin{enumerate}
 		\item le \textbf{proposte} pubblicate, con titolo, autore, stato e categoria;
-		\item i \textbf{sondaggi} attivi e chiusi con data di apertura e chiusura.
+		\item oppure i \textbf{sondaggi} attivi e chiusi con data di apertura e chiusura.
 	\end{enumerate}
 	\item L’utente può:
 	\begin{enumerate}
@@ -195,10 +147,10 @@ Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o
 		\item filtrare i risultati per categoria o stato della proposta;
 		\item accedere al dettaglio di una proposta o di un sondaggio selezionato.
 	\end{enumerate}
-	\item Il sistema aggiorna dinamicamente l’elenco in base ai criteri scelti  \textbf{[eccezione 1]}.
+	\item Il sistema aggiorna dinamicamente l’elenco in base ai criteri scelti.
 \end{enumerate}
 
-\textbf{Eccezioni:}
+\textbf{Estensioni:}
 \begin{itemize}
 	\item[(1)] Se non sono presenti proposte o sondaggi attivi, il sistema mostra un messaggio informativo.
 \end{itemize}
@@ -216,11 +168,48 @@ La lingua selezionata diventa attiva immediatamente e viene salvata nel profilo 
 
 \textbf{Descrizione:}
 \begin{enumerate}
-	\item L’utente accede all’area “Impostazioni lingua” dal menu del profilo.
+	\item L’utente accede all’area “Impostazioni lingua” dal menu utente.
 	\item Il sistema mostra l’elenco delle lingue disponibili.
 	\item L’utente seleziona la lingua desiderata.
 	\item Il sistema aggiorna l’interfaccia nella lingua scelta e registra la preferenza nel profilo utente.
 \end{enumerate}
+
+\begin{center}
+	\includegraphics[scale=1.25]{img/usecase/UtenteAutenticato1.png}
+\end{center}
+
+\subsection{Gestione profilo e dati personali \ref{RF:profilehandling}}
+
+\textbf{Riassunto:}
+Questo use case descrive come un utente autenticato gestisce le proprie credenziali di accesso e preferenze personali tramite l’area profilo.
+
+\textbf{Precondizioni:}
+L’utente è autenticato nella piattaforma.
+
+\textbf{Postcondizioni:}
+Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effettive per le successive sessioni di accesso.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’utente accede alla sezione “Profilo” tramite menu utente.
+	\item Il sistema mostra i dati attuali: email, username e stato della preferenza notifiche.
+	\item L’utente può:
+	\begin{enumerate}
+		\item modificare l’\textbf{email}, il sistema invia un email di verifica al vecchio e al nuovo indirizzo \textbf{[eccezione 1]};
+		\item modificare l’\textbf{username} \textbf{[eccezione 2]};
+		\item modificare la \textbf{password}, inviando una email di verifica all'utente;
+		\item aggiornare la preferenza di \textbf{ricezione notifiche}.
+	\end{enumerate}
+	\item Se le modifiche sono valide il sistema le salva. \textbf{[eccezione 3]}, \textbf{[eccezione 4]}.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+	\item[(1)] Se da parte dei due indirizzi email coinvolti il sistema non riceve da entrambi conferma della modifica, il processo di cambio email viene annullato.
+	\item[(2)] Se l’username inserito non è valido o già associato a un altro account, il sistema notifica l’errore e annulla la modifica.
+	\item[(3)] Se l’email inserita non è valida o già associata a un altro account, il sistema notifica l’errore e annulla la modifica.
+	\item[(4)] Se il nome utente inserito non è valido o già associato a un altro account, il sistema notifica l’errore e annulla la modifica.
+\end{itemize}
 
 % ====================================================
 % UC3
