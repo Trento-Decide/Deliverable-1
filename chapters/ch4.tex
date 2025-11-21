@@ -654,18 +654,92 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
   \item Contenuto non più disponibile (ad esempio rimosso da un moderatore o dall’autore): il sistema annulla la procedura e informa il cittadino che il contenuto non è più accessibile.
 \end{enumerate}
 
-\section{Associazione/Comitato}
+\section{Associazione}
 
-\subsection{Pubblicazione proposte collettive (\ref{rf:propostecollettive})}
-\subsection{Endorsement (\ref{rf:endorsement})}
+\localtableofcontentswithrelativedepth{+1}
+
+\begin{center}
+	\includegraphics[scale=1.1]{img/usecase/Associazione.png}
+\end{center}
+
+\subsection{Pubblicazione proposte collettive \ref{rf:propostecollettive}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un’associazione pubblica una proposta collettiva, che viene etichettata come tale dal sistema.
+
+\textbf{Precondizioni:}
+L’associazione è autenticata nel sistema.
+
+\textbf{Postcondizioni:}
+La proposta risulta pubblicata e marcata come \textit{proposta collettiva}.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’associazione accede alla sezione di creazione proposta.
+	\item L’associazione seleziona l’opzione \textit{Proposta collettiva}.
+	\item L’associazione compila tutti i campi obbligatori previsti per la categoria selezionata.
+	\item L’associazione conferma la pubblicazione.
+	\item Il sistema registra la proposta e la etichetta come \textit{proposta collettiva}, mostrando il nome dell’associazione. \textbf{[eccezione 1]}
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+	\item[(1)] Se alcuni campi obbligatori risultano mancanti o non validi, il sistema impedisce la pubblicazione e segnala gli errori.
+\end{itemize}
+
+\subsection{Endorsement \ref{rf:endorsement}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un’associazione esprime un endorsement digitale su una proposta pubblicata.
+
+\textbf{Precondizioni:}
+\begin{itemize}
+	\item L’associazione è autenticata.
+	\item La proposta è nello stato \textit{pubblicata}.
+	\item L’associazione non ha già espresso un endorsement su quella proposta.
+\end{itemize}
+
+\textbf{Postcondizioni:}
+L’endorsement risulta registrato e la proposta è contrassegnata con un’etichetta riportante il nome dell’associazione.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’associazione accede alla pagina della proposta pubblicata.
+	\item L’associazione seleziona l’opzione \textit{Esprimi endorsement}. \textbf{[eccezione 1]}
+	\item L’associazione conferma l’azione.
+	\item Il sistema registra l’endorsement.
+	\item Il sistema applica l’etichetta identificativa con il nome dell’associazione.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+	\item[(1)] Se l’associazione ha già espresso un endorsement per quella proposta, il sistema impedisce l’azione e mostra un messaggio di errore.
+\end{itemize}
+
+\subsection{Rimozione Endorsement \ref{rf:rimozioneendoresement}}
+
+\textbf{Riassunto:}  
+Questo use case descrive come un’associazione rimuove un endorsement precedentemente espresso.
+
+\textbf{Precondizioni:}
+\begin{itemize}
+	\item L’associazione è autenticata.
+	\item L’associazione ha espresso un endorsement su quella proposta.
+\end{itemize}
+
+\textbf{Postcondizioni:}
+L’endorsement risulta rimosso e l’etichetta non è più visibile sulla proposta.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+	\item L’associazione accede alla proposta su cui ha espresso endorsement.
+	\item L’associazione seleziona l’opzione \textit{Rimuovi endorsement}.
+	\item L’associazione conferma l’azione.
+	\item Il sistema elimina l’endorsement e l'etichetta associata.
+\end{enumerate}
 
 \section{Moderatore}
 \localtableofcontentswithrelativedepth{+1}
-
-\begin{enumerate}
-	\item Moderazione tramite coda di revisione (\ref{rf:moderazioneutenti})
-	\item Moderazione spontanea dei contenuti (\ref{rf:moderazioneutenti})
-\end{enumerate}
 
 \begin{center}
 	\includegraphics[scale=0.9]{img/usecase/Moderatore.png}
