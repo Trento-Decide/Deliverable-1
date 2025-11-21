@@ -71,7 +71,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
         \item \textbf{SPID} — reindirizzamento al provider SPID;
         \item \textbf{CIE} — reindirizzamento al servizio di autenticazione tramite CIE.
     \end{enumerate}
-    \item Una volta validata l’identità tramite SPID/CIE \textbf{[eccezione 1]}, il sistema richiede: 
+    \item Una volta validata l’identità tramite SPID/CIE \textbf{[eccezione 1]}, il sistema richiede:
     \begin{enumerate}
         \item Il comune di residenza dell'utente tramite ANPR
     \end{enumerate}
@@ -390,7 +390,8 @@ I risultati della simulazione sono visualizzati.
 \localtableofcontentswithrelativedepth{+1}
 
 \begin{center}
-  \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
+  \includegraphics[scale=0.65]{img/usecase/Cittadino 1.png}
+  \includegraphics[scale=0.65]{img/usecase/Cittadino 2.png}
 \end{center}
 
 \subsection{Creazione proposta \ref{rf:creazioneproposta}}
@@ -398,15 +399,9 @@ I risultati della simulazione sono visualizzati.
 \textbf{Riassunto:} Questo use case descrive come un cittadino autenticato crea una nuova proposta.
 
 \begin{description}
-  \item[Precondizioni:]~
-  \begin{itemize}
-    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
-    \item L’utente ha accesso alla sezione per la creazione di nuove proposte.
-  \end{itemize}
-
   \item[Postcondizioni:]~
   \begin{itemize}
-    \item Una nuova proposta è pubblicata o creata in stato di ``bozza'', associata all’utente come autore.
+    \item Una nuova proposta è creata con lo stato ``pubblicata'' o ``bozza''.
     \item Tutti i dati inseriti e i metadati obbligatori (autore, data/ora di creazione, categoria, campi categoria) sono salvati nel sistema.
   \end{itemize}
 
@@ -421,19 +416,22 @@ I risultati della simulazione sono visualizzati.
       \item Categoria
     \end{itemize}
     \item Il cittadino compila i campi obbligatori e, se disponibili, eventuali campi facoltativi.
-    \item Il cittadino sceglie se pubblicare la proposta o salvarla come bozza.
+    \item Il cittadino sceglie se pubblicare la proposta o salvarla come bozza:
+    \begin{itemize}
+      \item Se decide di pubblicarla:
+      \begin{enumerate}
+        \item Il sistema valida i dati inseriti [eccezione 1].
+        \item Se la validazione ha esito positivo, il sistema:
+        \begin{itemize}
+          \item associa la proposta all’utente come autore;
+          \item registra data/ora di creazione e la categoria selezionata;
+          \item conferma l’avvenuta pubblicazione all’utente [eccezione 2].
+        \end{itemize}
+      \end{enumerate}
+
+      \item Se invece la salva come bozza, alla sua selezione nella lista delle proposte verrà riportato al modulo di creazione, dove avrà la possibilità di modificarla e/o pubblicarla [eccezione 2].
+    \end{itemize}
   \end{enumerate}
-    Se decide di pubblicarla:
-    \begin{enumerate}
-      \item Il sistema valida i dati inseriti [eccezione 1].
-      \item Se la validazione ha esito positivo, il sistema:
-      \begin{itemize}
-        \item associa la proposta all’utente come autore;
-        \item registra data/ora di creazione e la categoria selezionata;
-        \item conferma l’avvenuta pubblicazione all’utente [eccezione 2].
-      \end{itemize}
-    \end{enumerate}
-     Se invece la salva come bozza, alla sua selezione nella lista delle proposte verrà riportato al modulo di creazione, dove avrà la possibilità di modificarla e/o pubblicarla.
 
   \item[Eccezioni:]~
   \begin{enumerate}
@@ -442,34 +440,157 @@ I risultati della simulazione sono visualizzati.
   \end{enumerate}
 \end{description}
 
+\subsection{Modificare proposta \ref{RF:modifica}}
+\begin{description}
+  \item[Riassunto:] Questo use case descrive come un cittadino autenticato modifica una proposta esistente, sia come autore della proposta, sia proponendo una modifica a una proposta creata da altri utenti.
 
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item Esiste almeno una proposta in stato “pubblicata”.
+  \end{itemize}
 
-\subsection{Pubblicazione proposta \ref{rf:pubblicazioneproposta}}
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Se il cittadino modifica una propria proposta:
+    \begin{itemize}
+      \item È creata una nuova versione della proposta come versione principale.
+      \item La versione precedente rimane consultabile nello storico, con autore, data/ora, descrizione e differenze registrate.
+    \end{itemize}
+    \item Se il cittadino propone una modifica alla proposta di un altro utente:
+    \begin{itemize}
+      \item È creata una proposta di modifica associata alla proposta originale, in stato di revisione non pubblica.
+      \item L’autore della proposta originale viene notificato della nuova proposta di modifica e potrà successivamente accettarla o rifiutarla.
+    \end{itemize}
+  \end{itemize}
 
-\subsection{Eliminazione proposta \ref{rf:eliminazioneproposta}}
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede alla alla lista di proposte pubblicate.
+    \item Il cittadino seleziona una proposta in stato “pubblicata” e accede alla pagina di dettaglio.
+    \item Il cittadino seleziona il comando “Modifica”.
+    \item Il sistema mostra un modulo di modifica precompilato con i dati correnti della proposta.
+    \item Il cittadino modifica uno o più campi del modulo.
+    \item Il cittadino compila il campo “descrizione” della modifica.
+    \item Il cittadino conferma il salvataggio della modifica.
+    \item Il sistema verifica la validità dei dati inseriti [eccezione 1].
+    \item Il sistema verifica se il cittadino è l’autore della proposta:
+    \begin{itemize}
+      \item Se il cittadino è l'autore della proposta:
+      \begin{enumerate}
+        \item crea una nuova versione della proposta registrando autore della modifica, data/ora, descrizione e differenze rispetto alla versione precedente.
+        \item imposta la nuova versione come versione principale visibile al pubblico.
+        \item aggiorna lo storico delle versioni e conferma al cittadino l’avvenuto salvataggio della modifica [eccezione 3].
+      \end{enumerate}
 
-\subsection{Modifiche ad una proposta \ref{rf:modificacollaborativa}}
+      \item Se il cittadino non è l'autore della proposta:
+      \begin{enumerate}
+        \item registra la proposta di modifica associandola alla proposta originale e al cittadino proponente, in stato di revisione.
+        \item notifica l’autore della proposta originale della presenza di una nuova proposta di modifica.
+        \item conferma al cittadino proponente l’avvenuto invio della proposta di modifica [eccezione 3].
+        \item In un momento successivo, l’autore della proposta originale potrà accettare o rifiutare la proposta di modifica ricevuta; l’esito è tracciato e, in caso di accettazione, viene creata una nuova versione della proposta principale secondo le regole di versionamento.
+      \end{enumerate}
+    \end{itemize}
+  \end{enumerate}
 
-Rifare non con chat, piu slim
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Dati mancanti o non validi: se uno o più campi obbligatori del modulo (compresi quelli specifici di categoria) non sono compilati correttamente, o la descrizione della modifica (nel caso B) è assente, il sistema evidenzia gli errori e non procede al salvataggio.
 
-\subsection{Espressione del voto \ref{rf:voto}}
+    \item Proposta non modificabile: se la proposta non è più in stato pubblicata (ad es. è passata a in valutazione, accettata, rifiutata, in attuazione o completata), il sistema disabilita l’azione di modifica e informa il cittadino che la proposta non è modificabile.
 
+    \item Errore di sistema o conflitto di versione: in caso di errore tecnico durante il salvataggio, o se nel frattempo la proposta è stata aggiornata da un altro utente, il sistema annulla l’operazione corrente, notifica il problema e richiede al cittadino di ripetere l’operazione a partire dalla versione aggiornata.
+  \end{enumerate}
+\end{description}
 
-\subsection{Gestione dei preferiti\ref{rf:preferiti}}
+\subsection{Eliminazione proposta \ref{RF:eliminaproposta}}
+
+\begin{description}
+  \item[Riassunto:] Questo use case descrive come un cittadino autore di una proposta pubblicata procede alla sua eliminazione.
+
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item Esiste almeno una proposta in stato pubblicata di cui il cittadino è autore.
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Tutti i dati pubblicati relativi alla proposta sono rimossi dalla pubblicazione.
+    \item La proposta rimane tracciata nell’elenco personale dell’autore con uno stato che ne indica l’eliminazione.
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede alla sezione delle proprie proposte.
+    \item Il cittadino seleziona una proposta in stato pubblicata che desidera eliminare.
+    \item Il cittadino seleziona il comando “Elimina proposta” associato alla proposta.
+    \item Il sistema mostra un messaggio di conferma che riassume gli effetti dell’operazione e richiede una conferma esplicita [eccezione 1].
+    \item Il cittadino conferma l’eliminazione.
+    \item Il sistema:
+    \begin{itemize}
+      \item aggiorna lo stato della proposta per indicarne l’eliminazione [eccezione 2];
+      \item mostra un messaggio di conferma dell’avvenuta eliminazione al cittadino.
+    \end{itemize}
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item L’utente annulla la conferma di eliminazione: il sistema chiude la finestra di conferma, non applica alcuna modifica allo stato della proposta e la proposta rimane pubblicata.
+    \item La proposta non è più nello stato “pubblicata” al momento della conferma: il sistema annulla l’operazione, non effettua l’eliminazione e informa il cittadino che la proposta non è più eliminabile.
+    \item Errore tecnico durante l’aggiornamento dei dati: il sistema segnala un messaggio di errore e lascia invariato lo stato della proposta.
+  \end{enumerate}
+\end{description}
+
+\subsection{Espressione del voto (proposta) \ref{RF:voto}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino eleggibile esprime un voto positivo o negativo su una proposta.
+
+\begin{description}
+  \item[Precondizioni:]~
+  \begin{itemize}
+    \item La proposta su cui si intende votare è in uno stato che consente la votazione (es. pubblicata, in valutazione, non ancora accettata o rifiutata).
+  \end{itemize}
+
+  \item[Postcondizioni:]~
+  \begin{itemize}
+    \item Il voto del cittadino è registrato in forma anonima.
+    \item Il conteggio dei voti e/o il punteggio della proposta è aggiornato secondo le regole di calcolo previste.
+    \item L’utente può, se consentito, modificare il proprio voto fino alla chiusura della votazione.
+  \end{itemize}
+
+  \item[Descrizione:]~
+  \begin{enumerate}
+    \item Il cittadino accede al dettaglio di una proposta su cui è possibile votare.
+    \item Il sistema mostra lo stato corrente della proposta e le opzioni di voto (es. ``Voto favorevole'', ``Voto contrario''), nonché l’eventuale voto già espresso dall’utente.
+    \item Il cittadino seleziona l’opzione di voto desiderata.
+    \item Se i controlli hanno esito positivo, il sistema:
+    \begin{itemize}
+      \item registra il voto in forma anonima;
+      \item aggiorna il conteggio totale e, se previsto, gli altri indicatori associati;
+      \item conferma l’avvenuta registrazione del voto all’utente [eccezione 1].
+    \end{itemize}
+  \end{enumerate}
+
+  \item[Eccezioni:]~
+  \begin{enumerate}
+    \item Se la proposta si trova in uno stato che non consente più la votazione (es. accettata, rifiutata, chiusa), il sistema disabilita l’azione di voto e notifica che la votazione non è più disponibile.
+    \item In caso di errore tecnico durante la registrazione del voto, il sistema segnala l’errore e il voto non viene considerato valido fino a nuovo tentativo dell’utente.
+  \end{enumerate}
+\end{description}
+
+\subsection{Gestione dei preferiti \ref{RF:preferiti}}
 
 \textbf{Riassunto:} Questo use case descrive come un cittadino gestisce l’elenco dei propri elementi preferiti (proposte e sondaggi).
 
 \begin{description}
   \item[Precondizioni:]~
   \begin{itemize}
-    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
     \item Sono presenti proposte o sondaggi visualizzabili.
   \end{itemize}
 
   \item[Postcondizioni:]~
   \begin{itemize}
     \item L’elenco dei preferiti del cittadino è aggiornato in base alle azioni di aggiunta/rimozione.
-    \item Le eventuali notifiche collegate agli elementi preferiti sono aggiornate (\ref{rf:notifiche}).
+    \item Le eventuali notifiche collegate agli elementi preferiti sono aggiornate \ref{RF:notifichepreferiti}.
   \end{itemize}
 
   \item[Descrizione:]~
@@ -488,53 +609,14 @@ Rifare non con chat, piu slim
   \end{enumerate}
 \end{description}
 
-
-
-\textbf{Riassunto:} Questo use case descrive come un cittadino eleggibile esprime un voto positivo o negativo su una proposta.
-
-\begin{description}
-  \item[Precondizioni:]~
-  \begin{itemize}
-    \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
-    \item La proposta su cui si intende votare è in uno stato che consente la votazione (es. pubblicata, in valutazione, non ancora accettata o rifiutata).
-  \end{itemize}
-
-  \item[Postcondizioni:]~
-  \begin{itemize}
-    \item Il voto del cittadino è registrato in forma anonima.
-    \item Il conteggio dei voti e/o il punteggio della proposta è aggiornato secondo le regole di calcolo previste.
-    \item L’utente può, se consentito, modificare il proprio voto fino alla chiusura della votazione o al cambio di stato della proposta.
-  \end{itemize}
-
-  \item[Descrizione:]~
-  \begin{enumerate}
-    \item Il cittadino accede al dettaglio di una proposta su cui è possibile votare.
-    \item Il sistema mostra lo stato corrente della proposta e le opzioni di voto (es. ``Voto favorevole'', ``Voto contrario''), nonché l’eventuale voto già espresso dall’utente.
-    \item Il cittadino seleziona l’opzione di voto desiderata o modifica un voto precedentemente espresso.
-    \item Se i controlli hanno esito positivo, il sistema:
-    \begin{itemize}
-      \item registra il voto in forma anonima;
-      \item aggiorna il conteggio totale e, se previsto, gli altri indicatori associati;
-      \item conferma l’avvenuta registrazione del voto all’utente [eccezione 1].
-    \end{itemize}
-  \end{enumerate}
-
-  \item[Eccezioni:]~
-  \begin{enumerate}
-    \item Se la proposta si trova in uno stato che non consente più la votazione (es. accettata, rifiutata, chiusa), il sistema disabilita l’azione di voto e notifica che la votazione non è più disponibile.
-    \item In caso di errore tecnico durante la registrazione del voto, il sistema segnala l’errore e il voto non viene considerato valido fino a nuovo tentativo dell’utente.
-  \end{enumerate}
-\end{description}
-
-\subsection{Segnalare un contenuto \ref{rf:segnalazione}} 
+\subsection{Segnalare un contenuto \ref{RF:segnalazione}}
 
 \textbf{Riassunto:}
 Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (proposta o modifica) ritenuto inappropriato, inserendolo nella coda di revisione dei moderatori in conformità al requisito \ref{rf:validazionecontenuti}.
 
 \textbf{Precondizioni:}
 \begin{itemize}
-  \item L’utente è autenticato sulla piattaforma con ruolo ``Cittadino''.
-  \item Sta visualizzando un contenuto pubblicato (proposta o modifica).
+  \item L'utente visualizzando un contenuto pubblicato (proposta o modifica).
 \end{itemize}
 
 \textbf{Postcondizioni:}
