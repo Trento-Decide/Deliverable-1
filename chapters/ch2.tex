@@ -110,10 +110,12 @@ Deve essere possibile ripristinare una versione precedente come versione princip
 Il sistema di modifica non è utilizzabile se una proposta è in stato diverso da \textit{pubblicata}.
 
 \subsection{Endorsement} \label{rf:endorsement}
-Il sistema deve consentire alle associazioni di esprimere un singolo \textit{endorsement} digitale (def.~\ref{def:endorsement}) per proposta pubblicata.
+Il sistema deve consentire alle associazioni di esprimere un singolo \textit{endorsement} digitale (def.~\ref{def:endorsement}) per ciascuna proposta pubblicata.
+Una proposta che ha ricevuto un endorsement deve essere contrassegnata mediante un’etichetta riportante il nome dell’associazione che lo ha espresso.
 
 \subsubsection{Rimozione Endorsement} \label{rf:rimozioneendoresement}
-Il sistema deve consentire alle associazioni autrici di \textit{endorsement} di rimuoverlo.
+Il sistema deve consentire alle associazioni che hanno espresso un \textit{endorsement} di rimuoverlo.
+A seguito della rimozione, l’etichetta associata alla proposta deve essere eliminata.
 
 \subsection{Votazione} \label{rf:voto}
 Il sistema deve consentire agli utenti autenticati di esprimere un voto su:
