@@ -1,11 +1,12 @@
 \chapter{Use Case Diagram}
 
-\renewcommand{\thesubsection}{UC\arabic{subsection}}
+\renewcommand{\thesubsection}{\textbf{UC\arabic{subsection}}}
+
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{0pt}
 
 \section*{Introduzione}
-In questa sezione sono riportati gli Use Case Diagram di Trento Decide.
+In questa sezione sono riportati gli Use Case Diagram di \textit{Trento Decide}.
 Questi diagrammi mostrano come gli attori interagiscono con la piattaforma e mettono in evidenza le principali funzionalità e le loro relazioni.
 Gli Use Case Diagram aiutano a concretizzare graficamente i requisiti funzionali, offrendo una visione più chiara e immediata delle dinamiche del sistema rispetto ai capitoli precedenti.
 
@@ -16,7 +17,7 @@ Gli Use Case Diagram aiutano a concretizzare graficamente i requisiti funzionali
 	\includegraphics[scale=1.0]{img/usecase/UtenteAnonimo.png}
 \end{center}
 
-\subsection{Login \ref{RF:login}}
+\subsection{Login \ref{rf:login}}
 
 \textbf{Riassunto:}
 Questo use case descrive come un utente anonimo accede alla piattaforma tramite credenziali locali oppure tramite SPID o CIE.
@@ -35,7 +36,7 @@ L’utente risulta autenticato e accede alla piattaforma.
         \item \textbf{Credenziali locali:} inserisce email e password nei campi dedicati e conferma l’accesso.
         \item \textbf{SPID/CIE:} seleziona l’opzione SPID o CIE; il sistema reindirizza al relativo servizio di autenticazione.
     \end{enumerate}
-	\item L'utente può decidere di far "ricordare" la propria sessione al sistema, salvando così un cookie di autenticazione in locale.
+    \item L'utente può decidere di far "ricordare" la propria sessione al sistema, salvando così un cookie di autenticazione in locale.
     \item Se l’autenticazione è valida, l'utente accede al sistema \textbf{[eccezione 1 - 2]}.
 \end{enumerate}
 
@@ -51,7 +52,7 @@ L’utente risulta autenticato e accede alla piattaforma.
     \item[(3)] Se il sistema non riconosce il cookie di autenticazione, o il cookie è invalidato, allora l'utente è reindirizzato alla schermata di login.
 \end{itemize}
 
-\subsection{Registrazione del cittadino \ref{RF:registrazionecittadino}}
+\subsection{Registrazione del cittadino \ref{rf:registrazionecittadini}}
 
 \textbf{Riassunto:}
 Questo use case descrive come un utente anonimo registra un nuovo account cittadino tramite SPID o CIE e definisce le proprie credenziali locali.
@@ -72,7 +73,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
     \end{enumerate}
     \item Una volta validata l’identità tramite SPID/CIE \textbf{[eccezione 1]}, il sistema richiede: 
     \begin{enumerate}
-    	\item Il comune di residenza dell'utente tramite ANPR
+        \item Il comune di residenza dell'utente tramite ANPR
     \end{enumerate}
     \item Una volta che il sistema verifica la residenza nel comune di Trento \textbf{[eccezione 2]} dell'utente il sistema richiede:
     \begin{enumerate}
@@ -89,9 +90,10 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 \textbf{Eccezioni:}
 \begin{itemize}
 	\item[(1)] Se l’autenticazione SPID/CIE fallisce o viene annullata, la registrazione non procede.
-	\item[(2)] Se l'utente che tenta la registrazione non risiede a Trento, la registrazione non procede.
-    \item[(3)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato.
-    \item[(4)] Se non viene confermata la creazione dell'account entro 10 minuti la registrazione non procede.
+  \item[(2)] Se l'utente che tenta la registrazione non risiede a Trento, la registrazione non procede.
+  %lo stesso per nome utente%
+  \item[(3)] Se l’email non è valida o già associata a un altro account, il sistema notifica l’errore e richiede la correzione del dato.
+  \item[(4)] Se non viene confermata la creazione dell'account entro 10 minuti la registrazione non procede.
 \end{itemize}
 
 \section{Utente Autenticato}
@@ -101,7 +103,7 @@ Un nuovo account cittadino è creato e attivo; le credenziali locali risultano c
 	 \includegraphics[scale=1.25]{img/usecase/UtenteAutenticato2.png}
 \end{center}
 
-\subsection{Logout \ref{RF:logout}}
+\subsection{Logout \ref{rf:logout}}
 
 \textbf{Riassunto:}
 Questo use case descrive come un utente autenticato possa eseguire il logout dalla piattaforma, ovvero terminare la propria sessione attuale e, se esistente, invalidare il cookie di autenticazione.
@@ -120,7 +122,7 @@ L'utente non è autenticato e non possiede cookie di autenticazione validi.
 
 
 
-\subsection{Visualizzazione proposte e sondaggi \ref{RF:visualizzazione}}
+\subsection{Visualizzazione proposte e sondaggi \ref{rf:ordinamentoproposte}, \ref{rf:filtroproposte}}
 
 \textbf{Riassunto:}
 Questo use case descrive come un utente autenticato consulta le proposte pubblicate e i sondaggi disponibili, applicando criteri di ordinamento e filtraggio.
@@ -153,7 +155,7 @@ Le informazioni visualizzate sono aggiornate in base ai criteri di ordinamento o
 	\item[(1)] Se non sono presenti proposte o sondaggi attivi, il sistema mostra un messaggio informativo.
 \end{itemize}
 
-\subsection{Cambio di lingua \ref{RF:cambiolingua}}
+\subsection{Cambio di lingua \ref{rf:cambiolingua}}
 
 \textbf{Riassunto:}
 Questo use case descrive come un utente autenticato modifica la lingua dell’interfaccia della piattaforma.
@@ -217,20 +219,22 @@ Le modifiche alle credenziali o alle preferenze vengono salvate e risultano effe
 \localtableofcontentswithrelativedepth{+1}
 
 \begin{enumerate}
-	\item Registrazione di moderatori e associazioni (\ref{RF:specialregistrazione})
-	\item Pubblicazione sondaggi (\ref{RF:sondaggi})
-	\item Visualizzare policy simulation (\ref{RF:visualizzazionesimulation})
-	\item Download report sull’attività del sistema (\ref{RF:downloadreport})
-	\item Gestione avanzamento stato proposta (\ref{RF:statoproposta})
+	\item Creare account moderatore o associazione (\ref{rf:registrazionemodass})
+	\item Pubblicare un sondaggio (\ref{rf:sondaggi})
+	\item Consultare ed esportare dati dalla dashboard amministrativa (\ref{rf:report})
+	\item Approvare/rifiutare una proposta (\ref{rf:modificastatoproposta})
+	\item Pubblicare un report di valutazione su una proposta (\ref{rf:report})
+	\item Visualizzare policy simulation (\ref{rf:visualizzazionesimulazione})
 \end{enumerate}
 
 \begin{center}
-	\includegraphics[scale=0.53]{img/usecase/Amministratore.png}
+	\includegraphics[scale=0.53]{img/usecase/Amministratore1.png}
+	\includegraphics[scale=0.53]{img/usecase/Amministratore2.png}
 \end{center}
 
-\subsection{Creare account moderatore o associazione/comitato \ref{sec:specialregistrazione}}
+\subsection{Creare account moderatore o associazione \ref{rf:registrazionemodass}}
 \textbf{Riassunto:}
-Questo caso d’uso descrive la procedura di creazione di un nuovo account di tipo moderatore o associazione/comitato tramite l’interfaccia amministrativa.
+Questo caso d’uso descrive la procedura di creazione di un nuovo account di tipo moderatore o associazione tramite l’interfaccia amministrativa.
 
 \textbf{Precondizioni:}
 L’amministratore è autenticato e ha i permessi di gestione utenti.
@@ -241,11 +245,11 @@ L’account risulta creato, registrato e notificato via email.
 \textbf{Descrizione:}
 \begin{enumerate}
   \item L’amministratore accede alla sezione di gestione utenti.
-  \item Seleziona il tipo di account da creare (moderatore o associazione/comitato).
+  \item Seleziona il tipo di account da creare (moderatore o associazione).
   \item Inserisce i dati richiesti e conferma l’operazione.
   \item Il sistema verifica la correttezza e completezza dei dati inseriti.
   \item In caso di esito positivo, il sistema crea il nuovo account.
-  \item Il sistema invia un’email di conferma e, se previsto, le credenziali di accesso.
+  \item Il sistema invia credenziali email all’utente interessato.
 \end{enumerate}
 
 \textbf{Eccezioni:}
@@ -255,24 +259,23 @@ L’account risulta creato, registrato e notificato via email.
   \item [E3.] Errore nell’invio dell’email: il sistema registra l’errore e notifica l’amministratore.
 \end{itemize}
 
-\subsection{Pubblicare sondaggi \ref{sec:sondaggi}}
+\subsection{Pubblicare un sondaggio \ref{rf:sondaggi}}
 \textbf{Riassunto:}
-Questo caso d’uso descrive la pubblicazione di un nuovo sondaggio o consultazione pubblica da parte dell’amministratore.
+Questo caso d’uso descrive la pubblicazione di un sondaggio rivolto ai cittadini.
 
 \textbf{Precondizioni:}
 L’amministratore è autenticato e dispone dei permessi di gestione sondaggi.
 
 \textbf{Postcondizioni:}
-Il sondaggio è pubblicato e reso visibile ai cittadini.
+Il sondaggio viene pubblicato.
 
 \textbf{Descrizione:}
 \begin{enumerate}
   \item L’amministratore accede al modulo di gestione sondaggi.
   \item Seleziona “Crea nuovo sondaggio”.
-  \item Compila titolo, descrizione, periodo di apertura e categorie tematiche.
+  \item Compila titolo, descrizione, categoria, periodo e quesiti.
   \item Conferma la pubblicazione.
-  \item Il sistema pubblica il sondaggio e invia notifiche ai cittadini iscritti.
-  \item L’amministratore può successivamente modificare o annullare la pubblicazione.
+  \item Il sistema invia notifiche agli utenti che hanno attivato le notifiche.
 \end{enumerate}
 
 \textbf{Eccezioni:}
@@ -282,7 +285,7 @@ Il sondaggio è pubblicato e reso visibile ai cittadini.
   \item [E3.] Errore durante l’invio delle notifiche: il sistema completa la pubblicazione ma registra l’errore di comunicazione.
 \end{itemize}
 
-\subsection{Interazione con dashboard amministrativa \ref{sec:dashboard}}
+\subsection{Consultare ed esportare dati dalla dashboard amministrativa\ref{rf:dashboard}}
 \textbf{Riassunto:}
 Questo caso d’uso descrive l’utilizzo della dashboard amministrativa per consultare, filtrare ed esportare i dati aggregati del sistema.
 
@@ -290,42 +293,42 @@ Questo caso d’uso descrive l’utilizzo della dashboard amministrativa per con
 L’amministratore è autenticato.
 
 \textbf{Postcondizioni:}
-I dati sono visualizzati, filtrati o esportati secondo le operazioni eseguite.
+I dati richiesti sono visualizzati o esportati.
 
 \textbf{Descrizione:}
 \begin{enumerate}
   \item L’amministratore accede alla dashboard amministrativa.
-  \item Visualizza gli indicatori principali (attività utenti, voti, proposte per categoria).
+  \item Visualizza indicatori generali (utenti, voti, attività, categorie).
   \item Applica filtri e ordinamenti sui dati visualizzati.
-  \item Esporta i dati in formato CSV o PDF.
-  \item Può configurare la dashboard per personalizzare i widget o i parametri mostrati.
+  \item Esporta dati in un formato disponibile (es. CSV).
 \end{enumerate}
 
 \textbf{Eccezioni:}
 \begin{itemize}
   \item [E1.] Nessun dato disponibile per i criteri selezionati: il sistema mostra un messaggio “Nessun risultato trovato”.
   \item [E2.] Errore di esportazione (ad es. permessi insufficienti o formato non supportato): il sistema notifica l’errore e annulla l’operazione.
-  \item [E3.] Errore nel caricamento dei dati (timeout o perdita connessione): il sistema mostra un messaggio di errore e consente di riprovare.
+  \item [E3.] Errore nel caricamento dei dati: il sistema mostra un messaggio di errore e consente di riprovare.
 \end{itemize}
 
 \subsection{Approvare/rifiutare una proposta}
 
 \textbf{Riassunto:}
-Questo caso d’uso descrive come l’amministratore esamina una proposta in stato \textit{in valutazione} e decide se approvarla oppure rifiutarla, aggiornandone lo stato.
+Questo caso d’uso descrive come l’amministratore esamina una proposta in stato \textit{in valutazione} e decide se approvarla oppure rifiutarla.
 
 \textbf{Precondizioni:}
-Esistono proposte in stato \textit{in valutazione}.
+La proposta è in stato \textit{in valutazione}.
 
 \textbf{Postcondizioni:}
 La proposta risulta \textit{accettata} oppure \textit{rifiutata}.
-La transizione di stato è registrata nello storico.
+La motivazione viene resa visibile al pubblico.
 
 \textbf{Descrizione:}
 \begin{enumerate}
   \item L’amministratore accede all’elenco delle proposte in valutazione.
-  \item Seleziona una proposta e ne visualizza contenuto, metadati e storico modifiche.
-  \item Analizza revisioni, contributi e sostegni ricevuti.
-  \item Decide se approvare la proposta oppure rifiutarla inserendo una motivazione.
+  \item Seleziona una proposta.
+  \item Analizza contenuto, storia modifiche, contributi e voti.
+  \item Decide se approvare la proposta oppure rifiutarla.
+  \item Inserisce una motivazione.
   \item Il sistema aggiorna lo stato e registra l’esito della valutazione.
 \end{enumerate}
 
@@ -335,29 +338,52 @@ La transizione di stato è registrata nello storico.
   \item La proposta risulta già valutata da un altro amministratore: il sistema impedisce l’operazione.
 \end{enumerate}
 
-\subsection{Pubblicare e aggiornare un report amministrativo}
+\subsection{Pubblicare un report di valutazione su una proposta}
 
 \textbf{Riassunto:}
-Questo caso d’uso descrive come l’amministratore genera, pubblica e, se necessario, aggiorna un report relativo a una proposta. La pubblicazione può comportare un aggiornamento dello stato della proposta.
+Questo caso d’uso descrive come l’amministratore redige o aggiorna un report relativo a una proposta, eventualmente modificandone lo stato.
 
 \textbf{Precondizioni:}
-Esistono proposte che richiedono la redazione o l’aggiornamento di un report.
+La proposta richiede un report o un suo aggiornamento.
 
 \textbf{Postcondizioni:}
 Il report risulta pubblicato o aggiornato.
-Lo stato della proposta può essere aggiornato.
+Lo stato della proposta può essere modificato.
 
 \textbf{Descrizione:}
 \begin{enumerate}
-  \item L’amministratore accede al modulo di report.
-  \item Inserisce o modifica i contenuti del report (testo, indicatori, allegati).
+  \item L’amministratore accede al modulo di report della proposta.
+  \item Scrive o modifica testo, allegati, indicatori.
   \item Pubblica il report.
-  \item Il sistema aggiorna lo stato della proposta, se applicabile.
+  \item Il sistema aggiorna lo stato della proposta (se previsto).
 \end{enumerate}
 
 \textbf{Eccezioni:}
 \begin{enumerate}
   \item Il report è in modifica da parte di un altro amministratore: l’operazione viene bloccata.
+\end{enumerate}
+
+\subsection{Visualizzare il risultato di una simulazione}
+
+\textbf{Riassunto:}
+Questo use case descrive come un amministratore consulta il risultato di una simulazione tramite grafici e tabelle.
+
+\textbf{Precondizioni:}
+È stata eseguita almeno una simulazione.
+
+\textbf{Postcondizioni:}
+I risultati della simulazione sono visualizzati.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item L’amministratore accede alla sezione “Risultati simulazione”.
+  \item Visualizza indicatori numerici, grafici e confronti.
+  \item Può esportare i dati.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{enumerate}
+  \item Nessuna simulazione disponibile: viene mostrato messaggio di avviso.
 \end{enumerate}
 
 \section{Cittadino}
@@ -367,7 +393,7 @@ Lo stato della proposta può essere aggiornato.
   \includegraphics[scale=0.55]{img/usecase/Cittadino.png}
 \end{center}
 
-\subsection{Creazione proposta \ref{RF:creazioneproposta}}
+\subsection{Creazione proposta \ref{rf:creazioneproposta}}
 
 \textbf{Riassunto:} Questo use case descrive come un cittadino autenticato crea una nuova proposta.
 
@@ -418,18 +444,18 @@ Lo stato della proposta può essere aggiornato.
 
 
 
-\subsection{Pubblicazione proposta \ref{RF:pubblicaproposta}}
+\subsection{Pubblicazione proposta \ref{rf:pubblicazioneproposta}}
 
-\subsection{Eliminazione proposta \ref{RF:eliminaproposta}}
+\subsection{Eliminazione proposta \ref{rf:eliminazioneproposta}}
 
-\subsection{Modifiche ad una proposta \ref{RF:modifica}}
+\subsection{Modifiche ad una proposta \ref{rf:modificacollaborativa}}
 
 Rifare non con chat, piu slim
 
-\subsection{Espressione del voto \ref{RF:voto}}
+\subsection{Espressione del voto \ref{rf:voto}}
 
 
-\subsection{Gestione dei preferiti\ref{RF:preferiti}}
+\subsection{Gestione dei preferiti\ref{rf:preferiti}}
 
 \textbf{Riassunto:} Questo use case descrive come un cittadino gestisce l’elenco dei propri elementi preferiti (proposte e sondaggi).
 
@@ -443,7 +469,7 @@ Rifare non con chat, piu slim
   \item[Postcondizioni:]~
   \begin{itemize}
     \item L’elenco dei preferiti del cittadino è aggiornato in base alle azioni di aggiunta/rimozione.
-    \item Le eventuali notifiche collegate agli elementi preferiti sono aggiornate (RF4.2).
+    \item Le eventuali notifiche collegate agli elementi preferiti sono aggiornate (\ref{rf:notifiche}).
   \end{itemize}
 
   \item[Descrizione:]~
@@ -500,10 +526,10 @@ Rifare non con chat, piu slim
   \end{enumerate}
 \end{description}
 
-\subsection{Segnalare un contenuto \ref{RF:segnalazione}} 
+\subsection{Segnalare un contenuto \ref{rf:segnalazione}} 
 
 \textbf{Riassunto:}
-Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (proposta o modifica) ritenuto inappropriato, inserendolo nella coda di revisione dei moderatori in conformità al requisito RF5.1.
+Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (proposta o modifica) ritenuto inappropriato, inserendolo nella coda di revisione dei moderatori in conformità al requisito \ref{rf:validazionecontenuti}.
 
 \textbf{Precondizioni:}
 \begin{itemize}
@@ -557,16 +583,142 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
 
 \section{Associazione/Comitato}
 
-\subsection{Pubblicazione proposte collettive (\ref{RF:propostecollettive})}
-\subsection{Endorsement (\ref{RF:endorsement})}
+\subsection{Pubblicazione proposte collettive (\ref{rf:propostecollettive})}
+\subsection{Endorsement (\ref{rf:endorsement})}
 
 \section{Moderatore}
 \localtableofcontentswithrelativedepth{+1}
+
+\begin{enumerate}
+	\item Moderazione tramite coda di revisione (\ref{rf:moderazioneutenti})
+	\item Moderazione spontanea dei contenuti (\ref{rf:moderazioneutenti})
+\end{enumerate}
 
 \begin{center}
 	\includegraphics[scale=0.9]{img/usecase/Moderatore.png}
 \end{center}
 
-\subsection{Interazione coda di revisione} \ref{RF:codarevisione}
-\subsection{Rimozione contenuti} \ref{RF:rimozionecontenuti}
-\subsection{Moderazione sugli utenti} \ref{RF:moderazioneutenti}
+\subsection{Moderazione tramite coda di revisione} \label{uc:modcoda}
+
+\textbf{Riassunto:}  
+Questo use case descrive come il moderatore analizza contenuti segnalati dai cittadini o rilevati automaticamente dal sistema e decide l’esito della revisione.
+
+\textbf{Precondizioni:}  
+Esistono contenuti presenti nella coda di revisione.
+
+\textbf{Postcondizioni:}  
+Il contenuto risulta confermato oppure rimosso.  
+Eventuali limitazioni all’autore possono essere applicate (\textit{estensione} \ref{uc:modlimitazioni}).
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item Il moderatore accede alla coda di revisione.
+  \item Seleziona un contenuto segnalato o rilevato automaticamente.
+  \item Analizza il testo e i metadati (autore, data, motivo della segnalazione).
+  \item Valuta la conformità rispetto alle policy della piattaforma e decide tra:
+  \begin{itemize}
+    \item confermare il contenuto;
+    \item rimuovere il contenuto (include \ref{uc:rimozione});
+    \item applicare una limitazione all’autore (estende \ref{uc:modlimitazioni}).
+  \end{itemize}
+  \item Il sistema aggiorna lo stato della segnalazione e registra l’esito.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+  \item[E1.] L’elemento è stato già revisionato da un altro moderatore: il sistema aggiorna la lista e notifica la situazione.
+  \item[E2.] Il contenuto non è più disponibile (eliminato dall’autore): il sistema archivia automaticamente la segnalazione.
+\end{itemize}
+
+
+\subsection{Moderazione spontanea dei contenuti} \label{uc:modspontanea}
+
+\textbf{Riassunto:}  
+Questo use case descrive come il moderatore interviene autonomamente su contenuti pubblicati senza passare dalla coda di revisione.
+
+\textbf{Precondizioni:}  
+Il moderatore è autenticato e ha accesso ai contenuti pubblici.
+
+\textbf{Postcondizioni:}  
+Il contenuto risulta confermato o rimosso.  
+Eventuali limitazioni possono essere applicate (\textit{estensione} \ref{uc:modlimitazioni}).
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item Il moderatore accede alla sezione di ricerca dei contenuti pubblicati.
+  \item Filtra o individua un contenuto da analizzare.
+  \item Visualizza testo, allegati, metadati e contesto.
+  \item Valuta la conformità rispetto alle policy della piattaforma e decide tra:
+  \begin{itemize}
+    \item non intervenire;
+    \item rimuovere il contenuto (include \ref{uc:rimozione});
+    \item applicare una limitazione (estende \ref{uc:modlimitazioni}).
+  \end{itemize}
+  \item Il sistema registra l’azione eventualmente intrapresa.
+\end{enumerate}
+
+\textbf{Eccezioni:}
+\begin{itemize}
+  \item[E1.] Il contenuto è stato rimosso dall’autore: il sistema notifica l’incongruenza.
+  \item[E2.] Un altro moderatore sta intervenendo sul contenuto: il sistema blocca l’operazione.
+\end{itemize}
+
+
+
+\subsection{Rimozione di un contenuto} \label{uc:rimozione}
+
+\textbf{Riassunto:}  
+Questo use case descrive come il moderatore elimina un contenuto che viola le policy.
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item Il moderatore seleziona l’opzione di rimozione.
+  \item Inserisce la motivazione dell’intervento.
+  \item Il sistema elimina il contenuto dalla piattaforma.
+  \item Il sistema registra: motivazione, timestamp e identificativo del moderatore.
+  \item Il sistema offre la possibilità di applicare una limitazione all’autore (estensione \ref{uc:modlimitazioni}).
+\end{enumerate}
+
+
+
+\subsection{Applicazione limitazioni all’autore} \label{uc:modlimitazioni}
+
+\textbf{Attore principale:} Moderatore  
+\textbf{Attore secondario:} Amministrazione
+
+\textbf{Riassunto:}  
+Questo use case descrive come il moderatore gestisce eventuali limitazioni all’autore del contenuto, secondo due flussi distinti per cittadini e associazioni.
+
+---
+
+\subsubsection*{Caso A — Autore cittadino: applicazione diretta}
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item Il moderatore seleziona tipo e durata della limitazione.
+  \item Il sistema applica la limitazione all’account del cittadino.
+  \item Il sistema invia automaticamente all’utente un’email con:
+  \begin{itemize}
+    \item durata,
+    \item riferimenti alle norme violate,
+    \item modalità di ricorso.
+  \end{itemize}
+  \item L’operazione viene registrata.
+\end{enumerate}
+
+---
+
+\subsubsection*{Caso B — Autore associazione/comitato: escalation verso amministrazione}
+
+\textbf{Descrizione:}
+\begin{enumerate}
+  \item Il moderatore seleziona “Proponi limitazione”.
+  \item Il sistema invia la richiesta all’amministrazione.
+  \item Il sistema applica un blocco temporaneo delle interazioni fino alla decisione.
+  \item Il sistema invia un’email all’associazione, indicando:
+  \begin{itemize}
+    \item la contestazione,
+    \item che la decisione finale è in carico all’amministrazione.
+  \end{itemize}
+  \item L’amministrazione valuterà il provvedimento secondo il processo definito nel Requito Funzionale \ref{rf:moderazioneassociazioni}.
+\end{enumerate}
