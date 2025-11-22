@@ -7,6 +7,48 @@
 \usepackage[T1]{fontenc}
 \usepackage[italian]{babel}
 \usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{tocloft}
+
+\newlength{\originalsecnumwidth}
+\setlength{\originalsecnumwidth}{\cftsecnumwidth}
+
+\usepackage{tocloft}
+
+\newlength{\originalsubsecnumwidth}
+\setlength{\originalsubsecnumwidth}{\cftsubsecnumwidth}
+
+
+\newcounter{rfstart}
+\newenvironment{rfscope}{
+    \setcounter{rfstart}{\value{section}}
+    \renewcommand{\thesubsection}{\textbf{RF\the\numexpr\value{section}-\value{rfstart}\relax.\arabic{subsection}}}
+    \renewcommand{\thesubsubsection}{\textbf{\thesubsection.\arabic{subsubsection}}}
+}{
+}
+
+\newenvironment{rnfscope}{
+    \setcounter{section}{0}    
+    \renewcommand{\thesection}{\textbf{RNF\arabic{section}}}
+    \addtocontents{toc}{\protect\setlength{\cftsecnumwidth}{4em}}
+}{
+    \addtocontents{toc}{\protect\setlength{\cftsecnumwidth}{\originalsecnumwidth}}
+}
+
+\newcounter{ucstart}
+\newlength{\originalucsubsecwidth}
+\setlength{\originalucsubsecwidth}{\cftsubsecnumwidth}
+\newenvironment{ucscope}{
+    \setcounter{ucstart}{\value{section}}
+    \renewcommand{\thesubsection}{\textbf{UC\the\numexpr\value{section}-\value{ucstart}\relax.\arabic{subsection}}}
+    \renewcommand{\thesubsubsection}{\textbf{\thesubsection.\arabic{subsubsection}}}
+    \addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{3.5em}}
+}{
+    \addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{\originalucsubsecwidth}}
+}
+
+\definecolor{trentogreen}{RGB}{0, 122, 82}
+\definecolor{grayline}{RGB}{200, 200, 200}
 
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
@@ -31,6 +73,12 @@
 \newcounter{definition}
 \renewcommand{\thedefinition}{\arabic{definition}}
 
+\newcounter{rfsection}
+\setcounter{rfsection}{1}
+
+\newcounter{ucsection}
+\setcounter{ucsection}{1}
+
 \renewcommand{\bibname}{Bibliografia e Sitografia}
 
 \usepackage{etoc}
@@ -41,11 +89,11 @@
   \centering
 
   {\Huge \bfseries Documento di Analisi dei Requisiti }\\[1.5em]
-  \Large \textit{Progetto Trento Decide}\\[1em]
+  \Large \emph{Progetto Trento Decide}\\[1em]
   \Large {Corso di Ingegneria del Software \\
 Università di Trento}\\[1em]
 
-  {\large Versione 2.0 }
+  {\large Versione 2.1 }
   \vspace{0.5cm}
 
   {\large \today \par}
