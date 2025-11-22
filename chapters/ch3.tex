@@ -3,78 +3,80 @@
 
 \chapter{Requisiti Non Funzionali}
 
-\renewcommand{\thesubsection}{\textbf{RNF\arabic{subsection}}}
-
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{0pt}
 
 \section{Introduzione}
-I requisiti non funzionali definiscono le proprietà qualitative, operative e normative che il sistema \textit{Trento Decide} deve rispettare per garantire sicurezza, efficienza, accessibilità e affidabilità.
+I requisiti non funzionali definiscono le proprietà qualitative, operative e normative che il sistema \emph{Trento Decide} deve rispettare per garantire sicurezza, efficienza, accessibilità e affidabilità.
 Ogni requisito è formulato in modo chiaro, verificabile e, ove possibile, riferito a metriche misurabili e standard riconosciuti.
 
-\subsection{Affidabilità} \label{rnf:affidabilita}
+\begin{rnfscope}
+
+\section{Affidabilità} \label{rnf:affidabilita}
 Il sistema deve garantire una disponibilità minima del 99.91\% (downtime massimo 8 ore/anno).
 Devono essere definiti obiettivi RTO $\le$ 2 ore e RPO $\le$ 12 ore.
-Deve essere previsto un piano di \textit{incident response} che definisca ruoli e procedure di gestione dei guasti,
+Deve essere previsto un piano di \emph{incident response} che definisca ruoli e procedure di gestione dei guasti,
 e devono essere effettuati test di resilienza semestrali comprendenti prove di ripristino del servizio.
 
-\subsection{Anonimato} \label{rnf:anonimato}
+\section{Anonimato} \label{rnf:anonimato}
 Il sistema deve garantire che tutti i dati utilizzati per la generazione dei report amministrativi (\ref{rf:report}) e per l’analisi dell’attività della piattaforma siano trattati in forma rigorosamente anonimizzata.
 Nessun log, metadato o aggregazione statistica deve consentire l'identificazione diretta o indiretta degli utenti, neppure combinando più dataset.
-Le procedure di anonimizzazione devono essere applicate prima che i dati siano resi disponibili all’amministrazione o esportabili, assicurando che ogni informazione personale venga rimossa o generalizzata in conformità alle linee guida GDPR.
+Le procedure di anonimizzazione devono essere applicate prima che i dati siano resi disponibili all’amministrazione o esportabili, assicurando che ogni informazione personale venga rimossa o generalizzata in conformità alle linee guida GDPR\@.
 
-\subsection{Backup e ripristino} \label{rnf:backup}
+\section{Backup e ripristino} \label{rnf:backup}
 Il sistema deve eseguire backup automatici ogni 3 ore di dati, le configurazioni applicative e i log di sistema. I backup devono essere conservati per almeno 90 giorni e replicati in un data center dell’Unione Europea
 qualificato AgID e geograficamente separato dalla sede primaria.
 Devono essere previsti controlli di integrità dei backup, verificando la coerenza dei dati e la loro
 effettiva ripristinabilità, e devono essere svolti test semestrali delle procedure di ripristino.
 
-\subsection{Compatibilità} \label{rnf:compatibilita}
+\section{Compatibilità} \label{rnf:compatibilita}
 Il sistema deve essere conforme agli standard HTML5, CSS3 ed ECMAScript 6, garantendo la piena compatibilità con i principali browser utilizzati nei contesti della Pubblica Amministrazione e dagli utenti finali.
 Il supporto deve coprire almeno le seguenti versioni dei software: Mozilla Firefox versione 52 ESR o superiore, Chromium/Chrome versione 52 o superiore, Opera versione 40 o superiore, Safari versione 10 o superiore e Microsoft Edge versione 79 o superiore.
 L’interfaccia deve essere completamente responsive, garantendo un adattamento ottimale a desktop, tablet e smartphone.
 
-\subsection{Etica e imparzialità del sistema} \label{rnf:etica}
+\section{Etica e imparzialità del sistema} \label{rnf:etica}
 Il sistema deve garantire trasparenza, equità e neutralità nei processi di partecipazione,
-evitando l’introduzione di bias politici, ideologici o sociali derivanti dalle logiche applicative o dall'utilizzo scorretto della piattaforma da parte di utenti (si veda \ref{rf:moderazioneutenti}). Tali principi riguardano esclusivamente il funzionamento della piattaforma e non limitano l’espressione degli utenti.
+evitando l’introduzione di bias politici, ideologici o sociali derivanti dalle logiche applicative o dall'utilizzo scorretto della piattaforma da parte di utenti (si veda~\ref{rf:moderazioneutenti}). Tali principi riguardano esclusivamente il funzionamento della piattaforma e non limitano l’espressione degli utenti.
 
-\subsection{Internazionalizzazione e lingua} \label{rnf:lingua}
+\section{Internazionalizzazione e lingua} \label{rnf:lingua}
 Il sistema deve supportare almeno le seguenti lingue: Italiano, Inglese, Tedesco, Arabo (RTL) e Rumeno.
 La lingua dell’interfaccia deve essere selezionabile e persistente a livello di profilo utente (\ref{rf:cambiolingua}).
 I contenuti generati dagli utenti devono rimanere nella lingua di origine, con possibilità di traduzione automatica a solo scopo informativo, chiaramente segnalata.
 
-\subsection{Moderazione e correttezza d’uso} \label{rnf:moderazione}
+\section{Moderazione e correttezza d’uso} \label{rnf:moderazione}
 Il sistema deve garantire un ambiente rispettoso mediante meccanismi di moderazione dei contenuti e delle interazioni tra utenti.
 Le segnalazioni devono essere prese in carico entro 24 ore dalla ricezione.
 Tutte le azioni di moderazione devono essere registrate (utente, data/ora, motivazione) in un log non alterabile.
 
-\subsection{Moderazione automatica} \label{rnf:moderazioneautomatica}
-La moderazione automatica (si veda \ref{rf:moderazioneautomatica}) deve limitarsi all’oscuramento temporaneo e alla segnalazione, senza rimozioni definitive. I criteri adottati devono essere imparziali e non ostacolare l’espressività del cittadino, intervenendo esclusivamente per tutelare gli utenti da contenuti gravemente offensivi.
+\section{Moderazione automatica} \label{rnf:moderazioneautomatica}
+La moderazione automatica (si veda~\ref{rf:moderazioneautomatica}) deve limitarsi all’oscuramento temporaneo e alla segnalazione, senza rimozioni definitive. I criteri adottati devono essere imparziali e non ostacolare l’espressività del cittadino, intervenendo esclusivamente per tutelare gli utenti da contenuti gravemente offensivi.
 
-\subsection{Performance} \label{rnf:performance}
+\section{Performance} \label{rnf:performance}
 Il sistema deve garantire che il 95\% delle operazioni principali (autenticazione, consultazione dei contenuti, espressione del voto) sia completato entro 1 secondo.
 Tale requisito deve essere mantenuto con un carico simultaneo fino a 20.000 utenti attivi.
-L’interfaccia deve rispettare i target \textit{Core Web Vitals}: LCP $\leq$ 2{,}5 s (p75), INP $\leq$ 200 ms (p75), CLS $\leq$ 0{,}1 (p75),
+L’interfaccia deve rispettare i target \emph{Core Web Vitals}: LCP $\leq$ 2{,}5 s (p75), INP $\leq$ 200 ms (p75), CLS $\leq$ 0{,}1 (p75),
 misurati su dispositivi reali e non mediante test sintetici locali.
 
-\subsection{Portabilità} \label{rnf:portabilita}
+\section{Portabilità} \label{rnf:portabilita}
 Il sistema deve poter essere distribuito su infrastrutture on-premise o cloud qualificati nell’Unione Europea (servizi conformi alle linee guida AgID).
 Deve essere garantita la compatibilità con database relazionali standard (ad esempio PostgreSQL).
 
-\subsection{Scalabilità} \label{rnf:scalabilita}
+\section{Scalabilità} \label{rnf:scalabilita}
 Il sistema deve supportare la scalabilità orizzontale e verticale senza downtime.
 L’architettura deve permettere l’aggiunta di nuove istanze di servizio e la gestione di carichi concorrenti elevati.
 
-\subsection{Sicurezza} \label{rnf:sicurezza}
-Il sistema deve adottare un approccio di \textit{security by design}, implementando meccanismi di protezione dei dati
+\section{Sicurezza} \label{rnf:sicurezza}
+Il sistema deve adottare un approccio di \emph{security by design}, implementando meccanismi di protezione dei dati
 e delle funzionalità contro accessi non autorizzati e minacce comuni.
 Tutte le comunicazioni devono essere cifrate tramite protocolli sicuri (es. TLS 1.2 o superiore) e i dati sensibili
 devono essere protetti mediante tecniche di hashing o cifratura a riposo.
 Devono essere previste contromisure contro attacchi applicativi frequenti, quali XSS, CSRF, SQL injection e tentativi
 di bruteforce.
 È inoltre richiesto un aggiornamento periodico delle componenti software e una revisione annuale dei principali
-controlli di sicurezza, nel rispetto delle normative vigenti e del GDPR.
+controlli di sicurezza, nel rispetto delle normative vigenti e del GDPR\@.
 
-\subsection{Usabilità e accessibilità} \label{rnf:useacc}
+\section{Usabilità e accessibilità} \label{rnf:useacc}
 Il sistema deve essere utilizzabile senza formazione per gli utenti esterni; la formazione per operatori non deve superare 45 minuti.
 L’interfaccia deve rispettare gli standard WCAG 2.1 livello AA e raggiungere un punteggio minimo SUS $\ge$ 80.
+
+\end{rnfscope}
