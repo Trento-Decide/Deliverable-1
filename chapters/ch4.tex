@@ -1,3 +1,4 @@
+% !TeX spellcheck = it_IT
 \chapter{Use Case Diagram}
 
 \renewcommand{\thesubsection}{\textbf{UC\arabic{ucsection}.\arabic{subsection}}}
@@ -362,12 +363,11 @@ Lo stato della proposta può essere modificato.
 
 \begin{center}
   \includegraphics[scale=0.65]{img/usecase/Cittadino 1.png}
-  \includegraphics[scale=0.65]{img/usecase/Cittadino 2.png}
 \end{center}
 
 \subsection{Creazione proposta~\ref{rf:creazioneproposta}}
 
-\textbf{Riassunto:} Questo use case descrive come un cittadino autenticato crea una nuova proposta.
+\textbf{Riassunto:} Questo use case descrive come un cittadino crea una nuova proposta.
 
 \begin{description}
   \item[Postcondizioni:]
@@ -413,7 +413,7 @@ Lo stato della proposta può essere modificato.
 
 \subsection{Modificare proposta~\ref{rf:modificaproposta}}
 \begin{description}
-  \item[Riassunto:] Questo use case descrive come un cittadino autenticato modifica una proposta esistente, sia come autore della proposta, sia proponendo una modifica a una proposta creata da altri utenti.
+  \item[Riassunto:] Questo use case descrive come un cittadino modifica una proposta esistente, sia come autore della proposta, sia proponendo una modifica a una proposta creata da altri utenti.
 
   \item[Precondizioni:]
   \begin{itemize}
@@ -511,9 +511,13 @@ Lo stato della proposta può essere modificato.
   \end{enumerate}
 \end{description}
 
-\subsection{Espressione del voto (proposta)~\ref{rf:voto}}
+\begin{center}
+  \includegraphics[scale=0.8]{img/usecase/Cittadino 2.png}
+\end{center}
 
-\textbf{Riassunto:} Questo use case descrive come un cittadino eleggibile esprime un voto positivo o negativo su una proposta.
+\subsection{Espressione del voto (proposta) \ref{RF:voto}}
+
+\textbf{Riassunto:} Questo use case descrive come un cittadino esprime un voto positivo o negativo su una proposta.
 
 \begin{description}
   \item[Precondizioni:]
@@ -642,7 +646,7 @@ Questo caso d’uso descrive come un cittadino segnala un contenuto pubblicato (
 
 \subsection{Pubblicazione proposte collettive~\ref{rf:propostecollettive}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un’associazione pubblica una proposta collettiva, che viene etichettata come tale dal sistema.
 
 \textbf{Precondizioni:}
@@ -667,7 +671,7 @@ La proposta risulta pubblicata e marcata come \emph{proposta collettiva}.
 
 \subsection{Endorsement~\ref{rf:endorsement}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un’associazione esprime un endorsement digitale su una proposta pubblicata.
 
 \textbf{Precondizioni:}
@@ -696,7 +700,7 @@ L’endorsement risulta registrato e la proposta è contrassegnata con un’etic
 
 \subsection{Rimozione Endorsement~\ref{rf:rimozioneendoresement}}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come un’associazione rimuove un endorsement precedentemente espresso.
 
 \textbf{Precondizioni:}
@@ -725,10 +729,10 @@ L’endorsement risulta rimosso e l’etichetta non è più visibile sulla propo
 
 \subsection{Moderazione tramite coda di revisione~\ref{rf:validazionecontenuti}} \label{uc:modcoda}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come il moderatore analizza contenuti segnalati dai cittadini o rilevati automaticamente dal sistema e decide l’esito della revisione.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 Esistono contenuti presenti nella coda di revisione.
 
 \textbf{Postcondizioni:}  
@@ -758,10 +762,10 @@ Eventuali limitazioni all’autore possono essere applicate (\emph{estensione}~\
 
 \subsection{Moderazione spontanea dei contenuti} \label{uc:modspontanea}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come il moderatore interviene autonomamente su contenuti pubblicati senza passare dalla coda di revisione.
 
-\textbf{Precondizioni:}  
+\textbf{Precondizioni:}
 Il moderatore è autenticato e ha accesso ai contenuti pubblici.
 
 \textbf{Postcondizioni:}  
@@ -790,7 +794,7 @@ Eventuali limitazioni possono essere applicate (\emph{estensione}~\ref{uc:modlim
 
 \subsection{Rimozione di un contenuto} \label{uc:rimozione}
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come il moderatore elimina un contenuto che viola le policy.
 
 \textbf{Descrizione:}
@@ -803,10 +807,10 @@ Questo use case descrive come il moderatore elimina un contenuto che viola le po
 
 \subsection{Applicazione limitazioni all’autore} \label{uc:modlimitazioni}
 
-\textbf{Attore principale:} Moderatore  
+\textbf{Attore principale:} Moderatore
 \textbf{Attore secondario:} Amministrazione
 
-\textbf{Riassunto:}  
+\textbf{Riassunto:}
 Questo use case descrive come il moderatore gestisce eventuali limitazioni all’autore del contenuto, secondo due flussi distinti per cittadini e associazioni.
 
 ---
