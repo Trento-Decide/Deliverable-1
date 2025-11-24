@@ -19,7 +19,14 @@
   \end{description}
 }
 
-\section{Registrazione del cittadino \ref{rf:registrazionecittadini}}
+
+\section{Introduzione}
+Le User Stories descrivono il comportamento del sistema dal punto di vista degli utenti finali, evidenziando bisogni, obiettivi e valore atteso.
+Ogni storia segue una struttura uniforme e include criteri di accettazione verificabili e i task principali necessari alla sua implementazione.
+
+\begin{usscope}
+
+\section{Registrazione del cittadino~\ref{rf:registrazionecittadini}}
 \userstory
 {
   Come utente anonimo, voglio registrarmi alla piattaforma verificando la mia identità tramite SPID o CIE e configurando le mie credenziali locali.
@@ -41,10 +48,10 @@
   \item Implementazione della logica di scadenza del token di verifica (10 minuti).
 }
 
-\section{Espressione del voto \ref{rf:voto}}
+\section{Espressione del voto~\ref{rf:voto}}
 \userstory
 {
-  Come cittadino, voglio esprimere un voto (favorevole o contrario) sulle proposte e partecipare ai sondaggi attivi, per contribuire alla definizione delle priorità comunali.
+  Come utente, voglio esprimere un voto (favorevole o contrario) sulle proposte e partecipare ai sondaggi attivi, per contribuire alla definizione delle priorità comunali.
 }
 {
   \item Il sistema deve consentire di esprimere un voto positivo o negativo sulle proposte in stato "pubblicata" o "in valutazione".
@@ -62,10 +69,10 @@
   \item Aggiornamento real-time dei contatori visibili sulla proposta.
 }
 
-\section{Gestione dei preferiti \ref{rf:preferiti}}
+\section{Gestione dei preferiti~\ref{rf:preferiti}}
 \userstory
 {
-  Come cittadino, voglio aggiungere o rimuovere proposte e sondaggi dai miei preferiti, per poter accedere rapidamente ai contenuti di mio interesse e ricevere notifiche automatiche sui loro aggiornamenti di stato.
+  Come utente, voglio aggiungere o rimuovere proposte e sondaggi dai miei preferiti, per poter accedere rapidamente ai contenuti di mio interesse e ricevere notifiche automatiche sui loro aggiornamenti di stato.
 }
 {
   \item Il sistema deve consentire di aggiungere o rimuovere una proposta o un sondaggio dai preferiti agendo su un apposito indicatore visivo.
@@ -81,10 +88,10 @@
   \item Implementazione della logica di pulizia dei preferiti in caso di cancellazione della proposta originale.
 }
 
-\section{Segnalazione contenuti \ref{rf:segnalazione}}
+\section{Segnalazione contenuti~\ref{rf:segnalazione}}
 \userstory
 {
-  Come \textbf{cittadino}, voglio poter segnalare i contenuti pubblicati (proposte o modifiche) ritenuti inappropriati specificandone la motivazione, affinché i moderatori possano verificarli e garantire un ambiente di discussione sicuro e rispettoso.
+  Come utente, voglio poter segnalare i contenuti pubblicati (proposte o modifiche) ritenuti inappropriati specificandone la motivazione, affinché i moderatori possano verificarli e garantire un ambiente di discussione sicuro e rispettoso.
 }
 {
   \item Il sistema deve mostrare un comando "Segnala contenuto" su ogni proposta o modifica pubblicata.
@@ -102,7 +109,7 @@
   \item Gestione degli errori nel caso in cui il contenuto sia stato rimosso concorrentemente.
 }
 
-\section{Espressione Endorsement \ref{rf:endorsement}}
+\section{Espressione Endorsement~\ref{rf:endorsement}}
 \userstory
 {
   Come rappresentante di un'associazione, voglio poter esprimere o rimuovere un endorsement ufficiale sulle proposte pubblicate, per manifestare pubblicamente il sostegno della mia organizzazione accrescendone la rilevanza agli occhi della cittadinanza.
@@ -120,3 +127,94 @@
   \item Sviluppo componente UI "Etichetta Endorsement" nella visualizzazione proposta.
   \item Implementazione pulsante toggle "Esprimi/Rimuovi Endorsement".
 }
+
+\section{Ordinamento proposte~\ref{rf:ordinamentoproposte}}
+\userstory{
+  Come utente, voglio poter ordinare le proposte che visualizzo in base a data o numero di voti, così da poter analizzare più facilmente quelle rilevanti per me.
+}
+{
+  \item Il sistema deve consentire l’ordinamento per data di pubblicazione.
+  \item Il sistema deve consentire l’ordinamento per numero totale di voti.
+  \item L’utente deve poter invertire l’ordine (crescente/decrescente).
+  \item L’ordinamento deve essere applicato immediatamente all’elenco visibile.
+}
+{
+  \item Implementazione UI dei controlli di ordinamento (dropdown o pulsanti).
+  \item API backend per applicare criteri di ordinamento.
+  \item Aggiornamento del componente elenco proposte.
+}
+
+\section{Rimozione contenuti~\ref{rf:rimozionecontenuti}}
+\userstory{
+  Come moderatore, voglio poter rimuovere contenuti che violano le regole della piattaforma, così da mantenere un ambiente rispettoso e sicuro.
+}
+{
+  \item Il sistema deve consentire ai moderatori di rimuovere contenuti (proposte o modifiche).
+  \item La rimozione deve richiedere la selezione di una motivazione.
+  \item Il contenuto deve essere immediatamente nascosto al pubblico.
+  \item La rimozione deve essere registrata con motivazione, data e moderatore.
+}
+{
+  \item UI “Rimuovi contenuto” accessibile solo ai moderatori.
+  \item API backend per l’eliminazione del contenuto.
+  \item Aggiornamento database e registrazione log moderazione.
+  \item Aggiornamento lista contenuti pubblici.
+}
+
+\section{Applicazione limitazioni utenti~\ref{rf:moderazioneutenti}}
+\userstory
+{
+  Come moderatore, voglio poter applicare limitazioni agli account che violano le linee guida, così da prevenire comportamenti scorretti e tutelare la comunità.
+}
+{
+  \item Il sistema deve permettere ai moderatori di applicare limitazioni temporanee ai cittadini.
+  \item Per le associazioni, il sistema deve inoltrare la richiesta all’amministrazione.
+  \item Ogni limitazione deve generare l'invio di un’email all’utente con motivazione e durata.
+  \item Un account limitato deve essere bloccato nelle azioni previste dalla limitazione.
+}
+{
+  \item Implementazione UI gestione limitazioni (solo per moderatori).
+  \item API per applicazione limitazione e per proposta all’amministrazione.
+  \item Sistema email per notifica dell’intervento.
+  \item Applicazione di limitazioni dei permessi (azioni bloccate).
+}
+
+\section{Pubblicazione sondaggi~\ref{rf:sondaggi}}
+\userstory
+{
+  Come amministratore, voglio poter pubblicare sondaggi tematici, così da raccogliere in modo strutturato l’opinione dei cittadini su temi di interesse pubblico.
+}
+{
+  \item Il sistema deve consentire di creare un sondaggio con titolo, descrizione, categoria, periodo di validità e quesiti.
+  \item Il sistema deve pubblicare il sondaggio immediatamente dopo conferma.
+  \item Gli utenti con notifiche attive devono essere avvisati della pubblicazione.
+  \item Il sondaggio deve chiudersi automaticamente alla data di scadenza.
+}
+{
+  \item Implementazione modulo UI “Crea sondaggio”.
+  \item API backend per creazione e pubblicazione sondaggio.
+  \item Configurazione CRON/worker per chiusura automatica.
+  \item Invio notifiche email per notificare la pubblicazione.
+}
+
+\userstory
+{
+  Come amministratore, voglio poter scaricare report sull’attività del sistema, così da avere dati statistici utili per monitorare l’uso della piattaforma e supportare decisioni strategiche.
+}
+{
+  \item Il sistema deve consentire il download dei report nei formati previsti (es. CSV).
+  \item Il sistema deve generare report aggregati e anonimizzati.
+  \item Il sistema deve offrire almeno due tipi di report:
+  \begin{itemize}
+    \item attività per proposta;
+    \item attività complessiva.
+  \end{itemize}
+  \item Il download deve avvenire in locale senza esposizione di dati sensibili.
+}
+{
+\item Implementazione UI per selezione del tipo di report.
+\item API backend per la generazione del report.
+\item Modulo di esportazione nel formato selezionato.
+}
+
+\end{usscope}
