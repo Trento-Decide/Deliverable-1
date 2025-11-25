@@ -24,7 +24,9 @@
     \setcounter{rfstart}{\value{section}}
     \renewcommand{\thesubsection}{\textbf{RF\the\numexpr\value{section}-\value{rfstart}\relax.\arabic{subsection}}}
     \renewcommand{\thesubsubsection}{\textbf{\thesubsection.\arabic{subsubsection}}}
+      \addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{3.9em}}
 }{
+  \addtocontents{toc}{\protect\setlength{\cftsecnumwidth}{\originalsecnumwidth}}
 }
 
 \newenvironment{rnfscope}{
@@ -45,6 +47,14 @@
     \addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{3.5em}}
 }{
     \addtocontents{toc}{\protect\setlength{\cftsubsecnumwidth}{\originalucsubsecwidth}}
+}
+
+\newenvironment{usscope}{
+    \setcounter{section}{0}    
+    \renewcommand{\thesection}{\textbf{US\arabic{section}}}
+    \addtocontents{toc}{\protect\setlength{\cftsecnumwidth}{4em}}
+}{
+    \addtocontents{toc}{\protect\setlength{\cftsecnumwidth}{\originalsecnumwidth}}
 }
 
 \definecolor{trentogreen}{RGB}{0, 122, 82}
