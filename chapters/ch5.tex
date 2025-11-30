@@ -1,8 +1,6 @@
 % !TeX spellcheck = it_IT
 \chapter{User Stories}
 
-\renewcommand{\thesection}{US\arabic{section}}
-
 \newcommand{\userstory}[3]{
   #1
 
@@ -146,63 +144,64 @@ Ogni storia segue una struttura uniforme e include criteri di accettazione verif
 
 \section{Rimozione contenuti~\ref{rf:rimozionecontenuti}}
 \userstory{
-  Come moderatore, voglio poter rimuovere contenuti che violano le regole della piattaforma, così da mantenere un ambiente rispettoso e sicuro.
+  Come moderatore, voglio poter eliminare i contenuti che non rispettano le regole della piattaforma, così da preservare un ambiente sicuro e rispettoso.
 }
 {
-  \item Il sistema deve consentire ai moderatori di rimuovere contenuti (proposte o modifiche).
+  \item Il sistema deve permettere ai moderatori di rimuovere contenuti non conformi.
   \item La rimozione deve richiedere la selezione di una motivazione.
-  \item Il contenuto deve essere immediatamente nascosto al pubblico.
-  \item La rimozione deve essere registrata con motivazione, data e moderatore.
+  \item Il contenuto eliminato non deve più essere visibile al pubblico.
+  \item La rimozione deve essere registrata con motivazione, data e moderatore responsabile.
 }
 {
-  \item UI “Rimuovi contenuto” accessibile solo ai moderatori.
+  \item Interfaccia “Rimuovi contenuto” visibile esclusivamente ai moderatori.
   \item API backend per l’eliminazione del contenuto.
-  \item Aggiornamento database e registrazione log moderazione.
-  \item Aggiornamento lista contenuti pubblici.
+  \item Aggiornamento del database con registrazione dell’azione di moderazione.
+  \item Aggiornamento dell’elenco dei contenuti pubblici.
 }
 
 \section{Applicazione limitazioni utenti~\ref{rf:moderazioneutenti}}
 \userstory
 {
-  Come moderatore, voglio poter applicare limitazioni agli account che violano le linee guida, così da prevenire comportamenti scorretti e tutelare la comunità.
+  Come moderatore, voglio applicare limitazioni temporanee agli account che violano le linee guida, così da prevenire comportamenti scorretti e tutelare la comunità.
 }
 {
-  \item Il sistema deve permettere ai moderatori di applicare limitazioni temporanee ai cittadini.
+  \item Il sistema deve consentire ai moderatori di applicare limitazioni temporanee ai cittadini.
   \item Per le associazioni, il sistema deve inoltrare la richiesta all’amministrazione.
   \item Ogni limitazione deve generare l'invio di un’email all’utente con motivazione e durata.
   \item Un account limitato deve essere bloccato nelle azioni previste dalla limitazione.
 }
 {
-  \item Implementazione UI gestione limitazioni (solo per moderatori).
-  \item API per applicazione limitazione e per proposta all’amministrazione.
-  \item Sistema email per notifica dell’intervento.
+  \item Interfaccia per la gestione delle limitazioni accessibile ai moderatori.
+  \item API per applicare la limitazione o inviare la richiesta all’amministrazione.
+  \item Sistema di notifica email per informare gli utenti coinvolti.
   \item Applicazione di limitazioni dei permessi (azioni bloccate).
 }
 
 \section{Pubblicazione sondaggi~\ref{rf:sondaggi}}
 \userstory
 {
-  Come amministratore, voglio poter pubblicare sondaggi tematici, così da raccogliere in modo strutturato l’opinione dei cittadini su temi di interesse pubblico.
+  Come amministratore, voglio poter pubblicare sondaggi, così da raccogliere in modo strutturato l’opinione dei cittadini su temi di interesse pubblico.
 }
 {
-  \item Il sistema deve consentire di creare un sondaggio con titolo, descrizione, categoria, periodo di validità e quesiti.
-  \item Il sistema deve pubblicare il sondaggio immediatamente dopo conferma.
-  \item Gli utenti con notifiche attive devono essere avvisati della pubblicazione.
-  \item Il sondaggio deve chiudersi automaticamente alla data di scadenza.
+  \item Il sistema deve permettere la creazione di un sondaggio con titolo, descrizione, categoria, periodo di validità e quesiti.
+  \item La pubblicazione deve avvenire immediatamente dopo la conferma dell’amministratore.
+  \item Gli utenti che hanno attivato le notifiche devono essere avvisati della pubblicazione.
+  \item Il sondaggio deve chiudersi automaticamente alla data prevista.
 }
 {
-  \item Implementazione modulo UI “Crea sondaggio”.
-  \item API backend per creazione e pubblicazione sondaggio.
+  \item Modulo UI dedicato alla creazione dei sondaggi.
+  \item API backend per creazione e pubblicazione del sondaggio.
   \item Configurazione CRON/worker per chiusura automatica.
-  \item Invio notifiche email per notificare la pubblicazione.
+  \item Invio delle notifiche email agli utenti interessati.
 }
 
+\section{Scaricare report~\ref{rf:report}}
 \userstory
 {
-  Come amministratore, voglio poter scaricare report sull’attività del sistema, così da avere dati statistici utili per monitorare l’uso della piattaforma e supportare decisioni strategiche.
+  Come amministratore, voglio poter scaricare report sull’attività della piattaforma, così da analizzare l’andamento del sistema e supportare le decisioni strategiche.
 }
 {
-  \item Il sistema deve consentire il download dei report nei formati previsti (es. CSV).
+  \item Il sistema deve consentire il download dei report nei formati previsti, ad esempio CSV.
   \item Il sistema deve generare report aggregati e anonimizzati.
   \item Il sistema deve offrire almeno due tipi di report:
   \begin{itemize}
@@ -212,9 +211,9 @@ Ogni storia segue una struttura uniforme e include criteri di accettazione verif
   \item Il download deve avvenire in locale senza esposizione di dati sensibili.
 }
 {
-\item Implementazione UI per selezione del tipo di report.
+\item Interfaccia per la selezione del tipo di report.
 \item API backend per la generazione del report.
-\item Modulo di esportazione nel formato selezionato.
+\item Modulo di esportazione nel formato richiesto.
 }
 
 \end{usscope}

@@ -1,4 +1,186 @@
 \chapter{Design Front End}
 
-\section*{Introduzione}
+\section{Introduzione}
 In questo capitolo vengono presentati gli elementi visuali e progettuali che definiscono l’esperienza utente della piattaforma. La sezione include i mockup delle principali interfacce, corredati dai riferimenti ai requisiti pertinenti, oltre a brevi descrizioni testuali pensate per chiarire eventuali aspetti non immediatamente evidenti dalle sole immagini.
+
+% -------------------------------------------------------------------
+\section{Login}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/login.png}
+    \caption{Schermata di accesso: credenziali locali e opzioni SPID / CIE}
+\end{figure}
+
+La schermata di login offre due modalità principali di accesso: (i) credenziali locali (email + password) e (ii) autenticazione tramite SPID o CIE\@. Sono anche presenti i collegamento per il recupero password e la registrazione.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:login}: Login}\\  
+    Supporto per login con credenziali locali e per autenticazione tramite SPID/CIE.
+
+    \item \textbf{\ref{rnf:sicurezza}: Sicurezza}\\  
+    Tutte le comunicazioni di autenticazione sono cifrate (TLS). Non vengono esposti dati sensibili e sono incluse protezioni anti-bruteforce lato backend.
+    
+    \item \textbf{\ref{rnf:lingua}: Lingua e Internazionalizzazione}\\
+    Il testo e messaggi di errore sono traducibili in tutte le lingue supportate.
+\end{itemize}
+
+\paragraph{Nota.}  
+Per l’accesso tramite SPID/CIE il pulsante reindirizza al provider di identità.
+
+% -------------------------------------------------------------------
+\section{Registrazione}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/registrati-1.png}
+    \includegraphics[width=0.45\textwidth]{img/ui/registrati-2.png}
+    \caption{Schermate di registrazione: SPID/CIE e impostazione credenziali locali}
+\end{figure}
+
+La procedura di registrazione prevede l’autenticazione tramite SPID o CIE come passaggio iniziale. Al termine della verifica dell'identità il sistema reindirizza l'utente verso l'impostazione di credenziali locali (email, password e username) e la scelta della preferenza sulle notifiche.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:registrazionecittadini}: Registrazione del cittadino}\\  
+    Registrazione basato su SPID/CIE, successiva impostazione delle credenziali locali e invio dell'email di conferma con scadenza token (10 minuti).
+
+    \item \textbf{\ref{rf:prefnotifiche}: Ricezione notifiche}\\
+    Scelta del consenso alla ricezione di notifiche durante la registrazione.
+
+    \item \textbf{\ref{rnf:sicurezza}: Sicurezza}\\  
+    Validazione lato client e server dei campi (unicità email/username, complessità password), crittografia dei dati sensibili.
+
+    \item \textbf{\ref{rnf:compatibilita}: Compatibilità}\\
+    Il form è responsive.
+
+    \item \textbf{\ref{rnf:lingua}: Internazionalizzazione e lingua}\\
+    Il form è completamente traducibile, come i messaggi di errore e le istruzioni.
+\end{itemize}
+
+% -------------------------------------------------------------------
+
+\section{Homepage}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/homepage.png}
+    \caption{Homepage personalizzata dell'utente autenticato}
+\end{figure}
+
+La homepage accoglie l'utente con un messaggio 
+personalizzato \emph{``Bentornato \texttt{@username}!''}
+e presenta una serie di sezioni utili come: aggiornamenti recenti, proposte viste di recente, sondaggi attivi ed esplorazione per categoria.
+La struttura a blocchi rende la schermata immediatamente leggibile e orientata alle attività più frequenti.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:preferiti}: Gestione dei preferiti}\\
+    La sezione ``Proposte viste di recente'' utilizza le informazioni derivate dalle interazioni dell’utente.
+    
+    \item \textbf{\ref{rf:filtroproposte}: Filtraggio delle proposte}\\
+    La sezione ``Esplora per categoria'' e la barra di ricerca facilita la navigazione all’interno della piattaforma.
+
+    \item \textbf{\ref{rnf:compatibilita}: Compatibilità}\\
+    Il layout è pienamente responsive e conforme agli standard web elencati nel relativo requisito.
+
+    \item \textbf{\ref{rnf:lingua}: Internazionalizzazione e lingua}\\
+    Tutti i testi dell’interfaccia sono traducibili automaticamente e non, come previsto dal relativo requisito non funzionale.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\section{Profilo Utente}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/profilo.png}
+    \includegraphics[width=0.45\textwidth]{img/ui/preferiti.png}
+    \caption{Schermata del profilo utente: dati personali e preferiti}
+\end{figure}
+
+La schermata del profilo è suddivisa in due blocchi:  
+(i) gestione dei dati personali e delle credenziali,  
+(ii) elenco dei propri contenuti preferiti.  
+
+L'interfaccia distingue chiaramente i dati modificabili (es. email, password, username) da quelli provenienti da SPID/CIE, mostrati ma non modificabili.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:gestioneprofiloedati}: Gestione del profilo}\\
+    L’utente può aggiornare email, password e nome utente tramite i moduli dedicati.
+
+    \item \textbf{\ref{rf:preferiti}: Gestione dei preferiti}\\
+    Il secondo blocco presenta la lista costantemente aggiornata dei contenuti salvati dall'utente.
+
+    \item \textbf{\ref{rnf:lingua}: Internazionalizzazione e lingua}\\
+    La schermata supporta la traduzione dell’interfaccia come previsto dal requsito non funzionale.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\section{Visualizzazione di una proposta}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/proposta.png}
+    \caption{Pagina di dettaglio di una proposta}
+\end{figure}
+
+La schermata mostra il contenuto completo di una proposta: titolo, descrizione, categoria, autore, data di pubblicazione, voti, mappa, allegati e altri strumenti di interazione nascosti dal pulsante a 3 punti come segnalazione del contenuto, aggiunta ai preferiti, traduzione.  
+Sono inoltre presenti le sezioni dedicate alle modifiche collaborative e alla cronologia delle versioni.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:modificacollaborativa}: Modifica collaborativa}\\
+    L’interfaccia include i pulsanti per avviare una modifica condivisa o visualizzare la cronologia.
+
+    \item \textbf{\ref{rf:versionamento}: Versionamento}\\
+    L’indicazione ``Ultima modifica'' introduce informazioni sulla versione corrente della proposta.
+
+    \item \textbf{\ref{rnf:lingua}: Internazionalizzazione e lingua}\\
+    L’interfaccia è completamente traducibile, mentre i contenuti generati dagli utenti rimangono nella lingua originale e sono opzionalmente tradotti automaticamente.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\section{Modifica Proposta (autore)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/modifica-proposta.png}
+    \caption{Modulo di modifica di una proposta esistente}
+\end{figure}
+
+In questa schermata l’autore può aggiornare una proposta già pubblicata.  
+Tutti i campi sono precompilati con i valori correnti, facilitando la modifica mirata su singoli elementi senza dover riscrivere l’intera proposta.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:modificaproposta}: Modifica proposta}\\
+    Sono modificabili titolo, descrizione, categoria, luogo (quando previsto) e allegati.
+
+    \item \textbf{\ref{rnf:lingua}: Internazionalizzazione e lingua}\\
+    L’interfaccia rispetta i requisiti di internazionalizzazione.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\section{Creazione di una proposta}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{img/ui/crea-proposta.png}
+    \caption{Modulo di creazione di una nuova proposta}
+\end{figure}
+
+Questa schermata mostra la struttura del modulo di modifica, ma con campi inizialmente vuoti.  
+L’utente può compilare tutti i campi richiesti e scegliere se salvare una bozza o procedere alla pubblicazione con richiesta di una ulteriore conferma.
+
+\paragraph{Requisiti soddisfatti.}
+\begin{itemize}
+    \item \textbf{\ref{rf:creazioneproposta}: Creazione di una proposta}\\
+    Sono presenti tutti i campi obbligatori (titolo, descrizione, luogo quando richiesto, categoria) e i campi relativi alla categoria selezionata.
+
+    \item \textbf{\ref{rf:salvataggiobozza}: Salvataggio bozza}\\
+    Il pulsante ``Salva bozza'' consente di archiviare la proposta in uno stato non pubblico.
+
+    \item \textbf{\ref{rf:scartarebozza}: Scartare proposta}\\
+    Il pulsante ``Elimina bozza'' permette di annullare completamente la compilazione.
+
+    \item \textbf{\ref{rf:pubblicazioneproposta}: Pubblicare proposta}\\
+    ``Pubblica proposta'' è disponibile solo quando tutti i campi obbligatori sono completi.
+
+    \item \textbf{\ref{rnf:lingua}: Internazionalizzazione e lingua}\\
+    L’intera schermata è traducibile secondo le lingue supportate.
+\end{itemize}
