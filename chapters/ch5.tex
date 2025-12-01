@@ -38,17 +38,17 @@
   \item L'attivazione dell'account deve essere completata entro 10 minuti dell'invio della mail, pena invalidazione della richiesta.
 }
 {
-  \item Integrazione dei servizi di autenticazione SPID e CIE.
+  \item Interfaccia: sviluppo del modulo per l'inserimento di email, password, username e preferenza notifiche.
 
-  \item Collegamento con ANPR per la verifica della residenza.
+  \item Database: Implementazione dei controlli di unicità per email e username nel database.
 
-  \item Configurazione del servizio di SMTP per l'invio delle email.
+  \item Logica: integrazione dei servizi di autenticazione SPID e CIE.
 
-  \item Sviluppo del modulo per l'inserimento di email, password, username e preferenza notifiche.
+  \item Logica: collegamento con ANPR per la verifica della residenza.
 
-  \item Implementazione della logica fa scadere il token di verifica dopo 10 minuti.
+  \item Logica: configurazione del servizio di SMTP per l'invio delle email.
 
-  \item Implementazione dei controlli di unicità per email e username nel database.
+  \item Logica: far scadere il token di verifica dopo 10 minuti.
 }
 
 \section{Espressione del voto~\ref{rf:voto}} \label{us:voto}
@@ -68,13 +68,41 @@
 {
   \item Aggiornamento in real-time dei contatori visibili sulla proposta.
 
-  \item Implementazione componenti UI.
-
   \item Implementazione logica per la modifica del voto.
 
   \item Sviluppo API backend per la ricezione e validazione del voto, controllando prima lo stato della proposta.
 
-  \item Progettazione dello schema database che associa il voto dell'utente  all'elemento, garantendo l'unicità e anonimità del voto.
+  \item Database: che associa il voto dell'utente all'elemento, garantendo l'unicità e anonimità del voto.
+}
+
+\section{Proporre modifiche a una proposta~\ref{rf:modificacollaborativa}} \label{us:modificacollaborativa}
+\userstory
+{
+    Come cittadino, voglio poter proporre modifiche alle proposte di terzi per favorirne una co-creazione trasparente.
+}
+{
+    \item Un utente deve poter inviare una proposta di modifica per una proposta di un terzo.
+
+    \item Le modifiche devono entrare in uno stato attesa di approvazione dell'autore.
+
+    \item L'autore della proposta deve poter accettare o rifiutare le modifiche.
+
+    \item Ogni modifica approvata deve generare una nuova versione consultabile con le precedenti.
+
+    \item La pubblicazione di una nuova versione deve causare l'azzeramento dei voti.
+
+    \item L'autore deve poter ripristinare una versione precedente.
+}
+{
+    \item Interfaccia: differenze tra la versione corrente e la modifica proposta.
+
+    \item Database: relazione 1-a-n tra Proposta e Proposte di modifica/Versioni.
+
+    \item API: invio di proposte di modifica e approvazione da parte dell'autore.
+
+    \item Logica: azzeramento dei voti e cambio di versione corrente.
+
+    \item Logica: funzionalità di ripristino.
 }
 
 \section{Gestione dei preferiti~\ref{rf:preferiti}} \label{us:preferiti}
@@ -94,11 +122,11 @@
   \item L'aggiornamento dello stato "preferito" deve essere immediato e persistente tra le sessioni.
 }
 {
-  \item Implementazione del componente UI sulle card e nelle pagine di dettaglio.
+  \item Interfaccia: componente UI sulle card e nelle pagine di dettaglio.
 
-  \item Sviluppo della pagina della lista dei preferiti.
+  \item Interfaccia: pagina della lista dei preferiti.
 
-  \item Implementazione della logica di pulizia dei preferiti in caso di cancellazione dell'elemento.
+  \item Logica: pulizia dei preferiti in caso di cancellazione dell'elemento.
 }
 
 \section{Segnalazione contenuti~\ref{rf:segnalazione}} \label{us:segnalazione}
@@ -118,15 +146,13 @@
   \item L'utente deve ricevere un feedback visivo di conferma dell'avvenuto invio della segnalazione.
 }
 {
-  \item Implementazione del bottone "Segnala" nell'interfaccia delle proposte.
+  \item Interfaccia: bottone "Segnala" nell'interfaccia delle proposte.
 
-  \item Creazione del modulo con la lista predefinita di motivazioni e campo di testo.
+  \item Interfaccia: modulo con la lista predefinita di motivazioni e campo di testo.
 
-  \item Sviluppo API per la creazione dell'oggetto Segnalazione collegato a Utente e Contenuto.
+  \item API: creazione dell'oggetto Segnalazione collegato a Utente e Contenuto.
 
-  \item Implementazione della logica di inserimento nella coda di revisione.
-
-  \item Gestione degli errori nel caso in cui il contenuto sia stato rimosso durante la segnalazione.
+  \item Logica: inserimento nella coda di revisione.
 }
 
 \section{Espressione Endorsement~\ref{rf:endorsement}} \label{us:endorsement}
